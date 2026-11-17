@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Digitar Pro | Academy - Aprenda a digitar</title>
+<style>
+:root{--bg:#081225;--panel:#101f36;--panel2:#142842;--line:#294059;--text:#eef5ff;--muted:#91a6bf;--accent:#4adad4;--purple:#a6a0ff;--good:#60e2ad;--bad:#ff7f97}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#123253 0,transparent 37%),linear-gradient(145deg,#06101e,#0c1b32 75%);font:16px system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);min-height:100vh}button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1250px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:30px}.logo{display:flex;gap:13px;align-items:center}.mark{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,var(--accent),#7b8eff);color:#061323;font-weight:900;box-shadow:0 12px 30px #0af2df20}.logo strong{font-size:20px}.logo small{display:block;color:var(--muted);font-size:12px;margin-top:3px}.pill{font-size:13px;border:1px solid var(--line);padding:9px 13px;border-radius:99px;color:var(--muted)}h1{font-size:clamp(30px,4vw,48px);letter-spacing:-1.8px;line-height:1.1;margin:4px 0 12px}.gradient{color:var(--accent)}.lead{color:var(--muted);max-width:720px;line-height:1.7;margin-bottom:26px}.layout{display:grid;grid-template-columns:285px 1fr;gap:22px}.card{background:linear-gradient(165deg,#13243b,#101d31);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 12px 45px #0003}.side-head{display:flex;justify-content:space-between;align-items:center}.side-head strong{font-size:14px}.subtitle{color:var(--muted);font-size:13px}.lesson-list{display:grid;gap:7px;margin-top:15px;max-height:540px;overflow:auto}.lesson{width:100%;text-align:left;background:transparent;color:var(--text);border:1px solid transparent;padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center}.lesson:hover{background:#ffffff0a}.lesson.active{background:#4adad415;border-color:#4adad455}.lesson.done .num{background:#2b835d;color:#d4ffeb}.num{width:34px;height:34px;border:1px solid #37516c;border-radius:10px;display:grid;place-items:center;font-size:13px;flex:none}.lesson small{display:block;color:var(--muted);margin-top:3px;font-size:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.stat{background:#09182b;border:1px solid var(--line);border-radius:14px;padding:14px}.stat b{display:block;font-size:24px;margin-top:5px}.stat span{font-size:12px;color:var(--muted)}.headline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:800}.headline h2{margin:7px 0 5px;font-size:24px}.progress{height:8px;border-radius:99px;background:#283e55;overflow:hidden;margin:20px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--purple));transition:width .16s}.prompt{background:#071625;border:1px solid #294662;border-radius:16px;padding:23px;min-height:118px;font:25px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.5px;white-space:pre-wrap;overflow-wrap:anywhere;user-select:none}.prompt .correct{color:var(--good)}.prompt .wrong{background:#a42d4e;color:#fff;border-radius:2px}.prompt .next{background:#d9f9ff;color:#071421;border-radius:2px;animation:blink 1s step-end infinite}@keyframes blink{50%{background:transparent;color:var(--text)}}.typing{width:100%;resize:vertical;min-height:92px;margin:15px 0 10px;border-radius:13px;border:1px solid #45617d;outline:none;padding:15px;background:#0a1829;color:var(--text);font:20px/1.5 ui-monospace,monospace}.typing:focus{border-color:var(--accent);box-shadow:0 0 0 3px #4adad41c}.typing:disabled{opacity:.65}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.btn{border:1px solid #3c5c76;background:#1b344e;color:var(--text);border-radius:11px;padding:11px 15px;font-weight:700}.btn.primary{background:var(--accent);border-color:var(--accent);color:#052432}.btn:hover{filter:brightness(1.1)}.hint{color:var(--muted);font-size:12px}.keyboard{margin-top:20px;padding:17px;background:#0a1729;border:1px solid var(--line);border-radius:15px;display:grid;gap:6px}.keyrow{display:flex;justify-content:center;gap:5px}.key{height:37px;min-width:28px;padding:0 8px;background:#1c3149;color:#c7d6e7;border:1px solid #344e68;box-shadow:0 2px #08101a;border-radius:7px;display:grid;place-items:center;font-size:12px}.key.wide{min-width:75px}.key.space{min-width:230px}.key.target{border-color:var(--accent);background:#0f696e;color:#fff;box-shadow:0 0 15px #4adad433}.message{margin-top:14px;color:var(--muted);font-size:13px;min-height:22px}.message.success{color:var(--good)}.footer{padding:20px 0;color:#8095ad;font-size:12px;text-align:center}.reset{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:12px}.note{margin-top:20px;border-left:3px solid var(--accent);padding-left:14px;font-size:13px;color:var(--muted);line-height:1.6}
+/* Identidade visual Digitar Pro e expansão da família de produtos */
+.brand-academy{color:var(--accent);font-weight:600}
+.product-vision{margin:20px 0 24px;padding:20px 24px;background:linear-gradient(110deg,#0b263b,#132841);border:1px solid #26516a;border-radius:18px}
+.product-vision h2{font-size:18px;margin:0 0 7px}
+.product-vision p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 14px}
+.product-family{display:flex;flex-wrap:wrap;gap:9px}
+.product-chip{font-size:12px;border:1px solid #395675;border-radius:40px;padding:7px 12px;color:#c3d6ec}
+.product-chip.active{border-color:var(--accent);background:#4adad417;color:var(--accent)}
+.product-chip.future{opacity:.65}
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:10px;top:10px;z-index:500;background:#fff;color:#101f36;padding:10px}
+/* Tela de conclusão do módulo */
+.summary-backdrop{position:fixed;inset:0;z-index:100;background:#030c19dc;display:grid;place-items:center;padding:20px;backdrop-filter:blur(7px)}
+.summary-backdrop[hidden]{display:none}
+.summary-card{width:min(640px,100%);max-height:92vh;overflow-y:auto;background:linear-gradient(160deg,#162b48,#0e1b30);border:1px solid #4adad477;border-radius:24px;padding:clamp(22px,5vw,40px);box-shadow:0 32px 110px #000a;text-align:center}
+.summary-icon{font-size:54px;line-height:1.2;margin-bottom:12px}.summary-card h2{font-size:clamp(25px,4vw,36px);margin:8px 0}.summary-description{color:var(--muted);line-height:1.6}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.summary-stat{border:1px solid var(--line);background:#09182b;border-radius:14px;padding:16px 10px}.summary-stat b{font-size:25px;display:block;margin:4px 0}.summary-stat span{font-size:12px;color:var(--muted)}.achievement{border:1px solid #4adad44d;background:#4adad412;border-radius:15px;padding:16px;margin:16px 0 22px}.achievement strong{display:block;color:var(--accent);font-size:18px;margin:5px 0}.summary-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.summary-buttons .btn{min-width:175px}@media(max-width:480px){.summary-stats{gap:7px}.summary-stat{padding:12px 5px}.summary-stat b{font-size:20px}}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.lesson-list{max-height:220px}.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:15px}.keyboard{overflow-x:auto}.keyrow{min-width:580px}.prompt{font-size:20px}}
+</style>
+</head>
+<body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
+<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · MVP 0.4</small></div></div><div class="pill">⌨️ Português (Brasil) · Progresso local</div></header>
+<h1>Digite melhor.<br><span class="gradient">Evolua sempre.</span></h1><p class="lead">Pratique digitação com lições progressivas, feedback instantâneo e métricas reais. Seu progresso é guardado neste navegador, sem cadastro.</p>
+<section class="product-vision" aria-label="Ecossistema Digitar Pro">
+<h2>Uma plataforma para desenvolver sua digitação</h2>
+<p>A Academy é nosso primeiro produto: pratique gratuitamente e acompanhe sua evolução. Outras experiências são possibilidades futuras e ainda não estão disponíveis.</p>
+<div class="product-family"><span class="product-chip active">Academy · disponível</span><span class="product-chip future">Kids · futuro</span><span class="product-chip future">Business · futuro</span><span class="product-chip future">Schools · futuro</span></div>
+</section>
+<main class="layout" id="conteudo"><aside class="card"><div class="side-head"><strong>TRILHA DE APRENDIZAGEM</strong><span class="subtitle" id="completedLabel">0 / 12</span></div><p class="subtitle">Selecione uma lição para praticar.</p><div id="lessons" class="lesson-list"></div><div class="note">Esta é a primeira entrega funcional. A trilha completa de 60 aulas, contas de estudantes e área do professor são etapas futuras.</div></aside>
+<section class="card"><div class="headline"><div><span class="eyebrow" id="module">MÓDULO 1</span><h2 id="lessonTitle">Teclas de referência</h2><p class="subtitle" id="lessonDesc">Comece pelas teclas centrais.</p></div><button class="reset" id="clearProgress" title="Apagar progresso armazenado neste navegador">Limpar progresso</button></div>
+<div class="stats"><div class="stat"><span>Velocidade</span><b id="wpm">0 <small style="font-size:12px">PPM</small></b></div><div class="stat"><span>Precisão</span><b id="accuracy">100%</b></div><div class="stat"><span>Tempo</span><b id="elapsed">0s</b></div><div class="stat"><span>Melhor resultado</span><b id="best">—</b></div></div>
+<div class="progress"><div id="bar" class="bar"></div></div><div id="prompt" class="prompt" aria-label="Texto que você deve digitar"></div><label for="typing" class="subtitle" style="display:block;margin-top:13px">DIGITE O TEXTO ACIMA</label><textarea id="typing" class="typing" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Clique aqui e comece a digitar..."></textarea><div class="actions"><button id="restart" class="btn">↻ Reiniciar</button><button id="nextLesson" class="btn primary">Próxima lição →</button><span class="hint">Depois de concluir a lição, pressione Enter para avançar. O cronômetro começa na primeira tecla.</span></div><div class="message" id="message" aria-live="polite"></div>
+<div class="keyboard" id="keyboard" aria-label="Mapa visual de teclado brasileiro simplificado"></div>
+</section></main><footer class="footer">Digitar Pro Academy · Aprender digitação no seu ritmo · Progresso armazenado neste navegador</footer></div>
+<div id="moduleSummary" class="summary-backdrop" role="dialog" aria-modal="true" aria-labelledby="summaryTitle" hidden>
+  <div class="summary-card" tabindex="-1" id="summaryCard">
+    <div class="summary-icon" aria-hidden="true">🏆</div>
+    <span class="eyebrow" id="summaryEyebrow">MÓDULO CONCLUÍDO</span>
+    <h2 id="summaryTitle">Parabéns!</h2>
+    <p class="summary-description" id="summaryDescription"></p>
+    <div class="summary-stats">
+      <div class="summary-stat"><span>Velocidade média</span><b id="summaryWpm">0</b><span>PPM</span></div>
+      <div class="summary-stat"><span>Precisão média</span><b id="summaryAccuracy">100%</b><span>Nas lições</span></div>
+      <div class="summary-stat"><span>Tempo total</span><b id="summaryTime">0s</b><span>No módulo</span></div>
+    </div>
+    <div class="achievement"><span>✨ CONQUISTA DESBLOQUEADA</span><strong id="achievementName"></strong><span class="subtitle" id="achievementDescription"></span></div>
+    <div class="summary-buttons"><button class="btn" id="repeatModule">↻ Repetir módulo</button><button class="btn primary" id="continueModule">Continuar com Enter →</button></div>
+    <p class="hint" id="summaryHint">Pressione Enter para continuar</p>
+  </div>
+</div>
+<script>
+(()=>{'use strict';
+const lessons=[
+{m:1,title:'Teclas de referência',desc:'Posição inicial das mãos: A S D F e J K L Ç.',text:'asdf jklç asdf jklç asdf jklç'},
+{m:1,title:'Ritmo na linha central',desc:'Ganhe fluidez sem tirar os dedos da base.',text:'a sala da fada fala da casa'},
+{m:1,title:'Palavras simples',desc:'Experimente alternar as duas mãos.',text:'fala salada casa fada jala'},
+{m:2,title:'Linha superior',desc:'Adicione Q W E R T Y U I O P.',text:'que tipo de equipe quer aprender'},
+{m:2,title:'Precisão no topo',desc:'Fortaleça a memória das letras superiores.',text:'poeta queria escrever outro roteiro'},
+{m:2,title:'Desafio das palavras',desc:'Combine linhas central e superior.',text:'aprender requer pratica e paciencia'},
+{m:3,title:'Linha inferior',desc:'Use Z X C V B N M.',text:'zxcv bnm zxcv bnm zxcv bnm'},
+{m:3,title:'Todas as linhas',desc:'Digite frases curtas sem olhar para as teclas.',text:'com calma voce consegue dominar o teclado'},
+{m:3,title:'Fluência inicial',desc:'Atenção ao espaço e à sequência.',text:'cada nova tentativa melhora sua velocidade'},
+{m:4,title:'Acentos e pontuação',desc:'Pratique a escrita em português.',text:'Olá, você está evoluindo! Continue.'},
+{m:4,title:'Números e símbolos',desc:'Introduza dígitos e sinais frequentes.',text:'Em 2026, complete 3 metas por dia.'},
+{m:4,title:'Desafio final',desc:'Teste velocidade e precisão com texto maior.',text:'A tecnologia transforma a educação quando praticamos com atenção, consistência e curiosidade.'}
+];
+const $=id=>document.getElementById(id);
+const storageKey='ad-typing-mvp-v1'; // Mantido para preservar progresso das versões anteriores
+let progress={};try{progress=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch(_){}
+let current=0,startTime=null,timer=null,finished=false,summaryOpen=false;
+const moduleAchievements={1:['🏅','Primeiros Passos','Você dominou a linha central do teclado.'],2:['🚀','Explorador das Teclas','Você avançou pela linha superior.'],3:['⚡','Ritmo e Fluência','Você combinou as três linhas do teclado.'],4:['🏆','Mestre da Digitação','Você concluiu todos os módulos disponíveis!']};
+function save(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(_){}}
+function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function drawLessons(){
+  $('lessons').innerHTML=lessons.map((l,i)=>`<button class="lesson ${current===i?'active':''} ${progress[i]?'done':''}" data-i="${i}"><span class="num">${progress[i]?'✓':i+1}</span><span><strong>${esc(l.title)}</strong><small>Módulo ${l.m}${progress[i]?' · '+progress[i].wpm+' PPM':''}</small></span></button>`).join('');
+  $('completedLabel').textContent=lessons.filter((_,i)=>!!progress[i]).length+' / '+lessons.length;
+  document.querySelectorAll('.lesson').forEach(b=>b.addEventListener('click',()=>load(+b.dataset.i)));
+}
+function hideSummary(){summaryOpen=false;$('moduleSummary').hidden=true;}
+function load(i){
+  hideSummary();current=i;startTime=null;finished=false;clearInterval(timer);
+  $('typing').value='';$('typing').disabled=false;$('module').textContent='MÓDULO '+lessons[i].m;
+  $('lessonTitle').textContent=lessons[i].title;$('lessonDesc').textContent=lessons[i].desc;
+  $('message').textContent='Digite o texto exatamente como apresentado.';$('message').className='message';
+  $('best').textContent=progress[i]?progress[i].wpm+' PPM':'—';render();drawLessons();
+}
+function getMetrics(){
+  const text=lessons[current].text,raw=$('typing').value;let errors=0;
+  for(let i=0;i<raw.length;i++)if(raw[i]!==text[i])errors++;
+  const secs=startTime?(Date.now()-startTime)/1000:0;
+  return {raw,errors,secs,acc:raw.length?Math.max(0,Math.round((raw.length-errors)/raw.length*100)):100,wpm:secs>0?Math.round((Math.max(0,raw.length-errors)/5)/(secs/60)):0};
+}
+function render(){
+  const text=lessons[current].text;const met=getMetrics();
+  $('prompt').innerHTML=[...text].map((ch,i)=>{const cl=i<met.raw.length?(met.raw[i]===ch?'correct':'wrong'):i===met.raw.length&&!finished?'next':'';return `<span class="${cl}">${esc(ch)}</span>`}).join('');
+  $('wpm').innerHTML=met.wpm+' <small style="font-size:12px">PPM</small>';
+  $('accuracy').textContent=met.acc+'%';$('elapsed').textContent=Math.floor(met.secs)+'s';
+  $('bar').style.width=Math.min(100,met.raw.length/text.length*100)+'%';highlight(text[met.raw.length]||'');
+}
+function highlight(letter){document.querySelectorAll('.key').forEach(k=>k.classList.toggle('target',!!letter&&k.dataset.key===letter.toLowerCase()))}
+function isModuleLast(i){return i===lessons.length-1||lessons[i+1].m!==lessons[i].m}
+function moduleIndices(module){return lessons.map((l,i)=>l.m===module?i:-1).filter(i=>i!==-1)}
+function getModuleStats(module){
+  const indices=moduleIndices(module);
+  if(!indices.every(i=>progress[i]&&progress[i].last))return null;
+  const results=indices.map(i=>progress[i].last);
+  return {wpm:Math.round(results.reduce((sum,r)=>sum+r.wpm,0)/results.length),
+    acc:Math.round(results.reduce((sum,r)=>sum+r.accuracy,0)/results.length),
+    secs:results.reduce((sum,r)=>sum+r.seconds,0)};
+}
+function formatTime(seconds){seconds=Math.max(0,Math.round(seconds));const m=Math.floor(seconds/60),s=seconds%60;return m?m+'min '+String(s).padStart(2,'0')+'s':s+'s'}
+function showSummary(module){
+  const result=getModuleStats(module);if(!result)return false;
+  summaryOpen=true;
+  const [emoji,name,description]=moduleAchievements[module];
+  $('summaryEyebrow').textContent='MÓDULO '+module+' CONCLUÍDO';$('summaryTitle').textContent=module===4?'Trilha concluída!':'Parabéns!';
+  $('summaryDescription').textContent='Você concluiu as '+moduleIndices(module).length+' lições do módulo '+module+'. Veja seu desempenho e sua nova conquista.';
+  $('summaryWpm').textContent=result.wpm;$('summaryAccuracy').textContent=result.acc+'%';$('summaryTime').textContent=formatTime(result.secs);
+  $('achievementName').textContent=emoji+' '+name;$('achievementDescription').textContent=description;
+  $('continueModule').textContent=module===4?'Recomeçar trilha →':'Próximo módulo →';
+  $('summaryHint').textContent=module===4?'Pressione Enter para voltar à primeira lição':'Pressione Enter para continuar';
+  $('moduleSummary').hidden=false;$('continueModule').focus();return true;
+}
+function complete(){
+  const m=getMetrics();finished=true;clearInterval(timer);$('typing').disabled=true;
+  const old=progress[current]||{};
+  progress[current]={wpm:Math.max(old.wpm||0,m.wpm),accuracy:m.acc,
+    last:{wpm:m.wpm,accuracy:m.acc,seconds:m.secs}};
+  save();$('best').textContent=progress[current].wpm+' PPM';
+  $('message').textContent='✓ Lição concluída! '+m.wpm+' PPM e '+m.acc+'% de precisão. '+(isModuleLast(current)?'Confira o resultado do módulo.':'Pressione Enter para começar a próxima lição.');
+  $('message').className='message success';drawLessons();render();
+  if(isModuleLast(current)){
+    // Se o usuário pulou lições, não declare o módulo completo antes de todas serem feitas.
+    if(!showSummary(lessons[current].m))$('message').textContent+=' Complete as outras lições deste módulo para desbloquear a conquista.';
+  }
+}
+function advance(){load((current+1)%lessons.length);$('typing').focus()}
+function repeatModule(){const indices=moduleIndices(lessons[current].m);load(indices[0]);$('typing').focus()}
+// Enter funciona mesmo quando o campo de digitação foi desativado na conclusão.
+document.addEventListener('keydown',event=>{
+  if(event.key!=='Enter'||event.repeat||event.isComposing||event.altKey||event.ctrlKey||event.metaKey)return;
+  if(summaryOpen){event.preventDefault();advance();return}
+  if(!finished)return;
+  // Evita que Enter em botões acione a ação do botão e avance duas vezes.
+  event.preventDefault();advance();
+});
+$('continueModule').addEventListener('click',advance);
+$('repeatModule').addEventListener('click',repeatModule);
+$('typing').addEventListener('input',()=>{
+  if(finished)return;
+  if(startTime===null){startTime=Date.now();timer=setInterval(render,250)}
+  const expected=lessons[current].text;
+  if($('typing').value.length>expected.length)$('typing').value=$('typing').value.slice(0,expected.length);
+  render();if($('typing').value===expected)complete();
+});
+$('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
+$('nextLesson').addEventListener('click',advance);
+$('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(current)}});
+const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');load(0);
+})();
+</script>
+</body></html>
