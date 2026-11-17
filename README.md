@@ -17,13 +17,13 @@ Abra `index.html` no navegador. Não precisa instalar nada. Também pode ser pub
 - Indicadores: PPM, precisão e tempo decorrido
 - Teclado visual simplificado com destaque da próxima tecla
 - Resultados e progresso salvos no navegador (localStorage)
-- Avanço pela tecla **Enter** após concluir a lição
+- Avanço pela tecla **Enter** após terminar o texto, mesmo com erros de digitação
 - Resumo no fim do módulo, com desempenho médio e conquista
 - Possibilidade de repetir módulos
 - Interface responsiva e identidade visual Digitar Pro
 - Identificação dos produtos da família, com rótulo claro de futuro
 
-**Atenção:** o progresso não é sincronizado entre dispositivos; a digitação deve ser idêntica ao texto proposto. O teclado visual ainda não é uma representação completa do ABNT2. As métricas são estimativas para fins educativos.
+**Atenção:** o progresso não é sincronizado entre dispositivos; erros são contabilizados na precisão e não bloqueiam o avanço ao término do texto. O teclado visual ainda não é uma representação completa do ABNT2. As métricas são estimativas para fins educativos.
 
 ## Arquitetura e futuro portfólio
 
@@ -46,6 +46,8 @@ A identidade da marca permite ampliar para novos produtos sem acoplar funcionali
 6. Depois da publicação, o endereço esperado será `https://alexsandsouza.github.io/digitar-pro/` (verifique no próprio GitHub Pages).
 
 ## Versões
+
+- **0.4.1** - Corrigido o avanço com Enter: lições finalizam ao atingir o fim do texto, mesmo com erros, preservando a medição de precisão.
 
 - **0.4** - Identidade Digitar Pro Academy e estrutura visual para a família de produtos.
 - **0.3** - Tela de resumo por módulo e conquistas.
