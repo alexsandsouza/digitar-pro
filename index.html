@@ -14,6 +14,14 @@
 .product-chip.active{border-color:var(--accent);background:#4adad417;color:var(--accent)}
 .product-chip.future{opacity:.65}
 .skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:10px;top:10px;z-index:500;background:#fff;color:#101f36;padding:10px}
+.mode-panel{margin:0 0 19px;padding:15px;border-radius:15px;background:#09182b;border:1px solid var(--line)}
+.mode-panel legend{color:var(--text);font-weight:800;font-size:14px;padding:0 7px}
+.mode-options{display:flex;gap:10px;flex-wrap:wrap}
+.mode-option{display:flex;align-items:center;gap:9px;padding:10px 14px;border-radius:11px;border:1px solid #3c5c76;color:var(--text);cursor:pointer}
+.mode-option:has(input:checked){border-color:var(--accent);background:#4adad419}
+.mode-option input{accent-color:var(--accent)}
+.mode-description{font-size:13px;color:var(--muted);margin:12px 0 0;line-height:1.5}
+.message.warning{color:#ffd38a}
 /* Tela de conclusão do módulo */
 .summary-backdrop{position:fixed;inset:0;z-index:100;background:#030c19dc;display:grid;place-items:center;padding:20px;backdrop-filter:blur(7px)}
 .summary-backdrop[hidden]{display:none}
@@ -23,7 +31,7 @@
 </style>
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
-<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · MVP 0.4</small></div></div><div class="pill">⌨️ Português (Brasil) · Progresso local</div></header>
+<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · MVP 0.5</small></div></div><div class="pill">⌨️ Português (Brasil) · Progresso local</div></header>
 <h1>Digite melhor.<br><span class="gradient">Evolua sempre.</span></h1><p class="lead">Pratique digitação com lições progressivas, feedback instantâneo e métricas reais. Seu progresso é guardado neste navegador, sem cadastro.</p>
 <section class="product-vision" aria-label="Ecossistema Digitar Pro">
 <h2>Uma plataforma para desenvolver sua digitação</h2>
@@ -32,6 +40,7 @@
 </section>
 <main class="layout" id="conteudo"><aside class="card"><div class="side-head"><strong>TRILHA DE APRENDIZAGEM</strong><span class="subtitle" id="completedLabel">0 / 12</span></div><p class="subtitle">Selecione uma lição para praticar.</p><div id="lessons" class="lesson-list"></div><div class="note">Esta é a primeira entrega funcional. A trilha completa de 60 aulas, contas de estudantes e área do professor são etapas futuras.</div></aside>
 <section class="card"><div class="headline"><div><span class="eyebrow" id="module">MÓDULO 1</span><h2 id="lessonTitle">Teclas de referência</h2><p class="subtitle" id="lessonDesc">Comece pelas teclas centrais.</p></div><button class="reset" id="clearProgress" title="Apagar progresso armazenado neste navegador">Limpar progresso</button></div>
+<fieldset class="mode-panel" aria-describedby="modeDescription"><legend>Modo de aprendizagem</legend><div class="mode-options"><label class="mode-option"><input type="radio" name="typingMode" value="training" checked> Treinamento</label><label class="mode-option"><input type="radio" name="typingMode" value="precision"> Precisão</label></div><p class="mode-description" id="modeDescription">Treinamento: erros reduzem a precisão, mas não impedem a conclusão.</p></fieldset>
 <div class="stats"><div class="stat"><span>Velocidade</span><b id="wpm">0 <small style="font-size:12px">PPM</small></b></div><div class="stat"><span>Precisão</span><b id="accuracy">100%</b></div><div class="stat"><span>Tempo</span><b id="elapsed">0s</b></div><div class="stat"><span>Melhor resultado</span><b id="best">—</b></div></div>
 <div class="progress"><div id="bar" class="bar"></div></div><div id="prompt" class="prompt" aria-label="Texto que você deve digitar"></div><label for="typing" class="subtitle" style="display:block;margin-top:13px">DIGITE O TEXTO ACIMA</label><textarea id="typing" class="typing" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Clique aqui e comece a digitar..."></textarea><div class="actions"><button id="restart" class="btn">↻ Reiniciar</button><button id="nextLesson" class="btn primary">Próxima lição →</button><span class="hint">Depois de concluir a lição, pressione Enter para avançar. O cronômetro começa na primeira tecla.</span></div><div class="message" id="message" aria-live="polite"></div>
 <div class="keyboard" id="keyboard" aria-label="Mapa visual de teclado brasileiro simplificado"></div>
@@ -72,6 +81,19 @@ const $=id=>document.getElementById(id);
 const storageKey='ad-typing-mvp-v1'; // Mantido para preservar progresso das versões anteriores
 let progress={};try{progress=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch(_){}
 let current=0,startTime=null,timer=null,finished=false,summaryOpen=false;
+const modeKey='digitar-pro-typing-mode';
+let typingMode='training';
+try{if(localStorage.getItem(modeKey)==='precision')typingMode='precision'}catch(_){}
+function updateModeUI(){
+  document.querySelectorAll('input[name="typingMode"]').forEach(el=>{el.checked=el.value===typingMode});
+  $('modeDescription').textContent=typingMode==='precision'?'Precisão: corrija todos os caracteres errados antes de concluir. Use Backspace para revisar; Enter avança após acertar tudo.':'Treinamento: erros contam na precisão, mas a lição termina quando o texto atinge o comprimento esperado.';
+}
+document.querySelectorAll('input[name="typingMode"]').forEach(el=>el.addEventListener('change',()=>{
+  if(!el.checked||el.value===typingMode)return;
+  typingMode=el.value;
+  try{localStorage.setItem(modeKey,typingMode)}catch(_){}
+  load(current);$('typing').focus();
+}));
 const moduleAchievements={1:['🏅','Primeiros Passos','Você dominou a linha central do teclado.'],2:['🚀','Explorador das Teclas','Você avançou pela linha superior.'],3:['⚡','Ritmo e Fluência','Você combinou as três linhas do teclado.'],4:['🏆','Mestre da Digitação','Você concluiu todos os módulos disponíveis!']};
 function save(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(_){}}
 function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -85,7 +107,8 @@ function load(i){
   hideSummary();current=i;startTime=null;finished=false;clearInterval(timer);
   $('typing').value='';$('typing').disabled=false;$('module').textContent='MÓDULO '+lessons[i].m;
   $('lessonTitle').textContent=lessons[i].title;$('lessonDesc').textContent=lessons[i].desc;
-  $('message').textContent='Digite até o final do exercício. Erros afetam a precisão, mas não impedem avançar com Enter.';$('message').className='message';
+  updateModeUI();
+  $('message').textContent=typingMode==='precision'?'Modo Precisão: digite o texto correto. Corrija qualquer erro com Backspace.':'Modo Treinamento: termine todo o texto; erros entram no cálculo da precisão.';$('message').className='message';
   $('best').textContent=progress[i]?progress[i].wpm+' PPM':'—';render();drawLessons();
 }
 function getMetrics(){
@@ -144,7 +167,16 @@ function repeatModule(){const indices=moduleIndices(lessons[current].m);load(ind
 document.addEventListener('keydown',event=>{
   if(event.key!=='Enter'||event.repeat||event.isComposing||event.altKey||event.ctrlKey||event.metaKey)return;
   if(summaryOpen){event.preventDefault();advance();return}
-  if(!finished)return;
+  if(!finished){
+    if(event.target===$('typing')){
+      event.preventDefault();
+      if(typingMode==='precision'&&$('typing').value.length===lessons[current].text.length){
+        $('message').textContent='Ainda há erros: corrija os trechos vermelhos com Backspace para concluir.';
+        $('message').className='message warning';
+      }
+    }
+    return;
+  }
   // Evita que Enter em botões acione a ação do botão e avance duas vezes.
   event.preventDefault();advance();
 });
@@ -155,8 +187,18 @@ $('typing').addEventListener('input',()=>{
   if(startTime===null){startTime=Date.now();timer=setInterval(render,250)}
   const expected=lessons[current].text;
   if($('typing').value.length>expected.length)$('typing').value=$('typing').value.slice(0,expected.length);
-  // Conclusão por comprimento: erros reduzem a precisão, mas não bloqueiam o avanço.
-  render();if($('typing').value.length===expected.length)complete();
+  // Treinamento conclui ao atingir o comprimento; Precisão exige igualdade.
+  render();
+  const entered=$('typing').value;
+  if(typingMode==='training'?entered.length===expected.length:entered===expected){
+    complete();
+  }else if(typingMode==='precision'&&entered.length===expected.length){
+    $('message').textContent='Você chegou ao fim, mas há erros. Corrija os caracteres destacados antes de avançar.';
+    $('message').className='message warning';
+  }else if($('message').classList.contains('warning')){
+    $('message').textContent='Continue digitando e corrija os erros com Backspace.';
+    $('message').className='message';
+  }
 });
 $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
