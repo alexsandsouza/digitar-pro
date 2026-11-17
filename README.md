@@ -4,7 +4,7 @@
 
 A **Digitar Pro** é uma marca de produtos de aprendizagem e produtividade digital. A **Digitar Pro Academy** é seu primeiro produto: laboratório de digitação em português (Brasil), gratuito e executado no navegador.
 
-> Estado atual: **MVP 0.4**, preparado para publicação. O sistema não possui autenticação, armazenamento em nuvem ou pagamento. Produtos futuros não estão implementados.
+> Estado atual: **MVP 0.5**, preparado para publicação. O sistema não possui autenticação, armazenamento em nuvem ou pagamento. Produtos futuros não estão implementados.
 
 ## Iniciar o sistema
 
@@ -17,19 +17,21 @@ Abra `index.html` no navegador. Não precisa instalar nada. Também pode ser pub
 - Indicadores: PPM, precisão e tempo decorrido
 - Teclado visual simplificado com destaque da próxima tecla
 - Resultados e progresso salvos no navegador (localStorage)
-- Avanço pela tecla **Enter** após terminar o texto, mesmo com erros de digitação
+- Dois modos de prática: **Treinamento** (conclui ao terminar o texto, contando erros) e **Precisão** (é necessário corrigir os erros antes de concluir)
+- Avanço com **Enter** após a conclusão, conforme o modo selecionado
+- Preferência de modo salva no navegador, independente do progresso
 - Resumo no fim do módulo, com desempenho médio e conquista
 - Possibilidade de repetir módulos
 - Interface responsiva e identidade visual Digitar Pro
 - Identificação dos produtos da família, com rótulo claro de futuro
 
-**Atenção:** o progresso não é sincronizado entre dispositivos; erros são contabilizados na precisão e não bloqueiam o avanço ao término do texto. O teclado visual ainda não é uma representação completa do ABNT2. As métricas são estimativas para fins educativos.
+**Atenção:** o progresso não é sincronizado entre dispositivos; no modo Treinamento, erros são contabilizados e não bloqueiam a conclusão; no modo Precisão, todos devem ser corrigidos. Trocar de modo reinicia o exercício atual, sem apagar os resultados já salvos. O teclado visual ainda não é uma representação completa do ABNT2. As métricas são estimativas para fins educativos.
 
 ## Arquitetura e futuro portfólio
 
 | Produto | Proposta | Situação |
 |---|---|---|
-| **Digitar Pro Academy** | Aprendizagem de digitação com progresso e gamificação | MVP 0.4 implementado |
+| **Digitar Pro Academy** | Aprendizagem de digitação com progresso e gamificação | MVP 0.5 implementado |
 | Digitar Pro Kids | Experiência lúdica para crianças | Ideia futura |
 | Digitar Pro Business | Produtividade e capacitação em empresas | Ideia futura |
 | Digitar Pro Schools | Turmas, professores e acompanhamento escolar | Ideia futura |
@@ -46,6 +48,8 @@ A identidade da marca permite ampliar para novos produtos sem acoplar funcionali
 6. Depois da publicação, o endereço esperado será `https://alexsandsouza.github.io/digitar-pro/` (verifique no próprio GitHub Pages).
 
 ## Versões
+
+- **0.5** - Seleção entre Treinamento e Precisão, correção obrigatória de erros no segundo modo, preferência persistida e comportamento de Enter contextual.
 
 - **0.4.1** - Corrigido o avanço com Enter: lições finalizam ao atingir o fim do texto, mesmo com erros, preservando a medição de precisão.
 
