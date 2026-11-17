@@ -85,7 +85,7 @@ function load(i){
   hideSummary();current=i;startTime=null;finished=false;clearInterval(timer);
   $('typing').value='';$('typing').disabled=false;$('module').textContent='MÓDULO '+lessons[i].m;
   $('lessonTitle').textContent=lessons[i].title;$('lessonDesc').textContent=lessons[i].desc;
-  $('message').textContent='Digite o texto exatamente como apresentado.';$('message').className='message';
+  $('message').textContent='Digite até o final do exercício. Erros afetam a precisão, mas não impedem avançar com Enter.';$('message').className='message';
   $('best').textContent=progress[i]?progress[i].wpm+' PPM':'—';render();drawLessons();
 }
 function getMetrics(){
@@ -131,7 +131,7 @@ function complete(){
   progress[current]={wpm:Math.max(old.wpm||0,m.wpm),accuracy:m.acc,
     last:{wpm:m.wpm,accuracy:m.acc,seconds:m.secs}};
   save();$('best').textContent=progress[current].wpm+' PPM';
-  $('message').textContent='✓ Lição concluída! '+m.wpm+' PPM e '+m.acc+'% de precisão. '+(isModuleLast(current)?'Confira o resultado do módulo.':'Pressione Enter para começar a próxima lição.');
+  $('message').textContent='✓ Exercício finalizado! '+m.wpm+' PPM, '+m.acc+'% de precisão e '+m.errors+' erro(s). '+(isModuleLast(current)?'Confira o resultado do módulo.':'Pressione Enter para iniciar a próxima lição.');
   $('message').className='message success';drawLessons();render();
   if(isModuleLast(current)){
     // Se o usuário pulou lições, não declare o módulo completo antes de todas serem feitas.
@@ -155,7 +155,8 @@ $('typing').addEventListener('input',()=>{
   if(startTime===null){startTime=Date.now();timer=setInterval(render,250)}
   const expected=lessons[current].text;
   if($('typing').value.length>expected.length)$('typing').value=$('typing').value.slice(0,expected.length);
-  render();if($('typing').value===expected)complete();
+  // Conclusão por comprimento: erros reduzem a precisão, mas não bloqueiam o avanço.
+  render();if($('typing').value.length===expected.length)complete();
 });
 $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
