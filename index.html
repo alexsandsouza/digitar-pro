@@ -41,7 +41,7 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 .product-vision{margin:0 0 20px;padding:0;border:0;background:none}.product-vision summary{display:inline-flex;align-items:center;cursor:pointer;color:var(--muted);font-size:13px;gap:8px;padding:4px 0 10px;list-style:revert}.product-vision .product-inner{padding:17px 20px;border:1px solid #26516a;border-radius:16px;background:#10243b}
 .layout{grid-template-columns:minmax(235px,270px) minmax(0,1fr);gap:19px;align-items:start}
 .card{background:linear-gradient(145deg,#13243b,#0e1b2d);border:1px solid #29445f;border-radius:22px;box-shadow:0 14px 45px #0002}
-.layout>aside{padding:19px;position:sticky;top:12px}.layout>section.card{padding:clamp(18px,2.5vw,30px)}.lesson-list{max-height:590px}.lesson{padding:11px 9px}
+.layout>aside{padding:19px;position:static}.layout>section.card{padding:clamp(18px,2.5vw,30px)}.lesson-list{max-height:590px}.lesson{padding:11px 9px}
 .headline{margin-bottom:15px}.headline h2{font-size:clamp(24px,2.4vw,31px)}.headline .subtitle{font-size:14px;line-height:1.5}
 .mode-panel{margin-bottom:15px}.mode-option{transition:background .2s,border-color .2s}.mode-option:hover{border-color:#5ca8ff}
 .stats{margin-bottom:14px}.stat{padding:13px 15px;background:#091a2e}.stat b{font-variant-numeric:tabular-nums}
@@ -59,6 +59,52 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 @media(max-width:900px){.layout{grid-template-columns:1fr}.layout>aside{position:static}.lesson-list{display:flex;overflow-x:auto;max-height:none;padding-bottom:5px}.lesson{min-width:190px;max-width:220px}.dashboard-strip{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.wrap{padding:16px}.hero-premium h1{font-size:29px}.dashboard-strip{gap:8px}.dashboard-tile{padding:10px}.dashboard-tile strong{font-size:17px}.top .pill{font-size:11px}.mode-options{gap:8px}.prompt{padding:14px;min-height:95px}.keyboard{padding:10px}.card{padding:15px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* Refinamento UX: sem barras internas intrusivas; rolagem preservada. */
+.lesson-list{
+  max-height:none;
+  overflow:visible;
+  padding-right:0;
+  scrollbar-width:none;
+}
+.lesson-list::-webkit-scrollbar{display:none}
+.summary-card{
+  max-height:min(92vh,92dvh);
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+  scrollbar-gutter:auto;
+}
+.summary-card::-webkit-scrollbar{display:none}
+.summary-backdrop{overflow-y:auto;overscroll-behavior:contain}
+.keyboard,.typing{scrollbar-width:thin;scrollbar-color:#376477 transparent}
+.keyboard::-webkit-scrollbar,.typing::-webkit-scrollbar{width:6px;height:6px}
+.keyboard::-webkit-scrollbar-track,.typing::-webkit-scrollbar-track{background:transparent}
+.keyboard::-webkit-scrollbar-thumb,.typing::-webkit-scrollbar-thumb{background:#376477;border-radius:999px}
+@media(max-width:900px){
+  .lesson-list{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    max-height:none;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:5px 2px 12px;
+    scroll-snap-type:x proximity;
+    overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .lesson-list::-webkit-scrollbar{display:none}
+  .lesson{flex:0 0 215px;width:215px;max-width:215px;scroll-snap-align:start}
+  .lesson:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+}
+@media(max-width:480px){
+  .lesson{flex-basis:190px;width:190px;max-width:190px}
+  .summary-card{padding:22px 18px}
+}
+
 </style>
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
