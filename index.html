@@ -163,8 +163,16 @@ const lessons=[
 const $=id=>document.getElementById(id);
 const storageKey='ad-typing-mvp-v1'; // Mantido para preservar progresso das versões anteriores
 let progress={};try{const stored=JSON.parse(localStorage.getItem(storageKey)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))progress=stored}catch(_){}
-let current=0,startTime=null,timer=null,finished=false,summaryOpen=false;
+let current=0,startTime=null,timer=null,finished=false,summaryOpen=false,frozenMetrics=null;
 const modeKey='digitar-pro-typing-mode';
+const lessonKey='digitar-pro-current-lesson';
+function readLessonIndex(){
+  try{
+    const n=Number(localStorage.getItem(lessonKey));
+    if(Number.isInteger(n)&&n>=0&&n<lessons.length)return n;
+  }catch(_){}
+  return 0;
+}
 let typingMode='training';
 try{if(localStorage.getItem(modeKey)==='precision')typingMode='precision'}catch(_){}
 function updateModeUI(){
@@ -199,7 +207,8 @@ function drawLessons(){
 }
 function hideSummary(){summaryOpen=false;$('moduleSummary').hidden=true;document.querySelector('.wrap').removeAttribute('inert');document.body.classList.remove('modal-open');}
 function load(i){
-  hideSummary();current=i;startTime=null;finished=false;clearInterval(timer);
+  hideSummary();current=i;startTime=null;finished=false;frozenMetrics=null;clearInterval(timer);
+  try{localStorage.setItem(lessonKey,String(i))}catch(_){}
   $('typing').value='';$('typing').disabled=false;$('module').textContent='MÓDULO '+lessons[i].m;
   $('lessonTitle').textContent=lessons[i].title;$('lessonDesc').textContent=lessons[i].desc;
   $('lessonPurpose').innerHTML='<strong>Objetivo:</strong> '+esc(lessons[i].desc)+' <span aria-hidden="true">·</span> '+(typingMode==='precision'?'Corrija todos os erros antes de avançar.':'Priorize a precisão e tente melhorar seu resultado.');
@@ -214,7 +223,7 @@ function getMetrics(){
   return {raw,errors,secs,acc:raw.length?Math.max(0,Math.round((raw.length-errors)/raw.length*100)):100,wpm:secs>0?Math.round((Math.max(0,raw.length-errors)/5)/(secs/60)):0};
 }
 function render(){
-  const text=lessons[current].text;const met=getMetrics();
+  const text=lessons[current].text;const met=finished&&frozenMetrics?frozenMetrics:getMetrics();
   $('prompt').innerHTML=[...text].map((ch,i)=>{const cl=i<met.raw.length?(met.raw[i]===ch?'correct':'wrong'):i===met.raw.length&&!finished?'next':'';return `<span class="${cl}">${esc(ch)}</span>`}).join('');
   $('wpm').innerHTML=met.wpm+' <small style="font-size:12px">PPM</small>';
   $('accuracy').textContent=met.acc+'%';$('elapsed').textContent=Math.floor(met.secs)+'s';
@@ -247,7 +256,7 @@ function showSummary(module){
   $('moduleSummary').hidden=false;$('continueModule').focus();return true;
 }
 function complete(){
-  const m=getMetrics();finished=true;clearInterval(timer);$('typing').disabled=true;
+  const m=getMetrics();frozenMetrics=m;finished=true;clearInterval(timer);$('typing').disabled=true;
   const module=lessons[current].m;
   const wasComplete=isModuleComplete(module);
   const old=progress[current]||{};
@@ -311,8 +320,8 @@ $('typing').addEventListener('input',()=>{
 });
 $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
-$('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(current)}});
-const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');load(0);
+$('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(0)}});
+const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');load(readLessonIndex());
 })();
 </script>
 </body></html>

@@ -34,6 +34,9 @@ function createApp(options = {}) {
       if (options.mode) {
         window.localStorage.setItem('digitar-pro-typing-mode', options.mode);
       }
+      if (options.lesson !== undefined) {
+        window.localStorage.setItem('digitar-pro-current-lesson', String(options.lesson));
+      }
     },
   });
 
