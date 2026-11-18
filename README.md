@@ -8,6 +8,7 @@
   <img alt="Plataforma" src="https://img.shields.io/badge/HTML%20%7C%20CSS%20%7C%20JS-07111F?style=flat-square&logo=javascript&logoColor=4FE3E1" />
   <img alt="Idioma" src="https://img.shields.io/badge/idioma-PT--BR-4FE3E1?style=flat-square" />
   <img alt="Hospedagem" src="https://img.shields.io/badge/deploy-GitHub%20Pages-172B44?style=flat-square&logo=githubpages&logoColor=white" />
+  <a href="https://hits.sh/github.com/alexsandsouza/digitar-pro/"><img alt="Visualizações do repositório" src="https://hits.sh/github.com/alexsandsouza/digitar-pro.svg?label=visualiza%C3%A7%C3%B5es&color=4fe3e1&labelColor=172b44" /></a>
   <p><strong>Pratique com propósito. Acompanhe sua evolução. Conquiste fluência.</strong></p>
   <p>Plataforma educacional de digitação em português, gratuita no navegador e sem cadastro nesta fase.</p>
 </div>
@@ -106,6 +107,10 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 | **0.3** | Resumo de módulo e conquistas |
 | **0.2** | Avanço com Enter |
 | **0.1** | Laboratório inicial com 12 lições |
+
+## ✦ Visibilidade do projeto
+
+O endereço público da aplicação é **https://alexsandsouza.github.io/digitar-pro/**. O badge acima utiliza o serviço externo Hits para contabilizar carregamentos do indicador no README. **Ele não equivale a visitantes únicos do site** nem substitui as estatísticas de tráfego do GitHub.
 
 ## ✦ Privacidade, limites e licença
 
