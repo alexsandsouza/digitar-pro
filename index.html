@@ -28,6 +28,52 @@
 .summary-card{width:min(640px,100%);max-height:92vh;overflow-y:auto;background:linear-gradient(160deg,#162b48,#0e1b30);border:1px solid #4adad477;border-radius:24px;padding:clamp(22px,5vw,40px);box-shadow:0 32px 110px #000a;text-align:center}
 .summary-icon{font-size:54px;line-height:1.2;margin-bottom:12px}.summary-card h2{font-size:clamp(25px,4vw,36px);margin:8px 0}.summary-description{color:var(--muted);line-height:1.6}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.summary-stat{border:1px solid var(--line);background:#09182b;border-radius:14px;padding:16px 10px}.summary-stat b{font-size:25px;display:block;margin:4px 0}.summary-stat span{font-size:12px;color:var(--muted)}.achievement{border:1px solid #4adad44d;background:#4adad412;border-radius:15px;padding:16px;margin:16px 0 22px}.achievement strong{display:block;color:var(--accent);font-size:18px;margin:5px 0}.summary-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.summary-buttons .btn{min-width:175px}@media(max-width:480px){.summary-stats{gap:7px}.summary-stat{padding:12px 5px}.summary-stat b{font-size:20px}}
 @media(max-width:860px){.layout{grid-template-columns:1fr}.lesson-list{max-height:220px}.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:15px}.keyboard{overflow-x:auto}.keyrow{min-width:580px}.prompt{font-size:20px}}
+
+/* Refinamento UX: sem barras internas intrusivas; rolagem preservada. */
+.lesson-list{
+  max-height:none;
+  overflow:visible;
+  padding-right:0;
+  scrollbar-width:none;
+}
+.lesson-list::-webkit-scrollbar{display:none}
+.summary-card{
+  max-height:min(92vh,92dvh);
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+  scrollbar-gutter:auto;
+}
+.summary-card::-webkit-scrollbar{display:none}
+.summary-backdrop{overflow-y:auto;overscroll-behavior:contain}
+.keyboard,.typing{scrollbar-width:thin;scrollbar-color:#376477 transparent}
+.keyboard::-webkit-scrollbar,.typing::-webkit-scrollbar{width:6px;height:6px}
+.keyboard::-webkit-scrollbar-track,.typing::-webkit-scrollbar-track{background:transparent}
+.keyboard::-webkit-scrollbar-thumb,.typing::-webkit-scrollbar-thumb{background:#376477;border-radius:999px}
+@media(max-width:900px){
+  .lesson-list{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    max-height:none;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:5px 2px 12px;
+    scroll-snap-type:x proximity;
+    overscroll-behavior-inline:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .lesson-list::-webkit-scrollbar{display:none}
+  .lesson{flex:0 0 215px;width:215px;max-width:215px;scroll-snap-align:start}
+  .lesson:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+}
+@media(max-width:480px){
+  .lesson{flex-basis:190px;width:190px;max-width:190px}
+  .summary-card{padding:22px 18px}
+}
+
 </style>
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
