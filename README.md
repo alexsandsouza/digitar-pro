@@ -4,7 +4,7 @@
   <a href="https://alexsandsouza.github.io/digitar-pro/"><img alt="Acessar plataforma" src="https://img.shields.io/badge/ACESSAR_PLATAFORMA-4FE3E1?style=for-the-badge&logo=githubpages&logoColor=07111F" /></a>
   <a href="https://github.com/alexsandsouza/digitar-pro"><img alt="Código no GitHub" src="https://img.shields.io/badge/C%C3%93DIGO_NO_GITHUB-172B44?style=for-the-badge&logo=github&logoColor=white" /></a>
   <br/><br/>
-  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-0.5-5CA8FF?style=flat-square" />
+  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-0.6%20Premium%20Preview-5CA8FF?style=flat-square" />
   <img alt="Plataforma" src="https://img.shields.io/badge/HTML%20%7C%20CSS%20%7C%20JS-07111F?style=flat-square&logo=javascript&logoColor=4FE3E1" />
   <img alt="Idioma" src="https://img.shields.io/badge/idioma-PT--BR-4FE3E1?style=flat-square" />
   <img alt="Hospedagem" src="https://img.shields.io/badge/deploy-GitHub%20Pages-172B44?style=flat-square&logo=githubpages&logoColor=white" />
@@ -19,13 +19,13 @@
 
 **Digitar Pro Academy** é o primeiro produto do ecossistema **Digitar Pro**. A experiência combina exercícios progressivos, indicadores de velocidade e precisão, feedback imediato e conquistas por módulo.
 
-**Estado atual:** 0.5 (produção)
+**Estado atual:** 0.6 Premium, release autorizado em 17/11/2026
 
-> **Versão publicada:** 0.5. A interface 0.6 Premium está em revisão na [Pull Request #1](https://github.com/alexsandsouza/digitar-pro/pull/1).
+> O redesign 0.6 e as correções da FEAT-001 entram pela [PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3). Screenshot, teclado físico, leitor de tela, Firefox, Safari e teste de usabilidade continuam pendentes.
 
 ### ⚡ Experimente agora
 
-**[Abrir Digitar Pro Academy](https://alexsandsouza.github.io/digitar-pro/)** · **[Ver código-fonte](https://github.com/alexsandsouza/digitar-pro)** · **[Acompanhar evolução premium](https://github.com/alexsandsouza/digitar-pro/pull/1)**
+**[Abrir Digitar Pro Academy](https://alexsandsouza.github.io/digitar-pro/)** · **[Ver código-fonte](https://github.com/alexsandsouza/digitar-pro)** · **[Revisar a PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3)**
 
 ## ✦ Funcionalidades
 
@@ -39,7 +39,7 @@
 | ↵ **Avanço com Enter** | Após concluir, Enter inicia a próxima lição |
 | 🏆 **Conquistas por módulo** | Resumo do desempenho e medalhas de progresso |
 | 💾 **Progresso local** | Histórico armazenado no navegador, sem cadastro |
-
+| ✨ **Experiência premium** | Novo design, dashboard pessoal, objetivos por lição e teclado recolhível |
 
 ## ✦ Como aprender
 
@@ -85,6 +85,17 @@ cd digitar-pro
 
 Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode usar um servidor HTTP estático local.
 
+### Testes automatizados
+
+Os testes de caracterização e regressão carregam o `index.html` real em jsdom, com relógio controlado e `localStorage` isolado. O jsdom é dependência **apenas de desenvolvimento**; a aplicação publicada continua sem build e sem dependências de runtime.
+
+```bash
+npm install
+npm test
+```
+
+A suíte cobre modos Treinamento e Precisão, Enter, métricas, dashboard, compatibilidade do `localStorage`, resumo de módulo e acessibilidade do modal. Consulte as evidências em [docs/spection/verification/2026-11-17-test-evidence.md](docs/spection/verification/2026-11-17-test-evidence.md).
+
 ## ✦ Roadmap
 
 | Entrega | Status |
@@ -92,8 +103,9 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 | MVP com lições, feedback e métricas | ✅ Entregue |
 | Conquistas e progressão com Enter | ✅ Entregue |
 | Modos Treinamento e Precisão | ✅ Entregue |
-| Redesign premium e painel do aluno | 🔄 Em revisão na PR #1 |
-| Testes de usabilidade e regressão v0.6 | 🧪 Pendente |
+| Redesign premium e painel do aluno | ✅ 0.6, release autorizado em 17/11/2026 |
+| Testes de regressão automatizados v0.6 | ✅ 45 testes em jsdom (2026-11-17) |
+| Testes de usabilidade manual v0.6 | 🧪 Pendente |
 | Metas, níveis e ampliação da trilha | 📋 Planejado |
 | Contas, sincronização e painel docente | 📋 Visão futura |
 
@@ -101,6 +113,7 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 
 | Versão | Evolução |
 |:--|:--|
+| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível, responsividade e correções da FEAT-001 |
 | **0.5** | Modos Treinamento e Precisão |
 | **0.4.1** | Avanço com Enter após atingir o fim do texto no Treinamento, mesmo com erros |
 | **0.4** | Identidade Digitar Pro e família de produtos |
