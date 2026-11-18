@@ -1,81 +1,126 @@
-# Digitar Pro - Academy
+<div align="center">
+  <img src="./assets/readme-banner.svg" width="100%" alt="Digitar Pro Academy - Digite melhor. Evolua sempre." />
+  <br/><br/>
+  <a href="https://alexsandsouza.github.io/digitar-pro/"><img alt="Acessar plataforma" src="https://img.shields.io/badge/ACESSAR_PLATAFORMA-4FE3E1?style=for-the-badge&logo=githubpages&logoColor=07111F" /></a>
+  <a href="https://github.com/alexsandsouza/digitar-pro"><img alt="Código no GitHub" src="https://img.shields.io/badge/C%C3%93DIGO_NO_GITHUB-172B44?style=for-the-badge&logo=github&logoColor=white" /></a>
+  <br/><br/>
+  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-0.6%20Premium%20Preview-5CA8FF?style=flat-square" />
+  <img alt="Plataforma" src="https://img.shields.io/badge/HTML%20%7C%20CSS%20%7C%20JS-07111F?style=flat-square&logo=javascript&logoColor=4FE3E1" />
+  <img alt="Idioma" src="https://img.shields.io/badge/idioma-PT--BR-4FE3E1?style=flat-square" />
+  <img alt="Hospedagem" src="https://img.shields.io/badge/deploy-GitHub%20Pages-172B44?style=flat-square&logo=githubpages&logoColor=white" />
+  <p><strong>Pratique com propósito. Acompanhe sua evolução. Conquiste fluência.</strong></p>
+  <p>Plataforma educacional de digitação em português, gratuita no navegador e sem cadastro nesta fase.</p>
+</div>
 
-**Digite melhor. Evolua sempre.**
+---
 
-A **Digitar Pro** é uma marca de produtos de aprendizagem e produtividade digital. A **Digitar Pro Academy** é seu primeiro produto: laboratório de digitação em português (Brasil), gratuito e executado no navegador.
+## ✦ Visão geral
 
-> Estado atual: **MVP 0.6 Premium**, preparado para publicação. O sistema não possui autenticação, armazenamento em nuvem ou pagamento. Produtos futuros não estão implementados.
+**Digitar Pro Academy** é o primeiro produto do ecossistema **Digitar Pro**. A experiência combina exercícios progressivos, indicadores de velocidade e precisão, feedback imediato e conquistas por módulo.
 
-## Iniciar o sistema
+**Estado atual:** 0.6 Premium (em revisão)
 
-Abra `index.html` no navegador. Não precisa instalar nada. Também pode ser publicado como um site estático no GitHub Pages.
+> **Prévia em desenvolvimento:** o redesign 0.6 está na branch `feature/premium-v0.6` e será publicado após validação.
 
-## O que já está implementado
+### ⚡ Experimente agora
 
-- 12 lições, organizadas em 4 módulos
-- Digitação caractere por caractere, com feedback dos erros
-- Indicadores: PPM, precisão e tempo decorrido
-- Teclado visual simplificado com destaque da próxima tecla
-- Resultados e progresso salvos no navegador (localStorage)
-- Dois modos de prática: **Treinamento** (conclui ao terminar o texto, contando erros) e **Precisão** (é necessário corrigir os erros antes de concluir)
-- Avanço com **Enter** após a conclusão, conforme o modo selecionado
-- Preferência de modo salva no navegador, independente do progresso
-- Resumo no fim do módulo, com desempenho médio e conquista
-- Possibilidade de repetir módulos
-- Interface v0.6 Premium com layout focado na lição, cabeçalho compacto e cartões de desempenho
-- Dashboard de progresso com lições concluídas, recorde de PPM, precisão média e módulos completos
-- Objetivo pedagógico por lição, teclado de apoio recolhível e preferências de movimento reduzido
-- Interface responsiva e identidade visual Digitar Pro
-- Identificação dos produtos da família, com rótulo claro de futuro
+**[Abrir Digitar Pro Academy](https://alexsandsouza.github.io/digitar-pro/)** · **[Ver código-fonte](https://github.com/alexsandsouza/digitar-pro)** · **[Acompanhar evolução premium](https://github.com/alexsandsouza/digitar-pro/pull/1)**
 
-**Atenção:** o progresso não é sincronizado entre dispositivos; no modo Treinamento, erros são contabilizados e não bloqueiam a conclusão; no modo Precisão, todos devem ser corrigidos. Trocar de modo reinicia o exercício atual, sem apagar os resultados já salvos. O teclado visual ainda não é uma representação completa do ABNT2. As métricas são estimativas para fins educativos.
+## ✦ Funcionalidades
 
-## Arquitetura e futuro portfólio
+| Recurso | Experiência |
+|:--|:--|
+| 🎯 **12 lições · 4 módulos** | Trilha prática com exercícios de complexidade progressiva |
+| ⌨️ **Feedback por caractere** | Destaque do texto correto, dos erros e da próxima tecla |
+| 📊 **Métricas em tempo real** | Palavras por minuto (PPM), precisão e tempo |
+| 🧩 **Treinamento** | Permite terminar o exercício mesmo com erros, registrando a precisão |
+| 🛡️ **Precisão** | Exige a correção de todos os erros para concluir a lição |
+| ↵ **Avanço com Enter** | Após concluir, Enter inicia a próxima lição |
+| 🏆 **Conquistas por módulo** | Resumo do desempenho e medalhas de progresso |
+| 💾 **Progresso local** | Histórico armazenado no navegador, sem cadastro |
+| ✨ **Experiência premium** | Novo design, dashboard pessoal, objetivos por lição e teclado recolhível |
+
+## ✦ Como aprender
+
+1. **Escolha uma lição** na trilha de aprendizagem.
+2. **Selecione o modo:** Treinamento para praticar fluidez ou Precisão para aperfeiçoar a escrita.
+3. **Digite o texto** e acompanhe PPM, precisão e tempo.
+4. **Conclua e pressione Enter** para avançar.
+5. **Finalize os módulos** e confira suas conquistas.
+
+> **Dica pedagógica:** na fase inicial, priorize a precisão; a velocidade aumenta com prática consistente.
+
+## ✦ Ecossistema Digitar Pro
 
 | Produto | Proposta | Situação |
-|---|---|---|
-| **Digitar Pro Academy** | Aprendizagem de digitação com progresso e gamificação | MVP 0.6 Premium implementado |
-| Digitar Pro Kids | Experiência lúdica para crianças | Ideia futura |
-| Digitar Pro Business | Produtividade e capacitação em empresas | Ideia futura |
-| Digitar Pro Schools | Turmas, professores e acompanhamento escolar | Ideia futura |
+|:--|:--|:--|
+| **Digitar Pro Academy** | Aprender e aperfeiçoar digitação | Em desenvolvimento contínuo |
+| **Digitar Pro Kids** | Digitação lúdica para crianças | Planejado |
+| **Digitar Pro Business** | Capacitação e produtividade em empresas | Planejado |
+| **Digitar Pro Schools** | Gestão de turmas e professores | Planejado |
 
-A identidade da marca permite ampliar para novos produtos sem acoplar funcionalidades futuras ao MVP. Uma evolução com o método SPECTION pode incluir Product Brief, PRD, arquitetura, testes, autenticação, 60 lições, painel docente e recursos opcionais de acessibilidade.
+Os produtos futuros são propostas; não estão disponíveis nesta versão.
 
-## Publicar no GitHub Pages
+## ✦ Tecnologias e arquitetura
 
-1. Crie um repositório **público** chamado `digitar-pro`.
-2. Envie `index.html` e `README.md` para a raiz da branch `main`.
-3. Acesse **Settings > Pages**.
-4. Em **Build and deployment**, selecione **Deploy from a branch**.
-5. Escolha a branch **main**, pasta **/(root)** e clique em **Save**.
-6. Depois da publicação, o endereço esperado será `https://alexsandsouza.github.io/digitar-pro/` (verifique no próprio GitHub Pages).
+<div align="center">
+  <img alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+  <img alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+  <img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-222222?style=flat-square&logo=githubpages&logoColor=white"/>
+</div>
 
-## Versões
+- **Frontend estático:** HTML, CSS e JavaScript sem backend obrigatório.
+- **Persistência:** `localStorage` no próprio navegador.
+- **Publicação:** GitHub Pages pela branch `main`.
+- **Evolução técnica:** planejamento orientado a requisitos com o framework SPECTION.
 
-- **0.6 Premium** - Redesign da interface, foco na atividade, dashboard local, objetivo pedagógico, teclado recolhível, responsividade e acessibilidade. Mantém o progresso e os dois modos existentes.
+### Executar localmente
 
-- **0.5** - Seleção entre Treinamento e Precisão, correção obrigatória de erros no segundo modo, preferência persistida e comportamento de Enter contextual.
+```bash
+git clone https://github.com/alexsandsouza/digitar-pro.git
+cd digitar-pro
+```
 
-- **0.4.1** - Corrigido o avanço com Enter: lições finalizam ao atingir o fim do texto, mesmo com erros, preservando a medição de precisão.
+Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode usar um servidor HTTP estático local.
 
-- **0.4** - Identidade Digitar Pro Academy e estrutura visual para a família de produtos.
-- **0.3** - Tela de resumo por módulo e conquistas.
-- **0.2** - Tecla Enter para avanço após conclusão.
-- **0.1** - Protótipo de digitação com 12 lições e indicadores.
+## ✦ Roadmap
 
-## Privacidade
+| Entrega | Status |
+|:--|:--|
+| MVP com lições, feedback e métricas | ✅ Entregue |
+| Conquistas e progressão com Enter | ✅ Entregue |
+| Modos Treinamento e Precisão | ✅ Entregue |
+| Redesign premium e painel do aluno | 🧪 Implementado na branch de revisão |
+| Testes de usabilidade e regressão v0.6 | 🧪 Pendente |
+| Metas, níveis e ampliação da trilha | 📋 Planejado |
+| Contas, sincronização e painel docente | 📋 Visão futura |
 
-O sistema salva o desempenho apenas no armazenamento local do navegador. Não há transmissão de dados de estudantes para um servidor pelo aplicativo. Limpar os dados do site no navegador pode apagar o progresso.
+## ✦ Histórico de versões
 
-## Licenciamento e marca
+| Versão | Evolução |
+|:--|:--|
+| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível e responsividade |\n| **0.5** | Modos Treinamento e Precisão |
+| **0.4.1** | Avanço com Enter após atingir o fim do texto no Treinamento, mesmo com erros |
+| **0.4** | Identidade Digitar Pro e família de produtos |
+| **0.3** | Resumo de módulo e conquistas |
+| **0.2** | Avanço com Enter |
+| **0.1** | Laboratório inicial com 12 lições |
 
-O código deste MVP ainda não tem licença de distribuição definida. O nome e a identidade **Digitar Pro** são escolhas provisórias do projeto, não uma afirmação de registro de marca. Antes do lançamento comercial, pesquise marca no INPI e disponibilidade de domínios.
-## Testes recomendados para v0.6 Premium
+## ✦ Privacidade, limites e licença
 
-1. Confirmar que a trilha inicia na lição 1 com o campo de digitação acessível.
-2. Digitar com e sem erros nos modos Treinamento e Precisão; verificar o comportamento de Enter.
-3. Recarregar a página e conferir que os resultados e o modo selecionado permanecem salvos.
-4. Concluir as três lições de um módulo e conferir a tela de conquista e o dashboard.
-5. Testar navegação pelo teclado, visualização em telas estreitas e a opção de reduzir movimento.
+- Os resultados ficam salvos **somente neste navegador** e não são sincronizados entre dispositivos.
+- Apagar os dados do site pode remover o progresso. Não há login, cobrança nem nuvem nesta versão.
+- O teclado virtual é simplificado e não representa integralmente o padrão ABNT2.
+- Velocidade e precisão são indicadores educativos estimados.
+- **Licença:** ainda não foi definida uma licença pública de distribuição para o código.
+- **Marca:** Digitar Pro é a identidade escolhida para o projeto, sem alegação de registro de marca.
 
-**Implantação:** desenvolver e validar em `feature/premium-v0.6` antes de integrar à `main`. O GitHub Pages da produção continua na branch `main` até a aprovação.
+---
+
+<div align="center">
+  <strong>Digitar Pro Academy</strong><br/>
+  <sub>Digite melhor. Evolua sempre.</sub><br/><br/>
+  <a href="https://alexsandsouza.github.io/digitar-pro/">🚀 Acessar plataforma</a> ·
+  <a href="https://github.com/alexsandsouza/digitar-pro/issues">💡 Ideias e melhorias</a>
+</div>
