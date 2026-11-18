@@ -4,7 +4,7 @@
   <a href="https://alexsandsouza.github.io/digitar-pro/"><img alt="Acessar plataforma" src="https://img.shields.io/badge/ACESSAR_PLATAFORMA-4FE3E1?style=for-the-badge&logo=githubpages&logoColor=07111F" /></a>
   <a href="https://github.com/alexsandsouza/digitar-pro"><img alt="Código no GitHub" src="https://img.shields.io/badge/C%C3%93DIGO_NO_GITHUB-172B44?style=for-the-badge&logo=github&logoColor=white" /></a>
   <br/><br/>
-  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-0.5-5CA8FF?style=flat-square" />
+  <img alt="Versão" src="https://img.shields.io/badge/vers%C3%A3o-0.6%20Premium%20Preview-5CA8FF?style=flat-square" />
   <img alt="Plataforma" src="https://img.shields.io/badge/HTML%20%7C%20CSS%20%7C%20JS-07111F?style=flat-square&logo=javascript&logoColor=4FE3E1" />
   <img alt="Idioma" src="https://img.shields.io/badge/idioma-PT--BR-4FE3E1?style=flat-square" />
   <img alt="Hospedagem" src="https://img.shields.io/badge/deploy-GitHub%20Pages-172B44?style=flat-square&logo=githubpages&logoColor=white" />
@@ -19,9 +19,9 @@
 
 **Digitar Pro Academy** é o primeiro produto do ecossistema **Digitar Pro**. A experiência combina exercícios progressivos, indicadores de velocidade e precisão, feedback imediato e conquistas por módulo.
 
-**Estado atual:** 0.5 (produção)
+**Estado atual:** 0.6 Premium (em revisão)
 
-> **Versão publicada:** 0.5. A interface 0.6 Premium está em revisão na [Pull Request #1](https://github.com/alexsandsouza/digitar-pro/pull/1).
+> **Prévia em desenvolvimento:** o redesign 0.6 está na branch `feature/premium-v0.6` e será publicado após validação.
 
 ### ⚡ Experimente agora
 
@@ -39,7 +39,7 @@
 | ↵ **Avanço com Enter** | Após concluir, Enter inicia a próxima lição |
 | 🏆 **Conquistas por módulo** | Resumo do desempenho e medalhas de progresso |
 | 💾 **Progresso local** | Histórico armazenado no navegador, sem cadastro |
-
+| ✨ **Experiência premium** | Novo design, dashboard pessoal, objetivos por lição e teclado recolhível |
 
 ## ✦ Como aprender
 
@@ -92,7 +92,7 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 | MVP com lições, feedback e métricas | ✅ Entregue |
 | Conquistas e progressão com Enter | ✅ Entregue |
 | Modos Treinamento e Precisão | ✅ Entregue |
-| Redesign premium e painel do aluno | 🔄 Em revisão na PR #1 |
+| Redesign premium e painel do aluno | 🧪 Implementado na branch de revisão |
 | Testes de usabilidade e regressão v0.6 | 🧪 Pendente |
 | Metas, níveis e ampliação da trilha | 📋 Planejado |
 | Contas, sincronização e painel docente | 📋 Visão futura |
@@ -101,7 +101,7 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 
 | Versão | Evolução |
 |:--|:--|
-| **0.5** | Modos Treinamento e Precisão |
+| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível e responsividade |\n| **0.5** | Modos Treinamento e Precisão |
 | **0.4.1** | Avanço com Enter após atingir o fim do texto no Treinamento, mesmo com erros |
 | **0.4** | Identidade Digitar Pro e família de produtos |
 | **0.3** | Resumo de módulo e conquistas |
