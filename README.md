@@ -21,11 +21,11 @@
 
 **Estado atual:** 0.6 Premium (em revisão)
 
-> **Prévia em desenvolvimento:** o redesign 0.6 e as correções da FEAT-001 estão consolidados na branch `feature/feat-001` e serão publicados após validação e aprovação humana.
+> **Prévia em desenvolvimento:** o redesign 0.6 e as correções da FEAT-001 estão consolidados na [PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3) e serão publicados após validação e aprovação humana.
 
 ### ⚡ Experimente agora
 
-**[Abrir Digitar Pro Academy](https://alexsandsouza.github.io/digitar-pro/)** · **[Ver código-fonte](https://github.com/alexsandsouza/digitar-pro)** · **[Acompanhar evolução premium](https://github.com/alexsandsouza/digitar-pro/pull/1)**
+**[Abrir Digitar Pro Academy](https://alexsandsouza.github.io/digitar-pro/)** · **[Ver código-fonte](https://github.com/alexsandsouza/digitar-pro)** · **[Revisar a PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3)**
 
 ## ✦ Funcionalidades
 
@@ -113,7 +113,7 @@ A suíte cobre modos Treinamento e Precisão, Enter, métricas, dashboard, compa
 
 | Versão | Evolução |
 |:--|:--|
-| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível e responsividade |
+| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível, responsividade e correções da FEAT-001 |
 | **0.5** | Modos Treinamento e Precisão |
 | **0.4.1** | Avanço com Enter após atingir o fim do texto no Treinamento, mesmo com erros |
 | **0.4** | Identidade Digitar Pro e família de produtos |
