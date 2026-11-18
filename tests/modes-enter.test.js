@@ -238,3 +238,25 @@ test('estado inicial não usa métricas inventadas', () => {
   assert.equal(app.get('elapsed').textContent, '0s');
   assert.equal(app.get('best').textContent, '—');
 });
+
+test('resumo abre quando o módulo fica completo fora de ordem', () => {
+  const record = (wpm, accuracy) => ({ wpm, accuracy, last: { wpm, accuracy, seconds: 20 } });
+  const app = createApp({ progress: { 1: record(42, 100), 2: record(44, 99) } });
+
+  completeLesson(app, 0);
+
+  assert.equal(app.completedLabel(), '3 / 12');
+  assert.equal(app.summaryOpen(), true);
+  assert.match(app.text('achievementName'), /Primeiros Passos/);
+});
+
+test('repetir lição de módulo já concluído não reabre o resumo', () => {
+  const record = (wpm, accuracy) => ({ wpm, accuracy, last: { wpm, accuracy, seconds: 20 } });
+  const app = createApp({ progress: {
+    0: record(40, 98), 1: record(42, 100), 2: record(44, 99),
+  } });
+
+  completeLesson(app, 0);
+
+  assert.equal(app.summaryOpen(), false);
+});
