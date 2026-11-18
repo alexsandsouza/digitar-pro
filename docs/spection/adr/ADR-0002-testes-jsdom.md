@@ -1,6 +1,6 @@
 # ADR-0002 - Testes de caracterização e regressão com jsdom
 
-- **Estado:** Proposed
+- **Estado:** Accepted
 - **Data:** 2026-11-17
 - **Responsável:** equipe do projeto
 - **Requisitos:** RF-001 a RF-012; RNF-001, RNF-004, RNF-007
@@ -30,4 +30,4 @@ O jsdom **não** é incluído na aplicação publicada: não há bundler, depend
 
 ## Aprovação
 
-**Pendente.** Manter como Proposed até revisão humana da PR.
+**Accepted** em 17/11/2026, pelo responsável pelo produto nesta sessão. jsdom permanece dependência somente de desenvolvimento. Layout, teclado físico e leitor de tela continuam exigindo navegador.

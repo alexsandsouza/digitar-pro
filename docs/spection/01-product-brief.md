@@ -2,7 +2,7 @@
 
 - **Responsável pelo produto:** Alexsand Farias de Souza
 - **Versão/data:** 0.1 / 17-11-2026
-- **Status:** Draft (não aprovado)
+- **Status:** Aprovado em 17/11/2026
 
 ## Problema
 
@@ -53,5 +53,8 @@ Metas numéricas de negócio dependem de linha de base; **não inventar percentu
 
 ## Aprovação
 
-- Aprovador: responsável pelo produto
-- Decisão/data: **Pendente**
+- Aprovador: responsável pelo produto, nesta sessão
+- Decisão/data: **Aprovado** em 17/11/2026
+- Escopo: problema, personas, indicadores sem meta numérica inventada, evolução incremental e exclusões desta fase
+- Reafirmado em 17/11/2026: banco, contas, nuvem e as demais exclusões desta fase continuam fora.
+- Release da FEAT-001 autorizado em 17/11/2026, com a verificação manual complementar ainda pendente.

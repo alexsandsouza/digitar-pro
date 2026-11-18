@@ -1,8 +1,8 @@
 # Digitar Pro Academy - Engenharia guiada por SPECTION
 
 - Versão documental: 0.2, 17/11/2026
-- Estado: **In Review - pendente de revisão humana e aprovação de release**
-- Sistema de referência: MVP 0.5 na branch `main`; redesign 0.6 e correções da FEAT-001 consolidados em `feature/feat-001` e **não devem ser considerados publicados** até merge autorizado.
+- Estado: **Release autorizado em 17/11/2026** pela PR #3. A verificação manual complementar permanece pendente e não foi declarada como concluída.
+- Sistema de referência: FEAT-001 e redesign 0.6 em `feature/feat-001`, autorizados para a `main`. O GitHub Pages publica a partir da `main`.
 - Framework: [SPECTION](https://github.com/alexsandsouza/spection), fases Discover, Specify, Architect, Plan, Build, Verify e Release.
 - Implementador proposto: Qoder IDE, sob supervisão humana.
 
@@ -10,15 +10,15 @@
 
 | Fase | Artefato | Estado |
 |---|---|---|
-| 01 Discover | [Product Brief](01-product-brief.md) | Draft |
-| 02 Specify | [PRD](02-prd.md) | Draft |
-| 03 Architect | [HLD](03-hld.md), [LLD](04-lld.md), [ADR-0001](adr/ADR-0001-brownfield.md), [ADR-0002](adr/ADR-0002-testes-jsdom.md), [ADR-0003](adr/ADR-0003-integracao-premium-feat-001.md) | Draft/Proposed |
-| 04 Plan | [FEAT-001](../../specs/FEAT-001-experiencia-aprendizagem/feature-spec.md), [Tasks](../../specs/FEAT-001-experiencia-aprendizagem/tasks.md) | In Review |
+| 01 Discover | [Product Brief](01-product-brief.md) | Aprovado em 17/11/2026 |
+| 02 Specify | [PRD](02-prd.md) | Aprovado em 17/11/2026 |
+| 03 Architect | [HLD](03-hld.md), [LLD](04-lld.md), [ADR-0001](adr/ADR-0001-brownfield.md), [ADR-0002](adr/ADR-0002-testes-jsdom.md), [ADR-0003](adr/ADR-0003-integracao-premium-feat-001.md) | Aprovado / Accepted em 17/11/2026 |
+| 04 Plan | [FEAT-001](../../specs/FEAT-001-experiencia-aprendizagem/feature-spec.md), [Tasks](../../specs/FEAT-001-experiencia-aprendizagem/tasks.md) | Aprovado em 17/11/2026 |
 | 05 Build | Qoder seguindo [AGENTS.md](../../AGENTS.md) | Implementado em `feature/feat-001` |
-| 06 Verify | [Evidências 2026-11-17](verification/2026-11-17-test-evidence.md) | Automatizado executado; manual pendente |
-| 07 Release | Aprovação humana, changelog, rollback e deploy | Pendente |
+| 06 Verify | [Evidências 2026-11-17](verification/2026-11-17-test-evidence.md) | Evidência automatizada aceita; manual complementar pendente |
+| 07 Release | [Nota de release](release/2026-11-17.md), rollback e deploy | Autorizado em 17/11/2026 |
 
-**Sequência:** revisar documentos, registrar aprovações, usar o prompt em [Qoder](qoder-brief.md), implementar numa branch de feature e abrir PR. Não editar produção sem revisão.
+**Sequência:** os artefatos deste ciclo foram aprovados em 17/11/2026. As decisões de produto mantêm PPM sem teto, Treinamento com erros, rótulo "Próximo módulo" e escopo sem banco. O release pela PR #3 foi autorizado na mesma data, com a verificação manual ainda pendente. Novas fatias reabrem o ciclo a partir do Discover ou de uma feature spec.
 
 ## Hipóteses a validar
 

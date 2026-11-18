@@ -3,7 +3,7 @@
 - **Branch:** `feature/feat-001`
 - **Código verificado:** commit `d77e7af` (testes e correções da FEAT-001)
 - **Ambiente:** Windows 10.0.26300 x64; Node.js v24.20.0; npm 11.19.0; jsdom 31.0.1 (dev-only)
-- **Estado:** testes automatizados e verificação de navegador executados; aprovação humana de release pendente.
+- **Estado:** evidência automatizada e de navegador aceita em 17/11/2026. Release autorizado na mesma data, com as limitações manuais da seção 4 ainda abertas.
 
 ## 1. Suíte automatizada
 
@@ -104,6 +104,10 @@ Nota sobre PPM: o preenchimento sintético instantâneo do textarea produz valor
 - Colagem de texto infla o PPM; risco conhecido e fora do escopo desta entrega.
 - O rótulo "Próximo módulo" do resumo não corresponde a um salto de módulo quando a conclusão ocorre fora de ordem.
 
-## 5. Rollback
+## 5. Aceite da evidência
+
+Em 17/11/2026 o responsável pelo produto aceitou esta evidência para a FEAT-001: 45 testes passando e as checagens de navegador registradas abaixo. A lacuna manual permanece aberta (screenshot, teclado físico, leitor de tela, Firefox, Safari e usabilidade). O release pela PR #3 foi autorizado com essa lacuna registrada. A verificação manual complementar não foi declarada como concluída.
+
+## 6. Rollback
 
 O trabalho está isolado na branch `feature/feat-001` e em PR aberta para revisão. Para reverter antes do merge, fechar a PR e manter a `main` intacta. Após um eventual merge, reverter o commit de merge ou a sequência `d77e7af` e anteriores da feature restaura o estado anterior sem tocar nos dados dos alunos, que permanecem no `localStorage` do navegador sob as mesmas chaves.

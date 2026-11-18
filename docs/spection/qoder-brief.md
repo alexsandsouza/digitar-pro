@@ -6,7 +6,7 @@
 
 Estou desenvolvendo **Digitar Pro Academy**, um software de digitação em PT-BR hospedado no GitHub Pages. Repositório: `https://github.com/alexsandsouza/digitar-pro`. Quero desenvolver com o framework SPECTION: https://github.com/alexsandsouza/spection. O projeto já possui MVP funcional; **não reescreva do zero**.
 
-Leia obrigatoriamente o `AGENTS.md`, o Product Brief, PRD, HLD, LLD, ADR-0001 e a pasta `specs/FEAT-001-experiencia-aprendizagem`. Compare `main` com a PR #1 (`feature/premium-v0.6`) antes de propor mudanças. Aplique os documentos como rascunhos a serem validados, não como aprovações automáticas.
+Leia obrigatoriamente o `AGENTS.md`, o Product Brief, PRD, HLD, LLD, ADR-0001 e a pasta `specs/FEAT-001-experiencia-aprendizagem`. Compare `main` com a PR #1 (`feature/premium-v0.6`) antes de propor mudanças. Brief, PRD, HLD, LLD, ADR-0001 a ADR-0003 e a FEAT-001 foram aprovados em 17/11/2026, e o release pela PR #3 foi autorizado na mesma data. Qualquer mudança nova volta a exigir plano antes da implementação.
 
 ## Primeira tarefa
 

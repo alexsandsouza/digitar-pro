@@ -1,6 +1,6 @@
 # ADR-0001 - Evolução incremental do MVP existente
 
-- **Estado:** Proposed
+- **Estado:** Accepted
 - **Data:** 2026-11-17
 - **Responsável:** equipe do projeto
 - **Requisitos:** RF-001 a RF-012; RNF-003, RNF-004, RNF-007
@@ -27,4 +27,4 @@ Evoluir incrementalmente o aplicativo com especificações SPECTION e mudanças 
 
 ## Aprovação
 
-**Pendente**. Não marcar Accepted sem decisão humana.
+**Accepted** em 17/11/2026, pelo responsável pelo produto nesta sessão. A evolução continua incremental, sem reescrita e sem troca de stack.

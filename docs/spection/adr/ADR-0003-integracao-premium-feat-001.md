@@ -1,6 +1,6 @@
 # ADR-0003 - Integração da prévia 0.6 com as correções da FEAT-001
 
-- **Estado:** Proposed
+- **Estado:** Accepted
 - **Data:** 2026-11-17
 - **Responsável:** equipe do projeto
 - **Requisitos:** RF-002 a RF-009, RF-012; RNF-002, RNF-004
@@ -31,9 +31,9 @@ A PR #1 traz o redesign 0.6 (dashboard, objetivos, teclado recolhível, responsi
 ## Consequências
 
 - Positivas: comportamento consistente em conclusão fora de ordem, página sem overflow em 360/632/768/1280 px, modal operável por teclado e progresso legado preservado.
-- Negativas: o rótulo "Próximo módulo" continua impreciso quando a conclusão ocorre fora de ordem; a correção de destino exige decisão de produto. PPM continua inflável por colagem.
+- Negativas aceitas em 17/11/2026: o rótulo "Próximo módulo" permanece, mesmo quando a conclusão ocorre fora de ordem, e o PPM permanece sem teto, inflável por colagem. Nenhuma correção de destino ou de fórmula nesta entrega.
 - Riscos: alterações de CSS e de estado compartilhado podem afetar a trilha; mitigado por testes automatizados e medições de viewport no navegador.
 
 ## Aprovação
 
-**Pendente.** A funcionalidade permanece In Review até revisão humana da PR e aprovação de release.
+**Accepted** em 17/11/2026, pelo responsável pelo produto nesta sessão. As oito decisões desta ADR valem para a FEAT-001. Na mesma data, a decisão de produto manteve o rótulo "Próximo módulo", a fórmula de PPM sem teto, a conclusão do Treinamento com erros e a ausência de banco. O release pela PR #3 foi autorizado em seguida, com a verificação manual ainda pendente.

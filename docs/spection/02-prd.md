@@ -1,6 +1,6 @@
 # PRD - Digitar Pro Academy (brownfield)
 
-**Status:** Draft revisado em 2026-11-17 | **Base:** `main` MVP 0.5; redesign 0.6 e correções da FEAT-001 consolidados em `feature/feat-001`, ainda em revisão.
+**Status:** Aprovado em 17/11/2026 | **Release:** autorizado em 17/11/2026 pela PR #3. A verificação manual complementar permanece pendente.
 
 ## Jornadas-chave
 
@@ -55,7 +55,7 @@
 |---|---|---|
 | Erros | Comparação posicional entre o texto digitado (limitado ao tamanho esperado) e o texto da lição | Acentos e espaços contam como caracteres |
 | Precisão | `round((digitados - erros) / digitados * 100)`; 100% quando nada foi digitado | Pode diminuir ao corrigir um trecho com Backspace |
-| PPM | `round((caracteres corretos / 5) / (segundos / 60))`; 0 antes do primeiro input | Não há teto; colar o texto infla o valor |
+| PPM | `round((caracteres corretos / 5) / (segundos / 60))`; 0 antes do primeiro input | Sem teto e sem desconto extra de erros. Colar o texto infla o valor. Decisão de produto em 17/11/2026: manter |
 | Tempo | `Date.now() - início`; o início ocorre no primeiro input | Inclui pausas; o resumo soma o tempo das três últimas tentativas |
 | Melhor PPM | `max(wpm)` por lição entre tentativas | `progress[i].wpm` |
 | Precisão do dashboard | Média simples de `last.accuracy` entre lições com resultado | Não pondera pelo tamanho da lição |
@@ -69,9 +69,13 @@ Atualmente histórico no `localStorage` (chave `ad-typing-mvp-v1`) e preferênci
 
 GitHub Pages e APIs nativas do navegador. Serviços de autenticação, pagamento, relatórios docentes, certificados e IA estão fora desta etapa.
 
-## Questões abertas e aceite
+## Decisões de produto — 17/11/2026
 
-- Métrica de PPM deve descontar erros ou limitar valores extremos? Comportamento atual mantido e documentado; decisão de produto pendente.
-- Política de exibição de lições com erros: conclusão sem exigência mínima de precisão é comportamento atual e deve ser validado pedagogicamente.
-- Rótulo "Próximo módulo" no resumo não corresponde a um salto de módulo quando a conclusão ocorre fora de ordem; Enter avança apenas uma lição. Revisar texto ou destino em decisão futura.
-- Aprovação de escopo, UI, desempenho e release: **pendente**.
+O responsável pelo produto decidiu manter o comportamento atual em todos os pontos que ainda dependiam de escolha:
+
+1. **PPM.** Permanece `caracteres corretos / 5 / minutos`, sem teto e sem desconto adicional de erros. Colagem continua inflando o valor; o risco fica registrado.
+2. **Treinamento.** A lição conclui ao atingir o comprimento do texto, mesmo com erros. Não há precisão mínima. O modo Precisão continua exigindo o texto exato.
+3. **Rótulo "Próximo módulo".** O texto do botão e o destino permanecem. Enter avança uma lição do índice, também quando o módulo foi concluído fora de ordem.
+4. **Publicação.** Release autorizado em 17/11/2026. A PR #3 entra na `main`, e o GitHub Pages publica a partir dela. A verificação manual complementar permanece pendente.
+5. **Verificação manual.** Screenshot, teclado físico, leitor de tela, Firefox, Safari e teste de usabilidade continuam pendentes. A FEAT-001 não fica Verified nem Released.
+6. **Fora de escopo.** Banco, contas, nuvem, pagamentos, ranking, certificados e IA permanecem fora desta etapa.

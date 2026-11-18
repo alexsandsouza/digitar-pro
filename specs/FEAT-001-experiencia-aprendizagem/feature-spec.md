@@ -1,6 +1,6 @@
 # FEAT-001 - Experiência premium e confiável de aprendizagem
 
-- **Estado:** In Review (implementação e testes automatizados em `feature/feat-001`; aprovação humana pendente)
+- **Estado:** Release autorizado em 17/11/2026 pela PR #3. A verificação manual complementar permanece pendente.
 - **Requisitos relacionados:** RF-001 a RF-012, RNF-001 a RNF-007
 - **Responsável pela implementação:** Qoder (supervisionado)
 - **Escopo:** evolução brownfield, sem mudanças de infraestrutura
@@ -40,4 +40,8 @@ Tentativas com espaços e caracteres acentuados, teclado ABNT2, Backspace, Enter
 
 ## Aprovações
 
-Pendente.
+- Decisão: **Aprovado** em 17/11/2026, pelo responsável pelo produto nesta sessão.
+- Escopo: história, inclusão, exclusão e critérios AC-001 a AC-008, com a evidência automatizada e de navegador já registrada.
+- Decisão de 17/11/2026: manter PPM sem teto, conclusão do Treinamento com erros e o rótulo "Próximo módulo".
+- AC-009: release autorizado em 17/11/2026 pela PR #3. A verificação manual complementar permanece pendente.
+- Verificação manual permanece aberta: screenshot, teclado físico, leitor de tela, Firefox, Safari e teste de usabilidade. A feature não está Verified nem Released.

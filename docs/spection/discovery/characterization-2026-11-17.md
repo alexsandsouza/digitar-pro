@@ -1,6 +1,6 @@
 # Caracterização do MVP e da PR #1 - 2026-11-17
 
-- **Estado:** Levantamento executado; conclusões pendentes de revisão humana.
+- **Estado:** Aprovado em 17/11/2026 como registro de descoberta. As correções posteriores estão na evidência de verificação; este arquivo preserva o estado anterior.
 - **Atualização:** os achados 1 a 4 e 7 foram corrigidos em `feature/feat-001` (commit `d77e7af`); resultados pós-correção estão em [verification/2026-11-17-test-evidence.md](../verification/2026-11-17-test-evidence.md). Este documento permanece como registro do estado anterior.
 - **Base:** `main` em `2ab3cc6`; PR #1 em `ac7d17f`; documentos em `docs/spection-qoder-v0.7`.
 - **Escopo:** comportamento real de Treinamento, Precisão, Enter, métricas, dashboard, conquista e `localStorage`.

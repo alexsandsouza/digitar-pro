@@ -1,6 +1,6 @@
 # HLD - Digitar Pro Academy
 
-**Status:** Draft
+**Status:** Aprovado em 17/11/2026
 
 ## Objetivos
 
@@ -48,4 +48,4 @@ Usuário digita → valida texto conforme modo → calcula métricas → registr
 
 ## Aprovação
 
-Pendente da revisão do responsável pelo produto.
+Aprovado em 17/11/2026 pelo responsável pelo produto, nesta sessão. A arquitetura permanece estática, local e incremental. Merge e deploy não fazem parte desta aprovação.

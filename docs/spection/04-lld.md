@@ -1,6 +1,6 @@
 # LLD - Lógica de digitação, persistência e interface
 
-**Status:** Implementação em revisão (2026-11-17) | **Relacionado:** RF-001 a RF-012
+**Status:** Aprovado em 17/11/2026 | **Relacionado:** RF-001 a RF-012
 
 ## Funções reais em `index.html`
 
@@ -109,11 +109,11 @@ O handler global ignora `event.repeat`, `isComposing` e modificadores (Alt/Ctrl/
 
 ## Limitações conhecidas
 
-- Colar o texto infla o PPM; não há teto nem detecção de colagem.
-- O resumo exibe "Próximo módulo", mas Enter sempre avança uma lição; em conclusão fora de ordem o destino pode ser outra lição do mesmo módulo.
+- Colar o texto infla o PPM; não há teto nem detecção de colagem. Decisão de 17/11/2026: manter.
+- O resumo exibe "Próximo módulo", mas Enter sempre avança uma lição; em conclusão fora de ordem o destino pode ser outra lição do mesmo módulo. Decisão de 17/11/2026: manter rótulo e destino.
 - O teclado virtual é simplificado e não cobre todo o ABNT2.
 - Testes de usabilidade manual em Firefox/Safari e leitor de tela permanecem pendentes.
 
 ## Revisão técnica
 
-Implementação e testes automatizados executados em 2026-11-17; revisão humana e aprovação de release pendentes.
+Implementação e testes automatizados executados em 2026-11-17. LLD aprovado em 17/11/2026. Release autorizado na mesma data. As limitações manuais da seção anterior seguem pendentes.

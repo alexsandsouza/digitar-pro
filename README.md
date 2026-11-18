@@ -19,9 +19,9 @@
 
 **Digitar Pro Academy** é o primeiro produto do ecossistema **Digitar Pro**. A experiência combina exercícios progressivos, indicadores de velocidade e precisão, feedback imediato e conquistas por módulo.
 
-**Estado atual:** 0.6 Premium (em revisão)
+**Estado atual:** 0.6 Premium, release autorizado em 17/11/2026
 
-> **Prévia em desenvolvimento:** o redesign 0.6 e as correções da FEAT-001 estão consolidados na [PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3) e serão publicados após validação e aprovação humana.
+> O redesign 0.6 e as correções da FEAT-001 entram pela [PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3). Screenshot, teclado físico, leitor de tela, Firefox, Safari e teste de usabilidade continuam pendentes.
 
 ### ⚡ Experimente agora
 
@@ -103,7 +103,7 @@ A suíte cobre modos Treinamento e Precisão, Enter, métricas, dashboard, compa
 | MVP com lições, feedback e métricas | ✅ Entregue |
 | Conquistas e progressão com Enter | ✅ Entregue |
 | Modos Treinamento e Precisão | ✅ Entregue |
-| Redesign premium e painel do aluno | 🧪 Em revisão na branch `feature/feat-001` |
+| Redesign premium e painel do aluno | ✅ 0.6, release autorizado em 17/11/2026 |
 | Testes de regressão automatizados v0.6 | ✅ 45 testes em jsdom (2026-11-17) |
 | Testes de usabilidade manual v0.6 | 🧪 Pendente |
 | Metas, níveis e ampliação da trilha | 📋 Planejado |
