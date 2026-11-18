@@ -21,7 +21,7 @@
 
 **Estado atual:** 0.6 Premium (em revisão)
 
-> **Prévia em desenvolvimento:** o redesign 0.6 está na branch `feature/premium-v0.6` e será publicado após validação.
+> **Prévia em desenvolvimento:** o redesign 0.6 e as correções da FEAT-001 estão consolidados na branch `feature/feat-001` e serão publicados após validação e aprovação humana.
 
 ### ⚡ Experimente agora
 
@@ -85,6 +85,17 @@ cd digitar-pro
 
 Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode usar um servidor HTTP estático local.
 
+### Testes automatizados
+
+Os testes de caracterização e regressão carregam o `index.html` real em jsdom, com relógio controlado e `localStorage` isolado. O jsdom é dependência **apenas de desenvolvimento**; a aplicação publicada continua sem build e sem dependências de runtime.
+
+```bash
+npm install
+npm test
+```
+
+A suíte cobre modos Treinamento e Precisão, Enter, métricas, dashboard, compatibilidade do `localStorage`, resumo de módulo e acessibilidade do modal. Consulte as evidências em [docs/spection/verification/2026-11-17-test-evidence.md](docs/spection/verification/2026-11-17-test-evidence.md).
+
 ## ✦ Roadmap
 
 | Entrega | Status |
@@ -92,8 +103,9 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 | MVP com lições, feedback e métricas | ✅ Entregue |
 | Conquistas e progressão com Enter | ✅ Entregue |
 | Modos Treinamento e Precisão | ✅ Entregue |
-| Redesign premium e painel do aluno | 🧪 Implementado na branch de revisão |
-| Testes de usabilidade e regressão v0.6 | 🧪 Pendente |
+| Redesign premium e painel do aluno | 🧪 Em revisão na branch `feature/feat-001` |
+| Testes de regressão automatizados v0.6 | ✅ 45 testes em jsdom (2026-11-17) |
+| Testes de usabilidade manual v0.6 | 🧪 Pendente |
 | Metas, níveis e ampliação da trilha | 📋 Planejado |
 | Contas, sincronização e painel docente | 📋 Visão futura |
 
@@ -101,7 +113,8 @@ Abra `index.html` em um navegador moderno. Para desenvolvimento, também pode us
 
 | Versão | Evolução |
 |:--|:--|
-| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível e responsividade |\n| **0.5** | Modos Treinamento e Precisão |
+| **0.6 Premium (prévia)** | Layout redesenhado, dashboard local, objetivos de aprendizagem, teclado recolhível e responsividade |
+| **0.5** | Modos Treinamento e Precisão |
 | **0.4.1** | Avanço com Enter após atingir o fim do texto no Treinamento, mesmo com erros |
 | **0.4** | Identidade Digitar Pro e família de produtos |
 | **0.3** | Resumo de módulo e conquistas |

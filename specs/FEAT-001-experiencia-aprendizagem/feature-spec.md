@@ -1,6 +1,6 @@
 # FEAT-001 - Experiência premium e confiável de aprendizagem
 
-- **Estado:** Draft
+- **Estado:** In Review (implementação e testes automatizados em `feature/feat-001`; aprovação humana pendente)
 - **Requisitos relacionados:** RF-001 a RF-012, RNF-001 a RNF-007
 - **Responsável pela implementação:** Qoder (supervisionado)
 - **Escopo:** evolução brownfield, sem mudanças de infraestrutura

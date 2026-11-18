@@ -1,6 +1,6 @@
 # PRD - Digitar Pro Academy (brownfield)
 
-**Status:** Draft | **Base:** `main` MVP 0.5 e PR de redesign 0.6 ainda em revisão.
+**Status:** Draft revisado em 2026-11-17 | **Base:** `main` MVP 0.5; redesign 0.6 e correções da FEAT-001 consolidados em `feature/feat-001`, ainda em revisão.
 
 ## Jornadas-chave
 
@@ -43,10 +43,23 @@
 
 - No Treinamento, terminar a quantidade de caracteres prevista basta; erro **não** bloqueia conclusão.
 - No Precisão, o texto precisa coincidir integralmente.
-- Enter só avança em estado concluído; no modal de módulo, Enter segue o próximo módulo.
-- Modal de conclusão depende da conclusão de todas as lições daquele módulo.
-- Trocar de modo reinicia tentativa atual, não apaga histórico.
+- Enter só avança em estado concluído, uma única vez. Com o resumo aberto, Enter avança para a lição seguinte do índice, sem salto duplo; o rótulo do botão ("Próximo módulo") pressupõe a conclusão em ordem.
+- O modal de conclusão abre na transição do módulo para completo, inclusive quando as lições foram concluídas fora de ordem. Repetir uma lição de módulo já concluído não reabre o modal.
+- Trocar de modo reinicia a tentativa atual, não apaga histórico.
+- O dashboard usa o melhor PPM de cada lição (`wpm`) e a precisão da última tentativa (`last.accuracy`); a média de precisão exibida é a média simples entre lições com resultado.
 - A fórmula atual estima PPM usando caracteres corretos / 5 / tempo em minutos, e precisão usa acertos / caracteres digitados; diferenças entre precisão por tentativa e média por lição devem ser documentadas.
+
+## Fórmulas e semântica das métricas
+
+| Indicador | Fórmula/regra | Observações |
+|---|---|---|
+| Erros | Comparação posicional entre o texto digitado (limitado ao tamanho esperado) e o texto da lição | Acentos e espaços contam como caracteres |
+| Precisão | `round((digitados - erros) / digitados * 100)`; 100% quando nada foi digitado | Pode diminuir ao corrigir um trecho com Backspace |
+| PPM | `round((caracteres corretos / 5) / (segundos / 60))`; 0 antes do primeiro input | Não há teto; colar o texto infla o valor |
+| Tempo | `Date.now() - início`; o início ocorre no primeiro input | Inclui pausas; o resumo soma o tempo das três últimas tentativas |
+| Melhor PPM | `max(wpm)` por lição entre tentativas | `progress[i].wpm` |
+| Precisão do dashboard | Média simples de `last.accuracy` entre lições com resultado | Não pondera pelo tamanho da lição |
+| Resumo do módulo | Média simples de PPM e precisão das três últimas tentativas; tempo somado | Só existe com as três lições completas |
 
 ## Dados e privacidade
 
@@ -58,6 +71,7 @@ GitHub Pages e APIs nativas do navegador. Serviços de autenticação, pagamento
 
 ## Questões abertas e aceite
 
-- Métrica de PPM deve usar erros corrigidos? Definir depois de testes e decisão de produto.
+- Métrica de PPM deve descontar erros ou limitar valores extremos? Comportamento atual mantido e documentado; decisão de produto pendente.
 - Política de exibição de lições com erros: conclusão sem exigência mínima de precisão é comportamento atual e deve ser validado pedagogicamente.
+- Rótulo "Próximo módulo" no resumo não corresponde a um salto de módulo quando a conclusão ocorre fora de ordem; Enter avança apenas uma lição. Revisar texto ou destino em decisão futura.
 - Aprovação de escopo, UI, desempenho e release: **pendente**.
