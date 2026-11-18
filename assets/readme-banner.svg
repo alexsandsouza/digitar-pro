@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+<title id="title">Digitar Pro Academy</title>
+<desc id="desc">Identidade premium em azul profundo, detalhes ciano e ilustração de teclas.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset=".58" stop-color="#10253e"/><stop offset="1" stop-color="#0b1729"/></linearGradient>
+ <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#4fe3e1"/><stop offset="1" stop-color="#5ca8ff"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#4fe3e1" stop-opacity=".22"/><stop offset="1" stop-color="#4fe3e1" stop-opacity="0"/></radialGradient>
+ <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#030b16" flood-opacity=".6"/></filter>
+ <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#6ea9c4" opacity=".16"/></pattern>
+</defs>
+<rect width="1200" height="340" rx="25" fill="url(#bg)"/>
+<rect width="1200" height="340" rx="25" fill="url(#dots)"/>
+<circle cx="975" cy="140" r="260" fill="url(#glow)"/>
+<path d="M0 282 Q220 222 460 270 T930 270 T1200 220" fill="none" stroke="#4fe3e1" stroke-width="1" opacity=".16"/>
+<rect x="60" y="55" width="80" height="80" rx="22" fill="url(#accent)" filter="url(#shadow)"/>
+<text x="100" y="105" fill="#061526" font-family="Arial, sans-serif" font-size="30" font-weight="800" text-anchor="middle">DP</text>
+<text x="165" y="90" fill="#f4f8fc" font-family="Arial, sans-serif" font-size="39" font-weight="800">Digitar Pro</text>
+<text x="400" y="90" fill="#4fe3e1" font-family="Arial, sans-serif" font-size="39" font-weight="700">Academy</text>
+<text x="62" y="185" fill="#f4f8fc" font-family="Arial, sans-serif" font-size="29" font-weight="700">Digite melhor. <tspan fill="#4fe3e1">Evolua sempre.</tspan></text>
+<text x="62" y="222" fill="#afc4db" font-family="Arial, sans-serif" font-size="18">Aprendizagem de digitação com progresso, precisão e conquistas.</text>
+<rect x="61" y="249" width="270" height="38" rx="19" fill="#4fe3e1" fill-opacity=".11" stroke="#4fe3e1" stroke-opacity=".45"/>
+<text x="196" y="274" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#7ceee8">EDTECH  •  PERFORMANCE</text>
+<g transform="translate(770 74) rotate(-10 150 90)" filter="url(#shadow)">
+ <rect x="0" y="0" width="374" height="192" rx="24" fill="#10263e" stroke="#365979" stroke-width="2"/>
+ <g fill="#1e3c57" stroke="#41647f" stroke-width="1.5">
+ <rect x="22" y="22" width="68" height="60" rx="12"/><rect x="100" y="22" width="68" height="60" rx="12"/><rect x="178" y="22" width="68" height="60" rx="12"/><rect x="256" y="22" width="93" height="60" rx="12"/>
+ <rect x="22" y="92" width="68" height="60" rx="12"/><rect x="100" y="92" width="68" height="60" rx="12"/><rect x="178" y="92" width="68" height="60" rx="12"/><rect x="256" y="92" width="93" height="60" rx="12"/>
+ </g>
+ <rect x="100" y="92" width="68" height="60" rx="12" fill="#4fe3e1"/>
+ <g font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#d3ebfb">
+ <text x="56" y="61">A</text><text x="134" y="61">S</text><text x="212" y="61">D</text><text x="302" y="61">F</text><text x="56" y="132">J</text><text x="134" y="132" fill="#071a27">K</text><text x="212" y="132">L</text><text x="302" y="132">Ç</text>
+ </g>
+ </g>
+</svg>
