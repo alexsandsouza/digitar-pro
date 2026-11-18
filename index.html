@@ -105,6 +105,37 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
   .summary-card{padding:22px 18px}
 }
 
+/* Laboratório de digitação: teclado amplo e orientação bimanual */
+.wrap{max-width:1580px}
+.layout{grid-template-columns:minmax(220px,250px) minmax(0,1fr)}
+.keyboard-lab{margin-top:22px;border:1px solid #305473;border-radius:20px;padding:clamp(14px,2.5vw,28px);background:linear-gradient(160deg,#0c2036,#071625);overflow:hidden}
+.lab-header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.lab-header h3{margin:0;font-size:17px}
+.hands-toggle{display:inline-flex;align-items:center;gap:9px;color:#c8dbed;font-size:13px;cursor:pointer}
+.hands-toggle input{accent-color:var(--accent);width:17px;height:17px}
+.finger-guidance{text-align:center;min-height:26px;margin:8px 0;color:#b7d2e8;font-size:14px}
+.finger-guidance strong{color:#6af0e5}
+.hands-stage{position:relative;width:min(100%,880px);height:175px;margin:0 auto 4px;display:flex;justify-content:center;gap:clamp(12px,5vw,75px)}
+.hands-stage[hidden]{display:none}
+.hand{width:43%;height:100%;overflow:visible;filter:drop-shadow(0 9px 10px #0005)}
+.hand .palm{fill:#274762;stroke:#5e88a6;stroke-width:2}
+.hand .finger{stroke:#547b99;stroke-width:15;stroke-linecap:round;fill:none;transition:stroke .18s,transform .18s;transform-origin:center bottom}
+.hand .fingertip{fill:#789bb5;stroke:#abc7dc;stroke-width:1.5;transition:fill .16s,filter .16s,transform .16s}
+.hand .finger.active{stroke:#39dcd2;transform:translateY(6px)}
+.hand .fingertip.active{fill:#5ef6e7;filter:drop-shadow(0 0 7px #4fe3e1);transform:translateY(6px)}
+.hand .wrist{fill:#19374f;stroke:#547b99;stroke-width:2}
+.keyboard-lab .keyboard{margin:0 auto;padding:clamp(8px,1.6vw,18px);max-width:100%;width:min(100%,1050px);gap:clamp(5px,.8vw,9px);background:#071526;border:1px solid #284c69}
+.keyboard-lab .keyrow{gap:clamp(4px,.55vw,9px);min-width:0}
+.keyboard-lab .key{flex:0 1 65px;min-width:0;height:clamp(39px,4.4vw,57px);font-size:clamp(13px,1.25vw,18px);padding:0 2px;border-radius:9px;transition:background .1s,transform .1s,border-color .1s}
+.keyboard-lab .key.space{flex:0 1 430px;min-width:160px;max-width:60%}
+.keyboard-lab .key.target{border:2px solid #7effef;background:#096e72;box-shadow:0 0 18px #4adad455}
+.keyboard-lab .key.pressed{transform:translateY(3px);background:#207b70;color:#fff}
+.keyboard-lab .key.error-press{background:#9d3048;border-color:#ff8a9a}
+.keyboard-lab .key.home{border-bottom:3px solid #7296af}
+.lab-caption{font-size:12px;color:var(--muted);text-align:center;margin:12px 0 0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.keyboard-lab .keyrow{min-width:0}}
+@media(max-width:560px){.hands-stage{height:122px;gap:5px}.keyboard-lab{padding:9px}.keyboard-lab .keyboard{padding:7px}.keyboard-lab .keyrow{gap:3px}.keyboard-lab .key{height:35px;font-size:11px;border-radius:5px}.keyboard-lab .key.space{min-width:120px}.finger-guidance{font-size:12px}}
+
 </style>
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
@@ -126,7 +157,13 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 <p class="lesson-purpose" id="lessonPurpose"><strong>Objetivo:</strong> praticar as teclas de referência. Priorize a precisão antes da velocidade.</p>
 <div class="stats"><div class="stat"><span>Velocidade</span><b id="wpm">0 <small style="font-size:12px">PPM</small></b></div><div class="stat"><span>Precisão</span><b id="accuracy">100%</b></div><div class="stat"><span>Tempo</span><b id="elapsed">0s</b></div><div class="stat"><span>Melhor resultado</span><b id="best">—</b></div></div>
 <div class="progress"><div id="bar" class="bar"></div></div><div id="prompt" class="prompt" aria-label="Texto que você deve digitar"></div><label for="typing" class="subtitle" style="display:block;margin-top:13px">DIGITE O TEXTO ACIMA</label><textarea id="typing" class="typing" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Clique aqui e comece a digitar..."></textarea><div class="actions"><button id="restart" class="btn">↻ Reiniciar</button><button id="nextLesson" class="btn primary">Próxima lição →</button><span class="hint">Depois de concluir a lição, pressione Enter para avançar. O cronômetro começa na primeira tecla.</span></div><div class="message" id="message" aria-live="polite"></div>
-<details open><summary class="quick-guide">⌨️ Teclado de apoio (mostrar ou ocultar)</summary><div class="keyboard" id="keyboard" aria-label="Mapa visual de teclado brasileiro simplificado"></div></details>
+<section class="keyboard-lab" aria-label="Laboratório visual de digitação">
+<div class="lab-header"><h3>⌨️ Teclado interativo</h3><label class="hands-toggle"><input id="showHands" type="checkbox" checked> Mostrar mãos e dedos</label></div>
+<p class="finger-guidance" id="fingerGuidance" aria-live="off">Posicione os dedos em <strong>ASDF</strong> e <strong>JKLÇ</strong>.</p>
+<div class="hands-stage" id="handsStage" aria-hidden="true"></div>
+<div class="keyboard" id="keyboard" aria-label="Mapa visual do teclado brasileiro com indicação da próxima tecla"></div>
+<p class="lab-caption">A tecla em destaque indica a próxima letra. Use o dedo iluminado para praticar a posição correta.</p>
+</section>
 </section></main><footer class="footer">Digitar Pro Academy · Aprender digitação no seu ritmo · Progresso armazenado neste navegador <span aria-hidden="true">·</span> <a href="https://hits.sh/alexsandsouza.github.io/digitar-pro/" target="_blank" rel="noopener noreferrer" title="Contador aproximado de carregamentos do site (serviço externo)"><img loading="lazy" decoding="async" src="https://hits.sh/alexsandsouza.github.io/digitar-pro.svg?label=visitas&color=4fe3e1&labelColor=172b44" alt="Contador aproximado de visitas ao site" style="vertical-align:middle;height:20px;max-width:100%" /></a></footer></div>
 <div id="moduleSummary" class="summary-backdrop" role="dialog" aria-modal="true" aria-labelledby="summaryTitle" hidden>
   <div class="summary-card" tabindex="-1" id="summaryCard">
@@ -229,7 +266,56 @@ function render(){
   $('accuracy').textContent=met.acc+'%';$('elapsed').textContent=Math.floor(met.secs)+'s';
   $('bar').style.width=Math.min(100,met.raw.length/text.length*100)+'%';highlight(text[met.raw.length]||'');
 }
-function highlight(letter){document.querySelectorAll('.key').forEach(k=>k.classList.toggle('target',!!letter&&k.dataset.key===letter.toLowerCase()))}
+function highlight(letter){
+  const key=letter===' '?' ':letter.toLocaleLowerCase('pt-BR');
+  document.querySelectorAll('.key').forEach(k=>k.classList.toggle('target',!!letter&&k.dataset.key===key));
+  updateHands(letter);
+}
+const fingerNames=['mínimo','anelar','médio','indicador','polegar'];
+const fingerKeys={
+  q:[0,0],a:[0,0],z:[0,0],w:[0,1],s:[0,1],x:[0,1],e:[0,2],d:[0,2],c:[0,2],
+  r:[0,3],t:[0,3],f:[0,3],g:[0,3],v:[0,3],b:[0,3],
+  y:[1,3],u:[1,3],h:[1,3],j:[1,3],n:[1,3],m:[1,3],
+  i:[1,2],k:[1,2],',':[1,2],o:[1,1],l:[1,1],'.':[1,1],
+  p:[1,0],'ç':[1,0],'!':[1,0], ' ':[1,4]
+};
+function handSVG(side){
+  const mirror=side===1;
+  const xs=[28,56,85,117,151],ys=[73,49,36,43,94];
+  const fingers=xs.map((x,i)=>{
+    const px=mirror?180-x:x, py=ys[i],baseX=mirror?160-x*.50:20+x*.50;
+    return '<path class="finger" data-side="'+side+'" data-finger="'+i+'" d="M '+baseX+' 110 Q '+px+' '+(py+35)+' '+px+' '+py+'"/>'+
+      '<circle class="fingertip" data-side="'+side+'" data-finger="'+i+'" cx="'+px+'" cy="'+py+'" r="8"/>';
+  }).join('');
+  return '<svg class="hand" viewBox="0 0 180 174" role="img" aria-label="'+(mirror?'Mão direita':'Mão esquerda')+'">'+
+  '<rect class="wrist" x="54" y="139" width="75" height="34" rx="12"/>'+
+  '<rect class="palm" x="32" y="91" width="115" height="70" rx="33"/>'+fingers+'</svg>';
+}
+function updateHands(letter){
+  const guide=$('fingerGuidance');if(!guide)return;
+  const target=letter===' '?' ':letter.toLocaleLowerCase('pt-BR');
+  const match=fingerKeys[target];
+  document.querySelectorAll('.hand .finger,.hand .fingertip').forEach(el=>
+    el.classList.toggle('active',!!match&&+el.dataset.side===match[0]&&+el.dataset.finger===match[1]));
+  if(!letter){guide.textContent='Exercício concluído. Excelente prática!';return}
+  if(!match){guide.textContent='Próxima tecla: '+letter.toUpperCase()+' · Observe a posição das mãos.';return}
+  const name=target===' '?'Espaço':letter.toUpperCase();
+  guide.innerHTML='Próxima tecla: <strong>'+esc(name)+'</strong> · '+
+    (match[0]?'Mão direita':'Mão esquerda')+' · Dedo '+fingerNames[match[1]];
+}
+function visualizePress(e){
+  if(e.target!==$('typing')||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;
+  const key=e.key===' '?' ':e.key.toLocaleLowerCase('pt-BR');
+  if(key.length!==1)return;
+  const el=[...document.querySelectorAll('.key')].find(k=>k.dataset.key===key);
+  if(!el)return;
+  const expected=lessons[current].text[$('typing').value.length];
+  el.classList.remove('pressed','error-press');void el.offsetWidth;
+  el.classList.add(key===(expected===' '?' ':String(expected||'').toLocaleLowerCase('pt-BR'))?'pressed':'error-press');
+  clearTimeout(el._pressTimer);
+  el._pressTimer=setTimeout(()=>el.classList.remove('pressed','error-press'),180);
+}
+
 function isModuleLast(i){return i===lessons.length-1||lessons[i+1].m!==lessons[i].m}
 function moduleIndices(module){return lessons.map((l,i)=>l.m===module?i:-1).filter(i=>i!==-1)}
 function isModuleComplete(module){return moduleIndices(module).every(i=>progress[i]&&progress[i].last)}
@@ -321,7 +407,15 @@ $('typing').addEventListener('input',()=>{
 $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
 $('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(0)}});
-const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');load(readLessonIndex());
+const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];
+$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''} ${'asdfjklç'.includes(ch)?'home':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');
+$('handsStage').innerHTML=handSVG(0)+handSVG(1);
+const handsPreference='digitar-pro-show-hands';
+try{$('showHands').checked=localStorage.getItem(handsPreference)!=='false'}catch(_){}
+function syncHands(){$('handsStage').hidden=!$('showHands').checked}
+$('showHands').addEventListener('change',()=>{syncHands();try{localStorage.setItem(handsPreference,String($('showHands').checked))}catch(_){}});
+$('typing').addEventListener('keydown',visualizePress);
+syncHands();load(readLessonIndex());
 })();
 </script>
 </body></html>
