@@ -46,7 +46,9 @@ A transição incompleto -> completo garante a conquista mesmo quando a última 
 }
 ```
 
-A estrutura acima é **exemplo ilustrativo**, não um registro real. Chave atual: `ad-typing-mvp-v1`. Preferência: `digitar-pro-typing-mode`. Manter compatibilidade e tratar JSON inválido sem crash.
+A estrutura acima é **exemplo ilustrativo**, não um registro real. Chave atual: `ad-typing-mvp-v1`. Preferência: `digitar-pro-typing-mode`. A última lição aberta fica em `digitar-pro-current-lesson` (índice inteiro de 0 a 11). Índice ausente ou inválido abre a lição 0. Limpar o progresso também volta esse índice para 0 e preserva o modo. Manter compatibilidade e tratar JSON inválido sem crash.
+
+Ao concluir, o PPM, a precisão e o tempo exibidos ficam congelados no cálculo gravado. Um relógio que avança entre o `complete()` e o `render()` seguinte não troca o número da tela.
 
 Na carga, o valor só é aceito se o JSON for um objeto não nulo e não array; caso contrário, `progress` permanece vazio sem sobrescrever o valor armazenado:
 

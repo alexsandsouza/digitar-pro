@@ -18,7 +18,9 @@
 | 06 Verify | [Evidências 2026-11-17](verification/2026-11-17-test-evidence.md) | Evidência automatizada aceita; manual complementar pendente |
 | 07 Release | [Nota de release](release/2026-11-17.md), rollback e deploy | Autorizado em 17/11/2026 |
 
-**Sequência:** os artefatos deste ciclo foram aprovados em 17/11/2026. As decisões de produto mantêm PPM sem teto, Treinamento com erros, rótulo "Próximo módulo" e escopo sem banco. O release pela PR #3 foi autorizado na mesma data, com a verificação manual ainda pendente. Novas fatias reabrem o ciclo a partir do Discover ou de uma feature spec.
+**Sequência:** os artefatos deste ciclo foram aprovados em 17/11/2026. As decisões de produto mantêm PPM sem teto, Treinamento com erros, rótulo "Próximo módulo" e escopo sem banco. O release pela PR #3 foi autorizado na mesma data, com a verificação manual ainda pendente.
+
+A [FEAT-002](../../specs/FEAT-002-continuidade-sessao/feature-spec.md) restaura a última lição e mostra o PPM gravado. O release foi autorizado em 17/11/2026. Metas, níveis e ampliação da trilha continuam sem regra aprovada.
 
 ## Hipóteses a validar
 

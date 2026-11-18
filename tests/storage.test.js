@@ -69,6 +69,7 @@ test('resultado concluído sobrevive a uma nova carga', () => {
 test('chaves e formato do storage são preservados', () => {
   assert.match(html, /const storageKey='ad-typing-mvp-v1'/);
   assert.match(html, /const modeKey='digitar-pro-typing-mode'/);
+  assert.match(html, /const lessonKey='digitar-pro-current-lesson'/);
   assert.match(html, /progress\[current\]=\{wpm:/);
   assert.match(html, /last:\{wpm:/);
 });
@@ -82,12 +83,55 @@ test('preferência de modo é persistida sem alterar resultados', () => {
   assert.deepEqual(app.stored(), { 0: legacyRecord });
 });
 
+test('recarregar abre a última lição sem alterar o progresso', () => {
+  const app = createApp({ progress: { 0: legacyRecord }, lesson: 4 });
+
+  assert.equal(app.lessonTitle(), 'Precisão no topo');
+  assert.equal(app.activeLessonIndex(), 4);
+  assert.equal(app.completedLabel(), '1 / 12');
+  assert.deepEqual(app.stored(), { 0: legacyRecord });
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '4');
+});
+
+test('índice de lição ausente ou inválido abre a primeira lição', () => {
+  const missing = createApp({ progress: { 0: legacyRecord } });
+  assert.equal(missing.lessonTitle(), 'Teclas de referência');
+  assert.equal(missing.window.localStorage.getItem('digitar-pro-current-lesson'), '0');
+
+  const invalid = createApp({ lesson: '99' });
+  assert.equal(invalid.lessonTitle(), 'Teclas de referência');
+  assert.equal(invalid.window.localStorage.getItem('digitar-pro-current-lesson'), '0');
+});
+
+test('trocar de lição grava o índice novo', () => {
+  const app = createApp();
+
+  app.clickSelector('.lesson[data-i="2"]');
+
+  assert.equal(app.lessonTitle(), 'Palavras simples');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '2');
+  assert.equal(app.stored(), null);
+});
+
+test('Enter grava a lição seguinte', () => {
+  const app = createApp();
+
+  app.completeCurrent();
+  app.enter();
+
+  assert.equal(app.lessonTitle(), 'Ritmo na linha central');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '1');
+  assert.equal(app.stored()['0'].accuracy, 100);
+});
+
 test('limpar progresso com confirmação apaga registros e preferência fica intacta', () => {
-  const app = createApp({ progress: { 0: legacyRecord }, mode: 'precision' });
+  const app = createApp({ progress: { 0: legacyRecord }, mode: 'precision', lesson: 3 });
 
   app.clickId('clearProgress');
 
   assert.equal(app.completedLabel(), '0 / 12');
+  assert.equal(app.lessonTitle(), 'Teclas de referência');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '0');
   assert.deepEqual(app.stored(), {});
   assert.equal(app.window.localStorage.getItem('digitar-pro-typing-mode'), 'precision');
 });

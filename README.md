@@ -19,7 +19,7 @@
 
 **Digitar Pro Academy** é o primeiro produto do ecossistema **Digitar Pro**. A experiência combina exercícios progressivos, indicadores de velocidade e precisão, feedback imediato e conquistas por módulo.
 
-**Estado atual:** 0.6 Premium, release autorizado em 17/11/2026
+**Estado atual:** 0.6 Premium, com continuidade da sessão autorizada em 17/11/2026
 
 > O redesign 0.6 e as correções da FEAT-001 entram pela [PR #3](https://github.com/alexsandsouza/digitar-pro/pull/3). Screenshot, teclado físico, leitor de tela, Firefox, Safari e teste de usabilidade continuam pendentes.
 

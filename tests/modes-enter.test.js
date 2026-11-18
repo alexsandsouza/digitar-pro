@@ -50,6 +50,26 @@ test('Treinamento com erro conclui e registra precisão real e PPM', () => {
   assert.match(app.get('message').textContent, /1 erro\(s\)/);
 });
 
+test('PPM mostrado ao concluir permanece o valor gravado se o relógio andar', () => {
+  const app = createApp();
+  const expected = app.expected();
+  app.type(expected.slice(0, 1));
+  const start = app.now();
+  let reads = 0;
+  app.window.Date.now = () => {
+    reads += 1;
+    if (reads < 3) return start + 60_000;
+    return start + 120_000;
+  };
+
+  app.type(expected);
+
+  const saved = app.stored()['0'].last.wpm;
+  assert.equal(saved, Math.round((expected.length / 5) / (60 / 60)));
+  assert.equal(app.get('wpm').textContent.trim(), `${saved} PPM`);
+  assert.match(app.get('message').textContent, new RegExp(`${saved} PPM`));
+});
+
 test('texto maior que o esperado é truncado e conclui', () => {
   const app = createApp();
   const expected = app.expected();
