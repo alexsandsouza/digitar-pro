@@ -22,6 +22,8 @@
 
 A [FEAT-002](../../specs/FEAT-002-continuidade-sessao/feature-spec.md) restaura a última lição e mostra o PPM gravado. O release foi autorizado em 17/11/2026. Metas, níveis e ampliação da trilha continuam sem regra aprovada.
 
+O pedido de login, painéis, freemium e certificado está em [Discover 17/11/2026](discovery/2026-11-17-contas-freemium.md). Os módulos 1 e 2 são gratuitos e os módulos 3 e 4 serão pagos. A primeira entrega aprovada em 18/11/2026 é a [FEAT-003](../../specs/FEAT-003-contas-paineis/feature-spec.md): implementada na branch `feature/feat-003` com Node.js + PostgreSQL (`pg`), RBAC estrito, 55 testes passando (`npm test`), [evidências documentadas](verification/2026-11-18-feat-003.md) e [release autorizado](release/2026-11-18-feat-003.md).
+
 ## Hipóteses a validar
 
 1. A interface reduz fricção do primeiro exercício.

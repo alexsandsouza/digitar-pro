@@ -136,7 +136,6 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 @media(max-width:900px){.layout{grid-template-columns:1fr}.keyboard-lab .keyrow{min-width:0}}
 @media(max-width:560px){.hands-stage{height:122px;gap:5px}.keyboard-lab{padding:9px}.keyboard-lab .keyboard{padding:7px}.keyboard-lab .keyrow{gap:3px}.keyboard-lab .key{height:35px;font-size:11px;border-radius:5px}.keyboard-lab .key.space{min-width:120px}.finger-guidance{font-size:12px}}
 
-
 /* Mãos realistas otimizadas: ilustração sem dependências externas */
 .hands-stage{position:relative;display:block;width:min(100%,860px);height:clamp(180px,21vw,275px);margin:0 auto 4px;overflow:visible}
 .hands-stage[hidden]{display:none}
@@ -148,11 +147,47 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 @media(max-width:560px){.hands-stage{height:clamp(112px,32vw,170px)}.finger-point{width:9px;height:9px}}
 @media(prefers-reduced-motion:reduce){.finger-point.active{animation:none}}
 
+/* FEAT-003: Área de conta, painel do aluno e painel administrativo */
+.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.account-btn{border:1px solid #3c5c76;background:#132841;color:var(--text);border-radius:99px;padding:8px 14px;font-size:13px;font-weight:700}
+.account-btn:hover{border-color:var(--accent)}
+.account-btn.signed{border-color:#4fe3e166;background:#4fe3e114;color:var(--accent)}
+.account-btn:focus-visible,.account-field input:focus-visible,.account-close:focus-visible{outline:3px solid #5ca8ff;outline-offset:2px}
+.account-backdrop{position:fixed;inset:0;z-index:120;background:#030c19dc;display:grid;place-items:center;padding:20px;backdrop-filter:blur(7px);overflow-y:auto}
+.account-backdrop[hidden]{display:none}
+.account-card{width:min(760px,100%);max-height:min(92vh,92dvh);overflow-y:auto;background:linear-gradient(160deg,#162b48,#0e1b30);border:1px solid #4fe3e166;border-radius:22px;padding:24px;box-shadow:0 30px 90px #000a}
+.account-head{display:flex;justify-content:space-between;align-items:start;gap:14px;margin-bottom:16px}
+.account-head h2{margin:4px 0 0;font-size:24px}
+.account-close{border:1px solid #3c5c76;background:#13243a;color:var(--text);border-radius:10px;padding:8px 12px;font-weight:700}
+.account-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.account-tab{border:1px solid #3c5c76;background:#0b1a2d;color:var(--muted);border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px}
+.account-tab.active{border-color:var(--accent);background:#4fe3e118;color:var(--accent)}
+.account-form{display:grid;gap:12px}
+.account-field{display:grid;gap:5px}
+.account-field label{font-size:13px;color:var(--muted);font-weight:600}
+.account-field input{width:100%;padding:11px 13px;border-radius:11px;border:1px solid #3c5c76;background:#071625;color:var(--text);font-size:15px}
+.account-status{font-size:13px;min-height:20px;margin:6px 0 0;color:var(--muted)}
+.account-status.error{color:var(--bad)}
+.account-status.success{color:var(--good)}
+.panel-box{background:#09182b;border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:12px}
+.panel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.panel-stat{background:#0d2034;border:1px solid #29445f;border-radius:12px;padding:12px}
+.panel-stat span{display:block;font-size:12px;color:var(--muted)}
+.panel-stat strong{display:block;font-size:20px;margin-top:4px}
+.admin-table-wrap{overflow-x:auto;margin-top:12px}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;text-align:left}
+.admin-table th,.admin-table td{padding:9px 10px;border-bottom:1px solid #223a57}
+.admin-table th{color:var(--muted);font-weight:700}
+.role-badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;border:1px solid #3c5c76}
+.role-badge.admin{border-color:#a6a0ff88;color:var(--purple)}
+.role-badge.student{border-color:#4fe3e166;color:var(--accent)}
+@media(max-width:600px){.panel-grid{grid-template-columns:1fr}.account-card{padding:18px}}
+
 </style>
 <link rel="stylesheet" href="assets/neon-hands.css?v=2">
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
-<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · MVP 0.6 Premium</small></div></div><div class="pill">⌨️ Português (Brasil) · Progresso local</div></header>
+<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · MVP 0.6 Premium</small></div></div><div class="top-right"><div class="pill">⌨️ Português (Brasil) · Progresso local</div><button type="button" id="accountTrigger" class="account-btn">Entrar / Minha conta</button></div></header>
 <section class="hero-premium" aria-label="Boas-vindas"><div><h1>Domine cada tecla. <span class="gradient">Evolua sempre.</span></h1><p class="lead">Seu espaço de prática: lições orientadas, feedback imediato e evolução no seu ritmo. O progresso permanece neste navegador.</p></div><a class="hero-link" href="#typing">Começar a praticar ↓</a></section>
 <section class="dashboard-strip" aria-label="Resumo do seu progresso">
  <div class="dashboard-tile"><span class="tile-label">Lições concluídas</span><strong id="dashLessons">0 / 12</strong><span class="tile-meta">Sua trilha</span></div>
@@ -192,6 +227,62 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
     <div class="achievement"><span>✨ CONQUISTA DESBLOQUEADA</span><strong id="achievementName"></strong><span class="subtitle" id="achievementDescription"></span></div>
     <div class="summary-buttons"><button class="btn" id="repeatModule">↻ Repetir módulo</button><button class="btn primary" id="continueModule">Continuar com Enter →</button></div>
     <p class="hint" id="summaryHint">Pressione Enter para continuar</p>
+  </div>
+</div>
+<div id="accountModal" class="account-backdrop" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle" hidden>
+  <div class="account-card" id="accountCard" tabindex="-1">
+    <div class="account-head">
+      <div>
+        <span class="eyebrow" id="accountEyebrow">CONTA DIGITAR PRO</span>
+        <h2 id="accountModalTitle">Entrar ou criar conta</h2>
+      </div>
+      <button type="button" class="account-close" id="closeAccountModal">Fechar</button>
+    </div>
+    <div id="authGuestView">
+      <div class="account-tabs" role="tablist">
+        <button type="button" class="account-tab active" id="tabLogin" data-tab="login">Entrar</button>
+        <button type="button" class="account-tab" id="tabRegister" data-tab="register">Criar conta de aluno</button>
+      </div>
+      <form id="loginForm" class="account-form">
+        <div class="account-field"><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" autocomplete="email" required></div>
+        <div class="account-field"><label for="loginPassword">Senha</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
+        <div class="actions"><button type="submit" class="btn primary">Entrar</button><span class="hint">As 12 lições continuam livres sem login nesta etapa.</span></div>
+      </form>
+      <form id="registerForm" class="account-form" hidden>
+        <div class="account-field"><label for="registerName">Nome completo</label><input id="registerName" type="text" minlength="2" maxlength="120" autocomplete="name" required></div>
+        <div class="account-field"><label for="registerEmail">E-mail</label><input id="registerEmail" type="email" autocomplete="email" required></div>
+        <div class="account-field"><label for="registerPassword">Senha (mínimo 8 caracteres)</label><input id="registerPassword" type="password" minlength="8" autocomplete="new-password" required></div>
+        <div class="actions"><button type="submit" class="btn primary">Criar conta de aluno</button><span class="hint">Cadastro público cria apenas conta de aluno.</span></div>
+      </form>
+    </div>
+    <div id="authSignedView" hidden>
+      <div class="panel-box" id="studentPanel">
+        <span class="eyebrow">PAINEL DO ALUNO</span>
+        <p id="accountUserInfo" class="subtitle" style="margin:8px 0 12px"></p>
+        <p class="hint" style="margin:0 0 12px">Seu acesso é restrito aos seus próprios dados e à prática. Informações administrativas e financeiras ficam disponíveis apenas para administradores.</p>
+        <div class="actions">
+          <button type="button" class="btn primary" id="backToPractice">Voltar para a prática</button>
+          <button type="button" class="btn" id="logoutBtn">Sair da conta</button>
+          <button type="button" class="reset" id="deleteOwnAccount">Excluir minha conta</button>
+        </div>
+      </div>
+      <div class="panel-box" id="adminPanel" hidden>
+        <span class="eyebrow">PAINEL DO ADMINISTRADOR</span>
+        <div class="panel-grid">
+          <div class="panel-stat"><span>Total de contas</span><strong id="adminTotalUsers">0</strong></div>
+          <div class="panel-stat"><span>Alunos</span><strong id="adminStudentsCount">0</strong></div>
+          <div class="panel-stat"><span>Faturamento</span><strong>Em breve</strong></div>
+        </div>
+        <div class="actions"><button type="button" class="btn" id="refreshAdminBtn">Atualizar lista</button></div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" aria-label="Lista de contas cadastradas">
+            <thead><tr><th>Nome</th><th>E-mail</th><th>Papel</th><th>Criado em</th></tr></thead>
+            <tbody id="adminUsersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p id="accountStatus" class="account-status" aria-live="polite"></p>
   </div>
 </div>
 <script>
@@ -417,6 +508,7 @@ $('typing').addEventListener('input',()=>{
 $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
 $('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(0)}});
+
 const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];
 $('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''} ${'asdfjklç'.includes(ch)?'home':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');
 $('handsStage').innerHTML=handArtwork();
@@ -426,6 +518,117 @@ function syncHands(){$('handsStage').hidden=!$('showHands').checked}
 $('showHands').addEventListener('change',()=>{syncHands();try{localStorage.setItem(handsPreference,String($('showHands').checked))}catch(_){}});
 $('typing').addEventListener('keydown',visualizePress);
 syncHands();load(readLessonIndex());
+
+// FEAT-003: integração incremental de contas e painéis (sem bloquear a prática offline/estática).
+const apiBase=window.DIGITAR_PRO_API_BASE||'';
+let currentUser=null,accountOpen=false;
+function setAccountStatus(text,kind=''){
+  $('accountStatus').textContent=text||'';
+  $('accountStatus').className='account-status'+(kind?' '+kind:'');
+}
+function renderAccountState(){
+  const trigger=$('accountTrigger');
+  if(!currentUser){
+    trigger.textContent='Entrar / Minha conta';
+    trigger.classList.remove('signed');
+    $('authGuestView').hidden=false;$('authSignedView').hidden=true;
+    $('adminPanel').hidden=true;$('adminUsersBody').innerHTML='';
+    $('deleteOwnAccount').hidden=false;
+    return;
+  }
+  trigger.textContent=currentUser.role==='admin'?'Admin: '+currentUser.name:'Conta: '+currentUser.name;
+  trigger.classList.add('signed');
+  $('authGuestView').hidden=true;$('authSignedView').hidden=false;
+  $('accountModalTitle').textContent=currentUser.role==='admin'?'Painel administrativo':'Painel do aluno';
+  $('accountUserInfo').textContent=`${currentUser.name} (${currentUser.email}) · Papel: ${currentUser.role==='admin'?'Administrador':'Aluno'}`;
+  $('deleteOwnAccount').hidden=currentUser.role==='admin';
+  $('adminPanel').hidden=currentUser.role!=='admin';
+}
+async function apiFetch(path,options={}){
+  const res=await fetch(apiBase+path,{
+    credentials:'include',
+    headers:{'Content-Type':'application/json',...(options.headers||{})},
+    ...options
+  });
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(data.error||'Não foi possível completar a operação.');
+  return data;
+}
+async function loadAdminData(){
+  if(!currentUser||currentUser.role!=='admin')return;
+  const [overview,usersData]=await Promise.all([apiFetch('/api/admin/overview'),apiFetch('/api/admin/users')]);
+  $('adminTotalUsers').textContent=String(overview.total_users||0);
+  $('adminStudentsCount').textContent=String(overview.students||0);
+  $('adminUsersBody').innerHTML=(usersData.users||[]).map(u=>{
+    const date=u.created_at?new Date(u.created_at).toLocaleDateString('pt-BR'):'—';
+    const roleLabel=u.role==='admin'?'Admin':'Aluno';
+    return `<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td><span class="role-badge ${u.role==='admin'?'admin':'student'}">${roleLabel}</span></td><td>${esc(date)}</td></tr>`;
+  }).join('');
+}
+async function refreshSession(){
+  if(!window.fetch)return;
+  try{
+    const data=await apiFetch('/api/me');
+    currentUser=data.user||null;
+    renderAccountState();
+    if(currentUser&&currentUser.role==='admin')await loadAdminData();
+  }catch(_){
+    currentUser=null;
+    renderAccountState();
+  }
+}
+function openAccountModal(){
+  accountOpen=true;
+  setAccountStatus('');
+  $('accountModalTitle').textContent=currentUser?(currentUser.role==='admin'?'Painel administrativo':'Painel do aluno'):'Entrar ou criar conta';
+  document.querySelector('.wrap').setAttribute('inert','');document.body.classList.add('modal-open');
+  $('accountModal').hidden=false;
+  renderAccountState();
+  if(currentUser&&currentUser.role==='admin'){loadAdminData().catch(err=>setAccountStatus(err.message,'error'));}
+  $('closeAccountModal').focus();
+}
+function closeAccountModal(){
+  accountOpen=false;
+  $('accountModal').hidden=true;
+  if(!summaryOpen){document.querySelector('.wrap').removeAttribute('inert');document.body.classList.remove('modal-open');}
+  $('accountTrigger').focus();
+}
+$('accountTrigger').addEventListener('click',openAccountModal);
+$('closeAccountModal').addEventListener('click',closeAccountModal);
+$('backToPractice').addEventListener('click',()=>{closeAccountModal();$('typing').focus();});
+document.addEventListener('keydown',event=>{if(accountOpen&&event.key==='Escape'){event.preventDefault();closeAccountModal();}});
+$('tabLogin').addEventListener('click',()=>{$('tabLogin').classList.add('active');$('tabRegister').classList.remove('active');$('loginForm').hidden=false;$('registerForm').hidden=true;setAccountStatus('');});
+$('tabRegister').addEventListener('click',()=>{$('tabRegister').classList.add('active');$('tabLogin').classList.remove('active');$('registerForm').hidden=false;$('loginForm').hidden=true;setAccountStatus('');});
+$('loginForm').addEventListener('submit',async event=>{
+  event.preventDefault();setAccountStatus('Entrando...');
+  try{
+    const data=await apiFetch('/api/auth/login',{method:'POST',body:JSON.stringify({email:$('loginEmail').value,password:$('loginPassword').value})});
+    currentUser=data.user;renderAccountState();$('loginPassword').value='';
+    if(currentUser.role==='admin')await loadAdminData();
+    setAccountStatus('Sessão iniciada com sucesso.','success');
+  }catch(err){setAccountStatus(err.message||'Servidor de contas indisponível nesta visualização estática.','error');}
+});
+$('registerForm').addEventListener('submit',async event=>{
+  event.preventDefault();setAccountStatus('Criando conta...');
+  try{
+    const data=await apiFetch('/api/auth/register',{method:'POST',body:JSON.stringify({name:$('registerName').value,email:$('registerEmail').value,password:$('registerPassword').value})});
+    currentUser=data.user;renderAccountState();$('registerPassword').value='';
+    setAccountStatus('Conta de aluno criada com sucesso.','success');
+  }catch(err){setAccountStatus(err.message||'Servidor de contas indisponível nesta visualização estática.','error');}
+});
+$('logoutBtn').addEventListener('click',async()=>{
+  try{await apiFetch('/api/auth/logout',{method:'POST'});}catch(_){}
+  currentUser=null;renderAccountState();setAccountStatus('Você saiu da conta. Seu progresso local permanece salvo.','success');
+});
+$('refreshAdminBtn').addEventListener('click',()=>{loadAdminData().then(()=>setAccountStatus('Lista atualizada.','success')).catch(err=>setAccountStatus(err.message,'error'));});
+$('deleteOwnAccount').addEventListener('click',async()=>{
+  if(!confirm('Tem certeza que deseja excluir sua conta? O progresso salvo neste navegador continuará disponível.'))return;
+  try{
+    await apiFetch('/api/me',{method:'DELETE'});
+    currentUser=null;renderAccountState();setAccountStatus('Conta excluída.','success');
+  }catch(err){setAccountStatus(err.message,'error');}
+});
+if(location.protocol==='http:'||location.protocol==='https:'){refreshSession();}
 })();
 </script>
 <script src="assets/neon-hands.js?v=2" defer></script>
