@@ -1,6 +1,6 @@
 # FEAT-003 - Contas, papéis e painéis
 
-- **Estado:** Implementado em `feature/feat-003` (18/11/2026). Testes de API/RBAC e regressão passando (55 pass). Aguarda instalação do PostgreSQL e revisão humana antes de merge/deploy.
+- **Estado:** Aprovado e Release Autorizado em 18/11/2026 na branch `feature/feat-003`. Suíte com 55 testes aprovados e 1 skipped (PostgreSQL). Pronto para merge na `main`.
 - **Origem:** [Discover de contas e freemium](../../docs/spection/discovery/2026-11-17-contas-freemium.md)
 - **Fora desta entrega:** cobrança, trava das lições 7 a 12, certificado, preço e provedor de pagamento.
 
