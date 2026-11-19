@@ -1,4 +1,4 @@
-/* Mãos holográficas transparentes v3 — sobrepostas diretamente sobre o teclado */
+/* Mãos holográficas transparentes v4 — movimento de dedos e toque nas teclas */
 .keyboard-lab{overflow:hidden;position:relative}
 .keyboard-lab #handsStage{display:none!important}
 .keyboard-lab #keyboard{
@@ -12,6 +12,7 @@
   position:relative;
   background:linear-gradient(180deg,#142840,#0d1d31);
   border-color:#294968;
+  transition:transform .09s cubic-bezier(.2,.8,.2,1),background .12s ease,border-color .12s ease,box-shadow .12s ease;
 }
 .keyboard-lab #keyboard .key.target{
   z-index:2;
@@ -19,6 +20,29 @@
   border:2px solid #82fff6;
   color:#ffffff;
   box-shadow:0 0 0 1px #aefdf9,0 0 22px #3bf3e7b8,inset 0 0 16px #5ef9ee52;
+}
+/* Simulação sutil da próxima tecla sendo tocada pelo dedo guia */
+.keyboard-lab #keyboard .key.target.guide-tap{
+  transform:translateY(2.5px) scale(.975);
+  background:linear-gradient(180deg,#1c8594,#0f5c6d);
+  box-shadow:0 0 0 1.5px #d4ffff,0 0 28px #54fff3d9,inset 0 0 20px #8afff67a;
+}
+/* Toque real quando o aluno digita a tecla */
+.keyboard-lab #keyboard .key.pressed{
+  z-index:3;
+  transform:translateY(4px) scale(.955)!important;
+  background:linear-gradient(180deg,#25b8a8,#12736e)!important;
+  border-color:#c4fff9!important;
+  color:#ffffff!important;
+  box-shadow:0 0 0 2px #d9ffff,0 0 32px #4fffe8e6,inset 0 2px 14px #b8ffff90!important;
+}
+.keyboard-lab #keyboard .key.error-press{
+  z-index:3;
+  transform:translateY(4px) scale(.955)!important;
+  background:linear-gradient(180deg,#c93b5b,#7d1f37)!important;
+  border-color:#ffb3c1!important;
+  color:#ffffff!important;
+  box-shadow:0 0 0 2px #ffd0d9,0 0 28px #ff5c7cd9!important;
 }
 #neonHandsOverlay{
   position:absolute;
@@ -30,45 +54,75 @@
   transition:opacity .22s ease;
 }
 #neonHandsOverlay[hidden]{display:none!important}
-#neonHandsOverlay .hologram-hands-img{
+#neonHandsOverlay .hologram-hand-half{
   position:absolute;
-  left:50%;
-  transform:translateX(-50%);
   pointer-events:none;
   user-select:none;
   opacity:.82;
   mix-blend-mode:screen;
   filter:drop-shadow(0 6px 18px #021324cc) drop-shadow(0 0 12px #1ad4ff40);
-  transition:opacity .2s ease;
+  will-change:transform;
+}
+#neonHandsOverlay .hologram-hand-left{
+  clip-path:polygon(0 0,50.2% 0,50.2% 100%,0 100%);
+}
+#neonHandsOverlay .hologram-hand-right{
+  clip-path:polygon(49.8% 0,100% 0,100% 100%,49.8% 100%);
+}
+#neonHandsOverlay .hologram-motion-svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+#neonHandsOverlay .active-finger-beam{
+  fill:none;
+  stroke:url(#activeFingerGrad);
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.78;
+  filter:url(#activeFingerBlur);
+}
+#neonHandsOverlay .active-finger-rim{
+  fill:none;
+  stroke:#adffff;
+  stroke-width:2.1;
+  stroke-linecap:round;
+  opacity:.92;
+}
+#neonHandsOverlay .key-touch-ripple{
+  fill:none;
+  stroke:#96fff7;
+  stroke-width:2.2;
+}
+#neonHandsOverlay .key-touch-ripple.is-error{
+  stroke:#ff8ca1;
 }
 #neonHandsOverlay .hologram-finger-glow{
   position:absolute;
-  width:clamp(22px,3.2vw,38px);
-  height:clamp(16px,2.3vw,26px);
+  width:clamp(22px,3.1vw,36px);
+  height:clamp(18px,2.5vw,28px);
   border-radius:50%;
   transform:translate(-50%,-50%) scale(.75);
-  background:radial-gradient(ellipse at center,#b8ffff 0%,#4cf6ee 42%,#0cc5e800 76%);
-  box-shadow:0 0 18px 5px #4df4e985;
+  background:radial-gradient(ellipse at center,#e3ffff 0%,#5efaf1 45%,#0cc5e800 76%);
+  box-shadow:0 0 18px 6px #4df4e995;
   mix-blend-mode:screen;
   opacity:0;
   pointer-events:none;
-  transition:left .16s ease-out,top .16s ease-out,opacity .15s ease,transform .16s ease;
 }
 #neonHandsOverlay .hologram-finger-glow.is-active{
-  opacity:.95;
-  transform:translate(-50%,-50%) scale(1);
-  animation:hologram-tip-pulse 1.05s ease-in-out infinite alternate;
-}
-@keyframes hologram-tip-pulse{
-  to{transform:translate(-50%,-50%) scale(1.16);box-shadow:0 0 24px 8px #66fff5aa}
+  opacity:.98;
 }
 @media(max-width:860px){
   .keyboard-lab #keyboard{overflow-x:auto;overflow-y:hidden;padding-bottom:78px}
 }
 @media(max-width:560px){
   .keyboard-lab #keyboard{padding-bottom:64px}
-  #neonHandsOverlay .hologram-hands-img{opacity:.76}
+  #neonHandsOverlay .hologram-hand-half{opacity:.76}
 }
 @media(prefers-reduced-motion:reduce){
-  #neonHandsOverlay,#neonHandsOverlay .hologram-finger-glow{transition:none;animation:none!important}
+  #neonHandsOverlay,.keyboard-lab #keyboard .key{transition:none!important;animation:none!important}
 }
