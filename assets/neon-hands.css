@@ -1,17 +1,74 @@
-/* Mãos neon v2 - camada transparente e responsiva sobre o teclado */
+/* Mãos holográficas transparentes v3 — sobrepostas diretamente sobre o teclado */
+.keyboard-lab{overflow:hidden;position:relative}
 .keyboard-lab #handsStage{display:none!important}
-.keyboard-lab #keyboard{position:relative;isolation:isolate;overflow:hidden}
+.keyboard-lab #keyboard{
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+  padding-bottom:clamp(78px,9.5vw,118px);
+}
 .keyboard-lab #keyboard .keyrow{position:relative;z-index:1}
-.keyboard-lab #keyboard .key{position:relative}
-.keyboard-lab #keyboard .key.target{box-shadow:0 0 0 1px #a1fff6,0 0 18px #4fe3e19c,inset 0 0 15px #4fe3e13d}
-#neonHandsOverlay{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible;opacity:.88;transition:opacity .2s ease}
-#neonHandsOverlay[hidden]{display:none}
-#neonHandsOverlay .neon-palm{fill:url(#handFill);stroke:#5cdefa;stroke-width:1.4;opacity:.56;filter:url(#handGlow)}
-#neonHandsOverlay .neon-digit{fill:none;stroke:#2e8fb8;stroke-width:24;stroke-linecap:round;stroke-linejoin:round;opacity:.50}
-#neonHandsOverlay .neon-finger-edge{fill:none;stroke:#72eaff;stroke-width:1.8;stroke-linecap:round;opacity:.85;filter:url(#handGlow)}
-#neonHandsOverlay .neon-tip{fill:#62e9e8;stroke:#c7ffff;stroke-width:1;opacity:.40}
-#neonHandsOverlay .neon-digit.is-target{stroke:#41e6de;opacity:.76;filter:url(#handGlow)}
-#neonHandsOverlay .neon-tip.is-target{opacity:1;fill:#91fff2;filter:url(#handGlow)}
-#neonHandsOverlay .neon-guide{stroke:#4fffe6;fill:none;stroke-width:2;stroke-dasharray:4 5;opacity:.6}
-@media(max-width:560px){#neonHandsOverlay .neon-digit{stroke-width:15}}
-@media(prefers-reduced-motion:reduce){#neonHandsOverlay{transition:none}}
+.keyboard-lab #keyboard .key{
+  position:relative;
+  background:linear-gradient(180deg,#142840,#0d1d31);
+  border-color:#294968;
+}
+.keyboard-lab #keyboard .key.target{
+  z-index:2;
+  background:linear-gradient(180deg,#166977,#0c4a59);
+  border:2px solid #82fff6;
+  color:#ffffff;
+  box-shadow:0 0 0 1px #aefdf9,0 0 22px #3bf3e7b8,inset 0 0 16px #5ef9ee52;
+}
+#neonHandsOverlay{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  user-select:none;
+  overflow:visible;
+  transition:opacity .22s ease;
+}
+#neonHandsOverlay[hidden]{display:none!important}
+#neonHandsOverlay .hologram-hands-img{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+  user-select:none;
+  opacity:.82;
+  mix-blend-mode:screen;
+  filter:drop-shadow(0 6px 18px #021324cc) drop-shadow(0 0 12px #1ad4ff40);
+  transition:opacity .2s ease;
+}
+#neonHandsOverlay .hologram-finger-glow{
+  position:absolute;
+  width:clamp(22px,3.2vw,38px);
+  height:clamp(16px,2.3vw,26px);
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(.75);
+  background:radial-gradient(ellipse at center,#b8ffff 0%,#4cf6ee 42%,#0cc5e800 76%);
+  box-shadow:0 0 18px 5px #4df4e985;
+  mix-blend-mode:screen;
+  opacity:0;
+  pointer-events:none;
+  transition:left .16s ease-out,top .16s ease-out,opacity .15s ease,transform .16s ease;
+}
+#neonHandsOverlay .hologram-finger-glow.is-active{
+  opacity:.95;
+  transform:translate(-50%,-50%) scale(1);
+  animation:hologram-tip-pulse 1.05s ease-in-out infinite alternate;
+}
+@keyframes hologram-tip-pulse{
+  to{transform:translate(-50%,-50%) scale(1.16);box-shadow:0 0 24px 8px #66fff5aa}
+}
+@media(max-width:860px){
+  .keyboard-lab #keyboard{overflow-x:auto;overflow-y:hidden;padding-bottom:78px}
+}
+@media(max-width:560px){
+  .keyboard-lab #keyboard{padding-bottom:64px}
+  #neonHandsOverlay .hologram-hands-img{opacity:.76}
+}
+@media(prefers-reduced-motion:reduce){
+  #neonHandsOverlay,#neonHandsOverlay .hologram-finger-glow{transition:none;animation:none!important}
+}
