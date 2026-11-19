@@ -105,6 +105,48 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
   .summary-card{padding:22px 18px}
 }
 
+/* Laboratório de digitação: teclado amplo e orientação bimanual */
+.wrap{max-width:1580px}
+.layout{grid-template-columns:minmax(220px,250px) minmax(0,1fr)}
+.keyboard-lab{margin-top:22px;border:1px solid #305473;border-radius:20px;padding:clamp(14px,2.5vw,28px);background:linear-gradient(160deg,#0c2036,#071625);overflow:hidden}
+.lab-header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.lab-header h3{margin:0;font-size:17px}
+.hands-toggle{display:inline-flex;align-items:center;gap:9px;color:#c8dbed;font-size:13px;cursor:pointer}
+.hands-toggle input{accent-color:var(--accent);width:17px;height:17px}
+.finger-guidance{text-align:center;min-height:26px;margin:8px 0;color:#b7d2e8;font-size:14px}
+.finger-guidance strong{color:#6af0e5}
+.hands-stage{position:relative;width:min(100%,880px);height:175px;margin:0 auto 4px;display:flex;justify-content:center;gap:clamp(12px,5vw,75px)}
+.hands-stage[hidden]{display:none}
+.hand{width:43%;height:100%;overflow:visible;filter:drop-shadow(0 9px 10px #0005)}
+.hand .palm{fill:#274762;stroke:#5e88a6;stroke-width:2}
+.hand .finger{stroke:#547b99;stroke-width:15;stroke-linecap:round;fill:none;transition:stroke .18s,transform .18s;transform-origin:center bottom}
+.hand .fingertip{fill:#789bb5;stroke:#abc7dc;stroke-width:1.5;transition:fill .16s,filter .16s,transform .16s}
+.hand .finger.active{stroke:#39dcd2;transform:translateY(6px)}
+.hand .fingertip.active{fill:#5ef6e7;filter:drop-shadow(0 0 7px #4fe3e1);transform:translateY(6px)}
+.hand .wrist{fill:#19374f;stroke:#547b99;stroke-width:2}
+.keyboard-lab .keyboard{margin:0 auto;padding:clamp(8px,1.6vw,18px);max-width:100%;width:min(100%,1050px);gap:clamp(5px,.8vw,9px);background:#071526;border:1px solid #284c69}
+.keyboard-lab .keyrow{gap:clamp(4px,.55vw,9px);min-width:0}
+.keyboard-lab .key{flex:0 1 65px;min-width:0;height:clamp(39px,4.4vw,57px);font-size:clamp(13px,1.25vw,18px);padding:0 2px;border-radius:9px;transition:background .1s,transform .1s,border-color .1s}
+.keyboard-lab .key.space{flex:0 1 430px;min-width:160px;max-width:60%}
+.keyboard-lab .key.target{border:2px solid #7effef;background:#096e72;box-shadow:0 0 18px #4adad455}
+.keyboard-lab .key.pressed{transform:translateY(3px);background:#207b70;color:#fff}
+.keyboard-lab .key.error-press{background:#9d3048;border-color:#ff8a9a}
+.keyboard-lab .key.home{border-bottom:3px solid #7296af}
+.lab-caption{font-size:12px;color:var(--muted);text-align:center;margin:12px 0 0}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.keyboard-lab .keyrow{min-width:0}}
+@media(max-width:560px){.hands-stage{height:122px;gap:5px}.keyboard-lab{padding:9px}.keyboard-lab .keyboard{padding:7px}.keyboard-lab .keyrow{gap:3px}.keyboard-lab .key{height:35px;font-size:11px;border-radius:5px}.keyboard-lab .key.space{min-width:120px}.finger-guidance{font-size:12px}}
+
+/* Mãos realistas otimizadas: ilustração sem dependências externas */
+.hands-stage{position:relative;display:block;width:min(100%,860px);height:clamp(180px,21vw,275px);margin:0 auto 4px;overflow:visible}
+.hands-stage[hidden]{display:none}
+.realistic-hands{width:100%;height:100%;object-fit:contain;object-position:center;pointer-events:none;user-select:none;filter:drop-shadow(0 11px 14px #0004);animation:subtle-entry .4s ease-out}
+@keyframes subtle-entry{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.finger-point{position:absolute;z-index:2;width:clamp(10px,1.7vw,20px);height:clamp(10px,1.7vw,20px);border-radius:50%;background:#68f9ed;box-shadow:0 0 0 4px #46e8de3a,0 0 19px 8px #22ebd575;transform:translate(-50%,-50%) scale(.15);opacity:0;pointer-events:none;transition:opacity .14s,transform .18s}
+.finger-point.active{opacity:.96;transform:translate(-50%,-50%) scale(1);animation:typing-glow .9s ease-in-out infinite alternate}
+@keyframes typing-glow{to{box-shadow:0 0 0 8px #46e8de2f,0 0 23px 13px #22ebd580}}
+@media(max-width:560px){.hands-stage{height:clamp(112px,32vw,170px)}.finger-point{width:9px;height:9px}}
+@media(prefers-reduced-motion:reduce){.finger-point.active{animation:none}}
+
 /* FEAT-003: Área de conta, painel do aluno e painel administrativo */
 .top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .account-btn{border:1px solid #3c5c76;background:#132841;color:var(--text);border-radius:99px;padding:8px 14px;font-size:13px;font-weight:700}
@@ -162,7 +204,13 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 <p class="lesson-purpose" id="lessonPurpose"><strong>Objetivo:</strong> praticar as teclas de referência. Priorize a precisão antes da velocidade.</p>
 <div class="stats"><div class="stat"><span>Velocidade</span><b id="wpm">0 <small style="font-size:12px">PPM</small></b></div><div class="stat"><span>Precisão</span><b id="accuracy">100%</b></div><div class="stat"><span>Tempo</span><b id="elapsed">0s</b></div><div class="stat"><span>Melhor resultado</span><b id="best">—</b></div></div>
 <div class="progress"><div id="bar" class="bar"></div></div><div id="prompt" class="prompt" aria-label="Texto que você deve digitar"></div><label for="typing" class="subtitle" style="display:block;margin-top:13px">DIGITE O TEXTO ACIMA</label><textarea id="typing" class="typing" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Clique aqui e comece a digitar..."></textarea><div class="actions"><button id="restart" class="btn">↻ Reiniciar</button><button id="nextLesson" class="btn primary">Próxima lição →</button><span class="hint">Depois de concluir a lição, pressione Enter para avançar. O cronômetro começa na primeira tecla.</span></div><div class="message" id="message" aria-live="polite"></div>
-<details open><summary class="quick-guide">⌨️ Teclado de apoio (mostrar ou ocultar)</summary><div class="keyboard" id="keyboard" aria-label="Mapa visual de teclado brasileiro simplificado"></div></details>
+<section class="keyboard-lab" aria-label="Laboratório visual de digitação">
+<div class="lab-header"><h3>⌨️ Teclado interativo</h3><label class="hands-toggle"><input id="showHands" type="checkbox" checked> Mostrar mãos e dedos</label></div>
+<p class="finger-guidance" id="fingerGuidance" aria-live="off">Posicione os dedos em <strong>ASDF</strong> e <strong>JKLÇ</strong>.</p>
+<div class="hands-stage" id="handsStage" aria-hidden="true"></div>
+<div class="keyboard" id="keyboard" aria-label="Mapa visual do teclado brasileiro com indicação da próxima tecla"></div>
+<p class="lab-caption">A tecla em destaque indica a próxima letra. Use o dedo iluminado para praticar a posição correta.</p>
+</section>
 </section></main><footer class="footer">Digitar Pro Academy · Aprender digitação no seu ritmo · Progresso armazenado neste navegador <span aria-hidden="true">·</span> <a href="https://hits.sh/alexsandsouza.github.io/digitar-pro/" target="_blank" rel="noopener noreferrer" title="Contador aproximado de carregamentos do site (serviço externo)"><img loading="lazy" decoding="async" src="https://hits.sh/alexsandsouza.github.io/digitar-pro.svg?label=visitas&color=4fe3e1&labelColor=172b44" alt="Contador aproximado de visitas ao site" style="vertical-align:middle;height:20px;max-width:100%" /></a></footer></div>
 <div id="moduleSummary" class="summary-backdrop" role="dialog" aria-modal="true" aria-labelledby="summaryTitle" hidden>
   <div class="summary-card" tabindex="-1" id="summaryCard">
@@ -321,7 +369,53 @@ function render(){
   $('accuracy').textContent=met.acc+'%';$('elapsed').textContent=Math.floor(met.secs)+'s';
   $('bar').style.width=Math.min(100,met.raw.length/text.length*100)+'%';highlight(text[met.raw.length]||'');
 }
-function highlight(letter){document.querySelectorAll('.key').forEach(k=>k.classList.toggle('target',!!letter&&k.dataset.key===letter.toLowerCase()))}
+function highlight(letter){
+  const key=letter===' '?' ':letter.toLocaleLowerCase('pt-BR');
+  document.querySelectorAll('.key').forEach(k=>k.classList.toggle('target',!!letter&&k.dataset.key===key));
+  updateHands(letter);
+}
+const fingerNames=['mínimo','anelar','médio','indicador','polegar'];
+const fingerKeys={
+  q:[0,0],a:[0,0],z:[0,0],w:[0,1],s:[0,1],x:[0,1],e:[0,2],d:[0,2],c:[0,2],
+  r:[0,3],t:[0,3],f:[0,3],g:[0,3],v:[0,3],b:[0,3],
+  y:[1,3],u:[1,3],h:[1,3],j:[1,3],n:[1,3],m:[1,3],
+  i:[1,2],k:[1,2],',':[1,2],o:[1,1],l:[1,1],'.':[1,1],
+  p:[1,0],'ç':[1,0],'!':[1,0], ' ':[1,4]
+};
+const handsImage='data:image/webp;base64,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';
+function handArtwork(){
+ const dots=[
+  [0,0,19,20],[0,1,28,11],[0,2,33,12],[0,3,39,16],[0,4,45,55],
+  [1,0,86,19],[1,1,77,12],[1,2,72,9],[1,3,64,12],[1,4,57,48]
+ ];
+ return '<img class="realistic-hands" src="'+handsImage+'" alt="" draggable="false">'+
+ dots.map(([side,finger,x,y])=>'<span class="finger-point" data-side="'+side+'" data-finger="'+finger+'" style="left:'+x+'%;top:'+y+'%"></span>').join('');
+}
+function updateHands(letter){
+  const guide=$('fingerGuidance');if(!guide)return;
+  const target=letter===' '?' ':letter.toLocaleLowerCase('pt-BR');
+  const match=fingerKeys[target];
+  document.querySelectorAll('.finger-point').forEach(el=>
+    el.classList.toggle('active',!!match&&+el.dataset.side===match[0]&&+el.dataset.finger===match[1]));
+  if(!letter){guide.textContent='Exercício concluído. Excelente prática!';return}
+  if(!match){guide.textContent='Próxima tecla: '+letter.toUpperCase()+' · Observe a posição das mãos.';return}
+  const name=target===' '?'Espaço':letter.toUpperCase();
+  guide.innerHTML='Próxima tecla: <strong>'+esc(name)+'</strong> · '+
+    (match[0]?'Mão direita':'Mão esquerda')+' · Dedo '+fingerNames[match[1]];
+}
+function visualizePress(e){
+  if(e.target!==$('typing')||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;
+  const key=e.key===' '?' ':e.key.toLocaleLowerCase('pt-BR');
+  if(key.length!==1)return;
+  const el=[...document.querySelectorAll('.key')].find(k=>k.dataset.key===key);
+  if(!el)return;
+  const expected=lessons[current].text[$('typing').value.length];
+  el.classList.remove('pressed','error-press');void el.offsetWidth;
+  el.classList.add(key===(expected===' '?' ':String(expected||'').toLocaleLowerCase('pt-BR'))?'pressed':'error-press');
+  clearTimeout(el._pressTimer);
+  el._pressTimer=setTimeout(()=>el.classList.remove('pressed','error-press'),180);
+}
+
 function isModuleLast(i){return i===lessons.length-1||lessons[i+1].m!==lessons[i].m}
 function moduleIndices(module){return lessons.map((l,i)=>l.m===module?i:-1).filter(i=>i!==-1)}
 function isModuleComplete(module){return moduleIndices(module).every(i=>progress[i]&&progress[i].last)}
@@ -413,7 +507,16 @@ $('typing').addEventListener('input',()=>{
 $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
 $('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(0)}});
-const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');load(readLessonIndex());
+
+const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];
+$('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''} ${'asdfjklç'.includes(ch)?'home':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');
+$('handsStage').innerHTML=handArtwork();
+const handsPreference='digitar-pro-show-hands';
+try{$('showHands').checked=localStorage.getItem(handsPreference)!=='false'}catch(_){}
+function syncHands(){$('handsStage').hidden=!$('showHands').checked}
+$('showHands').addEventListener('change',()=>{syncHands();try{localStorage.setItem(handsPreference,String($('showHands').checked))}catch(_){}});
+$('typing').addEventListener('keydown',visualizePress);
+syncHands();load(readLessonIndex());
 
 // FEAT-003: integração incremental de contas e painéis (sem bloquear a prática offline/estática).
 const apiBase=window.DIGITAR_PRO_API_BASE||'';
