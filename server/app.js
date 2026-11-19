@@ -140,6 +140,28 @@ function createAppHandler({ store, indexPath = DEFAULT_INDEX_PATH, allowedOrigin
         return;
       }
 
+      if (req.method === 'GET' && pathname.startsWith('/assets/')) {
+        const assetsDir = path.resolve(path.dirname(indexPath), 'assets');
+        const targetFile = path.resolve(path.dirname(indexPath), '.' + pathname);
+        if (!targetFile.startsWith(assetsDir + path.sep) || !fs.existsSync(targetFile) || !fs.statSync(targetFile).isFile()) {
+          sendJson(res, 404, { error: 'Arquivo não encontrado.' });
+          return;
+        }
+        const ext = path.extname(targetFile).toLowerCase();
+        const mime = {
+          '.css': 'text/css; charset=utf-8',
+          '.js': 'application/javascript; charset=utf-8',
+          '.svg': 'image/svg+xml',
+          '.webp': 'image/webp',
+          '.png': 'image/png',
+          '.jpg': 'image/jpeg',
+          '.jpeg': 'image/jpeg',
+        }[ext] || 'application/octet-stream';
+        res.writeHead(200, { 'Content-Type': mime, 'Cache-Control': 'no-cache' });
+        res.end(fs.readFileSync(targetFile));
+        return;
+      }
+
       if (req.method === 'GET' && pathname === '/api/health') {
         await store.ping();
         sendJson(res, 200, { ok: true, database: 'postgresql' });

@@ -1,118 +1,153 @@
-/* Digitar Pro - mãos dinâmicas neon sobre o próprio teclado (ABNT2). */
+/* Digitar Pro — figura realista de mãos holográficas transparentes sobre o teclado */
 (()=>{
 'use strict';
 const keyboard=document.getElementById('keyboard');
 const toggle=document.getElementById('showHands');
 const typing=document.getElementById('typing');
 if(!keyboard||!toggle)return;
-const NS='http://www.w3.org/2000/svg';
-const home=[['a','s','d','f'],['j','k','l','ç']];
+
+// Mapeamento ABNT2: [lado (0=esq, 1=dir), dedo (0=mínimo, 1=anelar, 2=médio, 3=indicador, 4=polegar)]
 const mapping={
- q:[0,0],a:[0,0],z:[0,0],w:[0,1],s:[0,1],x:[0,1],e:[0,2],d:[0,2],c:[0,2],
- r:[0,3],t:[0,3],f:[0,3],g:[0,3],v:[0,3],b:[0,3],
- y:[1,0],u:[1,0],h:[1,0],j:[1,0],n:[1,0],m:[1,0],
- i:[1,1],k:[1,1],',':[1,1],o:[1,2],l:[1,2],'.':[1,2],
- p:[1,3],'ç':[1,3],' ':[1,0]
+  q:[0,0],a:[0,0],z:[0,0],
+  w:[0,1],s:[0,1],x:[0,1],
+  e:[0,2],d:[0,2],c:[0,2],
+  r:[0,3],t:[0,3],f:[0,3],g:[0,3],v:[0,3],b:[0,3],
+  y:[1,3],u:[1,3],h:[1,3],j:[1,3],n:[1,3],m:[1,3],
+  i:[1,2],k:[1,2],',':[1,2],
+  o:[1,1],l:[1,1],'.':[1,1],
+  p:[1,0],'ç':[1,0],'!':[1,0],
+  ' ':[1,4]
 };
-let overlay=null,frame=0,lastTarget='',lastPress=0,resizeTimer=0;
-const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-function el(name,attrs={},parent){
- const node=document.createElementNS(NS,name);
- for(const [k,v] of Object.entries(attrs))node.setAttribute(k,String(v));
- if(parent)parent.appendChild(node);
- return node;
+
+// Posição normalizada (%) de cada ponta de dedo dentro de assets/hands-transparent.webp (960x429)
+const tipAnchors={
+  '0:0':[15.7,10.3], // mínimo esquerdo (A)
+  '0:1':[22.9,6.3],  // anelar esquerdo (S)
+  '0:2':[30.3,6.5],  // médio esquerdo (D)
+  '0:3':[38.5,7.9],  // indicador esquerdo (F)
+  '0:4':[43.5,45.8], // polegar esquerdo (Espaço)
+  '1:4':[57.3,45.8], // polegar direito (Espaço)
+  '1:3':[63.0,8.0],  // indicador direito (J)
+  '1:2':[69.9,6.6],  // médio direito (K)
+  '1:1':[77.1,6.6],  // anelar direito (L)
+  '1:0':[84.8,10.5]  // mínimo direito (Ç)
+};
+
+const ASPECT=429/960;
+const ANCHOR_LEFT_X=0.157;
+const ANCHOR_RIGHT_X=0.848;
+const ANCHOR_SPAN_X=ANCHOR_RIGHT_X-ANCHOR_LEFT_X; // 0.691 da largura da imagem entre A e Ç
+const ANCHOR_HOME_Y=0.082; // linha média das pontas dos dedos na imagem
+
+const existing=document.getElementById('neonHandsOverlay');
+if(existing)existing.remove();
+
+const overlay=document.createElement('div');
+overlay.id='neonHandsOverlay';
+overlay.setAttribute('aria-hidden','true');
+
+const img=document.createElement('img');
+img.className='hologram-hands-img';
+img.src='assets/hands-transparent.webp?v=3';
+img.alt='';
+img.draggable=false;
+
+const tipGlow=document.createElement('span');
+tipGlow.className='hologram-finger-glow';
+
+overlay.appendChild(img);
+overlay.appendChild(tipGlow);
+keyboard.appendChild(overlay);
+
+let raf=0,resizeTimer=0;
+
+function keyRect(letter){
+  const el=[...keyboard.querySelectorAll('.key')].find(n=>n.dataset.key===letter);
+  if(!el)return null;
+  const r=el.getBoundingClientRect(),p=keyboard.getBoundingClientRect();
+  return {
+    cx:r.left-p.left+keyboard.scrollLeft+r.width/2,
+    cy:r.top-p.top+keyboard.scrollTop+r.height/2,
+    bottom:r.bottom-p.top+keyboard.scrollTop,
+    height:r.height
+  };
 }
-function position(letter){
- const key=[...keyboard.querySelectorAll('.key')].find(n=>n.dataset.key===letter);
- if(!key)return null;
- const r=key.getBoundingClientRect(),p=keyboard.getBoundingClientRect();
- return {x:r.left-p.left+keyboard.scrollLeft+r.width/2,y:r.top-p.top+keyboard.scrollTop+r.height/2};
+
+function activeKey(){
+  const el=keyboard.querySelector('.key.target');
+  return el?el.dataset.key:'';
 }
-function curved(points){
- if(points.length<2)return '';
- let d='M '+points[0].x+' '+points[0].y;
- for(let i=1;i<points.length;i++){
-  const a=points[i-1],b=points[i];
-  d+=' Q '+a.x+' '+((a.y+b.y)/2)+' '+b.x+' '+b.y;
- }
- return d;
+
+function layoutHands(){
+  overlay.hidden=!toggle.checked;
+  if(!toggle.checked){keyboard.style.paddingBottom='18px';return}
+
+  const keyA=keyRect('a');
+  const keyC=keyRect('ç');
+  if(!keyA||!keyC)return;
+
+  const spanPx=Math.max(240,keyC.cx-keyA.cx);
+  const imgWidth=spanPx/ANCHOR_SPAN_X;
+  const imgHeight=imgWidth*ASPECT;
+
+  // Ajusta dinamicamente o espaço inferior do teclado para abrigar punhos/antebraços sem cobrir a legenda
+  const targetTipY=keyA.cy+keyA.height*0.30;
+  const imgTop=targetTipY-ANCHOR_HOME_Y*imgHeight;
+  const neededBottom=Math.max(48,Math.ceil(imgTop+imgHeight-(keyRect(' ')?.bottom||targetTipY)+8));
+  keyboard.style.paddingBottom=Math.min(138,neededBottom)+'px';
+
+  // Posiciona para que as pontas dos dedos toquem a base das teclas da linha central (A S D F / J K L Ç)
+  const centerX=(keyA.cx+keyC.cx)/2-((ANCHOR_LEFT_X+ANCHOR_RIGHT_X)/2-0.5)*imgWidth;
+  const imgLeft=centerX-imgWidth/2;
+
+  img.style.width=imgWidth.toFixed(1)+'px';
+  img.style.height=imgHeight.toFixed(1)+'px';
+  img.style.left=(imgLeft+imgWidth/2).toFixed(1)+'px';
+  img.style.top=imgTop.toFixed(1)+'px';
+
+  const target=activeKey();
+  const finger=mapping[target];
+  if(!finger){
+    tipGlow.classList.remove('is-active');
+    return;
+  }
+
+  const anchor=tipAnchors[finger[0]+':'+finger[1]];
+  const targetRect=keyRect(target);
+  if(!anchor){
+    tipGlow.classList.remove('is-active');
+    return;
+  }
+
+  let gx=imgLeft+(anchor[0]/100)*imgWidth;
+  let gy=imgTop+(anchor[1]/100)*imgHeight;
+
+  // Desloca sutilmente o brilho na direção da tecla-alvo mantendo aderência à ponta do dedo
+  if(targetRect&&target!==' '){
+    gx=gx*0.62+targetRect.cx*0.38;
+    gy=gy*0.68+(targetRect.cy+targetRect.height*0.26)*0.32;
+  }
+
+  tipGlow.style.left=gx.toFixed(1)+'px';
+  tipGlow.style.top=gy.toFixed(1)+'px';
+  tipGlow.classList.add('is-active');
 }
-function activeTarget(){
- const key=keyboard.querySelector('.key.target');
- return key?key.dataset.key:'';
+
+function schedule(){
+  cancelAnimationFrame(raf);
+  raf=requestAnimationFrame(layoutHands);
 }
-function paint(){
- if(!overlay)return;
- const bounds=keyboard.getBoundingClientRect();
- const width=keyboard.scrollWidth,height=keyboard.scrollHeight;
- overlay.setAttribute('viewBox','0 0 '+width+' '+height);
- overlay.setAttribute('width',width);overlay.setAttribute('height',height);
- overlay.replaceChildren();
- const defs=el('defs',{},overlay);
- const grad=el('linearGradient',{id:'handFill',x1:'0',y1:'0',x2:'0',y2:'1'},defs);
- el('stop',{offset:'0%','stop-color':'#4deaff','stop-opacity':'.24'},grad);
- el('stop',{offset:'100%','stop-color':'#073454','stop-opacity':'.65'},grad);
- const filter=el('filter',{id:'handGlow',x:'-60%',y:'-60%',width:'220%',height:'220%'},defs);
- el('feGaussianBlur',{stdDeviation:'2.2',result:'blur'},filter);
- const merge=el('feMerge',{},filter);
- el('feMergeNode',{in:'blur'},merge);el('feMergeNode',{in:'SourceGraphic'},merge);
- const coords=home.map(row=>row.map(position));
- if(coords.some(row=>row.some(p=>!p)))return;
- const keyNow=activeTarget();
- const map=mapping[keyNow];
- const now=performance.now();
- const pulse=Math.max(0,1-(now-lastPress)/230);
- for(let side=0;side<2;side++){
-   const hs=coords[side];
-   const first=hs[0],last=hs[3];
-   const mid=(first.x+last.x)/2;
-   const y=hs[0].y;
-   const palmBottom=Math.min(height-8,y+Math.min(130,height-y-12));
-   const palmTop=y+29;
-   // Palm stays beneath the home row, thumbs are free near Space.
-   const rx=Math.abs(last.x-first.x)/2+20,cy=(palmTop+palmBottom)/2;
-   el('ellipse',{class:'neon-palm',cx:mid,cy,rx,ry:Math.max(24,(palmBottom-palmTop)/2)},overlay);
-   const thumbX=side===0?last.x+42:first.x-42;
-   const thumbY=Math.min(height-19,y+90);
-   const thumbStart={x:side===0?mid+28:mid-28,y:palmBottom-13};
-   const thumbEnd={x:thumbX,y:thumbY};
-   el('path',{class:'neon-digit',d:curved([thumbStart,{x:thumbX,y:thumbY+23},thumbEnd]),style:'stroke-width:22'},overlay);
-   el('path',{class:'neon-finger-edge',d:curved([thumbStart,{x:thumbX,y:thumbY+23},thumbEnd])},overlay);
-   for(let f=0;f<4;f++){
-     const start=hs[f];
-     const isActive=!!map&&map[0]===side&&map[1]===f;
-     const dest=isActive?(position(keyNow)||start):start;
-     const shouldMove=isActive&&!reduced.matches;
-     // Smoothly glide to the highlighted key, then return to home row.
-     const t=shouldMove?(.5-.5*Math.cos(now/370*Math.PI))*.8:0;
-     const tip={x:start.x+(dest.x-start.x)*t,y:start.y+(dest.y-start.y)*t};
-     if(isActive&&pulse>0){tip.y+=Math.min(6,pulse*6)}
-     const root={x:mid+(start.x-mid)*.67,y:palmBottom-22};
-     const bend={x:start.x+(mid-start.x)*.08,y:y+35};
-     const path=curved([root,bend,{x:tip.x,y:tip.y+7}]);
-     el('path',{class:'neon-digit'+(isActive?' is-target':''),d:path},overlay);
-     el('path',{class:'neon-finger-edge',d:path},overlay);
-     el('circle',{class:'neon-tip'+(isActive?' is-target':''),cx:tip.x,cy:tip.y+7,r:isActive?8:5},overlay);
-     if(isActive&&!reduced.matches&&Math.abs(dest.x-start.x)+Math.abs(dest.y-start.y)>4){
-       el('path',{class:'neon-guide',d:'M '+start.x+' '+start.y+' Q '+((start.x+dest.x)/2)+' '+(Math.min(start.y,dest.y)-18)+' '+dest.x+' '+dest.y},overlay);
-     }
-   }
- }
- overlay.hidden=!toggle.checked;
- if(!reduced.matches&&toggle.checked&&keyNow)frame=requestAnimationFrame(paint);
-}
-function schedule(){cancelAnimationFrame(frame);frame=requestAnimationFrame(paint)}
-function change(){lastTarget=activeTarget();schedule()}
-overlay=el('svg',{id:'neonHandsOverlay','aria-hidden':'true',focusable:'false',preserveAspectRatio:'none'},keyboard);
+
 const observer=new MutationObserver(list=>{
- if(list.some(item=>item.type==='attributes'&&item.attributeName==='class'&&item.target.classList.contains('key')))change();
+  if(list.some(m=>m.type==='attributes'&&m.attributeName==='class'))schedule();
 });
-keyboard.querySelectorAll('.key').forEach(key=>observer.observe(key,{attributes:true,attributeFilter:['class']}));
+keyboard.querySelectorAll('.key').forEach(k=>observer.observe(k,{attributes:true,attributeFilter:['class']}));
+
 toggle.addEventListener('change',schedule);
-if(typing)typing.addEventListener('keydown',e=>{
- if(e.key.length===1){lastPress=performance.now();schedule()}
-});
-window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(schedule,70)},{passive:true});
+img.addEventListener('load',schedule);
+if(typing)typing.addEventListener('input',schedule);
+window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(schedule,60)},{passive:true});
 if('ResizeObserver'in window)new ResizeObserver(schedule).observe(keyboard);
-change();
+
+schedule();
 })();
