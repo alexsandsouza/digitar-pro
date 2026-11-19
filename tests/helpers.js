@@ -156,4 +156,93 @@ function closeAll() {
   }
 }
 
-module.exports = { createApp, closeAll, html, htmlPath };
+function dispatchRequest(handler, path, options = {}) {
+  const { Readable } = require('node:stream');
+  return new Promise((resolve, reject) => {
+    const method = options.method || 'GET';
+    const body = options.body;
+    const headers = {};
+    if (options.headers) {
+      for (const [k, v] of Object.entries(options.headers)) {
+        headers[k.toLowerCase()] = v;
+      }
+    }
+
+    const req = new Readable({
+      read() {
+        if (body) {
+          this.push(typeof body === 'string' ? body : JSON.stringify(body));
+        }
+        this.push(null);
+      },
+    });
+    req.method = method;
+    req.url = path;
+    req.headers = headers;
+
+    let statusCode = 200;
+    const resHeaders = {};
+    const chunks = [];
+
+    const res = {
+      writeHead(code, hdrs = {}) {
+        statusCode = code;
+        for (const [k, v] of Object.entries(hdrs)) {
+          resHeaders[k.toLowerCase()] = v;
+        }
+        return this;
+      },
+      setHeader(k, v) {
+        resHeaders[k.toLowerCase()] = v;
+      },
+      getHeader(k) {
+        return resHeaders[k.toLowerCase()];
+      },
+      end(chunk) {
+        if (chunk) chunks.push(Buffer.from(chunk));
+        const textBody = Buffer.concat(chunks).toString('utf8');
+        resolve({
+          status: statusCode,
+          headers: {
+            get(name) {
+              return resHeaders[name.toLowerCase()] || null;
+            },
+          },
+          async json() {
+            return JSON.parse(textBody);
+          },
+          async text() {
+            return textBody;
+          },
+        });
+      },
+    };
+
+    handler(req, res).catch(reject);
+  });
+}
+
+function startTestServer(store) {
+  const { createAppHandler } = require('../server/app');
+  const handler = createAppHandler({ store });
+  const baseUrl = `http://local-test-${Math.random().toString(36).slice(2)}`;
+  const prevFetch = globalThis.fetch;
+
+  globalThis.fetch = async (input, init = {}) => {
+    const urlStr = typeof input === 'string' ? input : input.url;
+    if (urlStr.startsWith(baseUrl)) {
+      const parsed = new URL(urlStr);
+      return dispatchRequest(handler, parsed.pathname + parsed.search, init);
+    }
+    return prevFetch(input, init);
+  };
+
+  return {
+    baseUrl,
+    close: async () => {
+      globalThis.fetch = prevFetch;
+    },
+  };
+}
+
+module.exports = { createApp, closeAll, startTestServer, dispatchRequest, html, htmlPath };
