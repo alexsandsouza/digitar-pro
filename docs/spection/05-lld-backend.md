@@ -66,3 +66,10 @@ Nota: tabelas de pagamento, assinaturas/módulos liberados e certificados ficam 
 2. **Banco de dados:** PostgreSQL conectado via `DATABASE_URL` (local/Docker em desenvolvimento, gerenciado em produção).
 3. **Dependência mínima:** apenas `pg` para o servidor; nenhum framework pesado desnecessário.
 4. **Testabilidade:** a camada de repositório aceita pool `pg` injetável, permitindo testar RBAC, login, cadastro, logout e exclusão sem depender de banco externo no `npm test`, além de testes de integração reais quando `DATABASE_URL` estiver configurada.
+
+## 6. Produção (Neon + Vercel) — ADR-0006
+
+- **Banco:** Neon Free via `DATABASE_URL` com SSL; pool curto em ambiente serverless.
+- **API:** função `api/index.js` na Vercel reutiliza `createAppHandler`; estáticos (`index.html`, `assets/`) pelo CDN.
+- **Mesmo domínio** Vercel para app + API (cookie `SameSite=Lax`). Pages + API separados só com `CORS_ORIGIN` + `DIGITAR_PRO_API_BASE`.
+- **Ops:** ver [deploy-neon-vercel.md](ops/deploy-neon-vercel.md).

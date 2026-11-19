@@ -74,14 +74,16 @@ function sendJson(res, statusCode, payload, extraHeaders = {}) {
 }
 
 function sessionCookieHeader(token, maxAgeSec) {
+  // Com CORS_ORIGIN (ex.: GitHub Pages → API Vercel), cookie cross-site exige SameSite=None; Secure.
+  const crossOrigin = Boolean(process.env.CORS_ORIGIN && String(process.env.CORS_ORIGIN).trim());
   const parts = [
     `${COOKIE_NAME}=${encodeURIComponent(token)}`,
     'Path=/',
     'HttpOnly',
-    'SameSite=Lax',
+    `SameSite=${crossOrigin ? 'None' : 'Lax'}`,
     `Max-Age=${maxAgeSec}`,
   ];
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production' || crossOrigin) {
     parts.push('Secure');
   }
   return parts.join('; ');

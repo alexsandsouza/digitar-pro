@@ -17,7 +17,7 @@ test(
   async (t) => {
     let pool;
     try {
-      pool = createPool({ connectionTimeoutMillis: 1500 });
+      pool = createPool({ connectionTimeoutMillis: 20000 });
       await pool.query('SELECT 1');
     } catch (err) {
       if (pool) await pool.end().catch(() => {});

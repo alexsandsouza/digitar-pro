@@ -1,0 +1,86 @@
+# Deploy FEAT-003 — Neon (PostgreSQL) + Vercel
+
+Relacionado: [ADR-0006](../adr/ADR-0006-neon-vercel.md). Não publica em produção sem autorização explícita.
+
+## 1. Neon (banco)
+
+1. Crie conta/projeto em [console.neon.tech](https://console.neon.tech).
+2. Copie a connection string **com** `?sslmode=require` (role que possa criar tabelas).
+3. No seu `.env` local (não versionado):
+
+```env
+DATABASE_URL=postgres://...@...neon.tech/neondb?sslmode=require
+ADMIN_NAME=Administrador Digitar Pro
+ADMIN_EMAIL=seu-admin@exemplo.com
+ADMIN_PASSWORD=senha-forte-aqui
+```
+
+4. Aplique schema e admin:
+
+```powershell
+npm run migrate
+npm run seed:admin
+```
+
+5. Smoke local contra o Neon (opcional):
+
+```powershell
+$env:DATABASE_URL="postgres://...neon.tech/neondb?sslmode=require"
+npm start
+# GET http://localhost:3000/api/health → { "ok": true, "database": "postgresql" }
+```
+
+## 2. Vercel (API + app)
+
+1. Importe o repositório Digitar-Pro no [dashboard Vercel](https://vercel.com) (Hobby).
+2. Framework Preset: **Other**. Build Command vazio (ou deixe o padrão sem build). Output: raiz do repo.
+3. Variáveis de ambiente (Production / Preview):
+
+| Nome | Valor |
+|---|---|
+| `DATABASE_URL` | connection string Neon com `sslmode=require` |
+| `NODE_ENV` | `production` (a Vercel já define; confirme) |
+| `CORS_ORIGIN` | *vazio* se o front for o próprio domínio Vercel |
+| `RUN_MIGRATIONS_ON_BOOT` | `true` (opcional; padrão já migra na Vercel) |
+
+4. Deploy da branch autorizada (ex.: `feature/deploy-neon-vercel` ou `main` após merge).
+5. Verifique: `https://SEU-PROJETO.vercel.app/api/health`
+6. Abra o app no mesmo domínio, cadastre um aluno e entre com o admin seedado.
+
+### CLI (alternativa)
+
+```powershell
+npx vercel login
+npx vercel link
+npx vercel env add DATABASE_URL
+npx vercel --prod
+```
+
+Só use `--prod` com autorização explícita.
+
+## 3. GitHub Pages + API Vercel (opcional)
+
+Mesmo domínio é preferível. Se o Pages continuar como front:
+
+1. Na Vercel: `CORS_ORIGIN=https://SEU_USER.github.io` (ou o origin exato do Pages).
+2. No Pages, antes do script da prática:
+
+```html
+<script>window.DIGITAR_PRO_API_BASE='https://SEU-PROJETO.vercel.app';</script>
+```
+
+Cookie passa a `SameSite=None; Secure` automaticamente quando `CORS_ORIGIN` está definido.
+
+## 4. Rollback
+
+- Vercel: Instant Rollback do deployment anterior no dashboard.
+- Neon: não há migrate down automático; restore de branch/ponto Neon se necessário.
+- Código: reverter o merge da branch de deploy; Pages estático permanece independente.
+
+## 5. Checklist de aceite operacional
+
+- [ ] `/api/health` retorna `ok: true` no domínio Vercel
+- [ ] Cadastro de aluno e login funcionam no mesmo domínio
+- [ ] Admin seedado acessa painel e lista de usuários
+- [ ] `localStorage` da prática (`ad-typing-mvp-v1`, `digitar-pro-typing-mode`) intacto
+- [ ] Nenhum segredo commitado
