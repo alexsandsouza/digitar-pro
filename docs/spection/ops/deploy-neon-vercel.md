@@ -79,8 +79,15 @@ Cookie passa a `SameSite=None; Secure` automaticamente quando `CORS_ORIGIN` est�
 
 ## 5. Checklist de aceite operacional
 
-- [ ] `/api/health` retorna `ok: true` no domínio Vercel
-- [ ] Cadastro de aluno e login funcionam no mesmo domínio
-- [ ] Admin seedado acessa painel e lista de usuários
-- [ ] `localStorage` da prática (`ad-typing-mvp-v1`, `digitar-pro-typing-mode`) intacto
-- [ ] Nenhum segredo commitado
+Verificado em 21/11/2026 no Preview `digitar-d1d6j1y83-alexsanders-projects-5ac6855b.vercel.app` (branch `feature/deploy-neon-vercel`, commit `8750663`) via `vercel curl`; banco Neon de produção compartilhado entre Preview e Production.
+
+- [x] `/api/health` retorna `ok: true` no domínio Vercel (`{"ok":true,"database":"postgresql"}`)
+- [x] Cadastro de aluno e login funcionam no mesmo domínio (POST `/api/auth/register` → 201 + sessão; POST `/api/auth/login` → 200; `GET /api/me` → 200)
+- [x] Admin seedado acessa painel e lista de usuários (`npm run seed:admin` executado em 21/11/2026 — estava pendente no banco; login admin → 200; `GET /api/admin/users` e `/api/admin/overview` → 200, sem hash de senha; aluno recebe 403 na rota admin)
+- [x] `localStorage` da prática intacto (`ad-typing-mvp-v1`, `digitar-pro-typing-mode`, `digitar-pro-current-lesson` e `digitar-pro-show-hands` presentes no HTML servido; comportamento coberto pelos testes jsdom, 60/60)
+- [x] Nenhum segredo commitado (`.env` nunca entrou no histórico; somente placeholders em `.env.example` e nos testes)
+
+Observações do aceite:
+
+- A conta de aluno criada para o teste foi removida pelo próprio fluxo LGPD (`DELETE /api/me` → 200; sessão invalidada com 401 em seguida), sem resíduos no banco.
+- O domínio de produção `digitar-pro.vercel.app` ainda serve o deployment de 19/11/2026; promoção para produção exige autorização explícita (ver seção 4, Rollback).
