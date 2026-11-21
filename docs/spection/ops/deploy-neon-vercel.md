@@ -79,7 +79,7 @@ Cookie passa a `SameSite=None; Secure` automaticamente quando `CORS_ORIGIN` est�
 
 ## 5. Checklist de aceite operacional
 
-Verificado em 21/11/2026 no Preview `digitar-d1d6j1y83-alexsanders-projects-5ac6855b.vercel.app` (branch `feature/deploy-neon-vercel`, commit `8750663`) via `vercel curl`; banco Neon de produção compartilhado entre Preview e Production.
+Verificado em 21/11/2026 no Preview `digitar-d1d6j1y83-alexsanders-projects-5ac6855b.vercel.app` (branch `feature/deploy-neon-vercel`, commit `8750663`) via `vercel curl`; banco Neon de produção compartilhado entre Preview e Production. Após o aceite, o Preview foi promovido para Production (`vercel promote`), publicando o commit `b3b1e2d` em `https://digitar-pro.vercel.app` e revalidado no domínio público.
 
 - [x] `/api/health` retorna `ok: true` no domínio Vercel (`{"ok":true,"database":"postgresql"}`)
 - [x] Cadastro de aluno e login funcionam no mesmo domínio (POST `/api/auth/register` → 201 + sessão; POST `/api/auth/login` → 200; `GET /api/me` → 200)
@@ -89,5 +89,11 @@ Verificado em 21/11/2026 no Preview `digitar-d1d6j1y83-alexsanders-projects-5ac6
 
 Observações do aceite:
 
-- A conta de aluno criada para o teste foi removida pelo próprio fluxo LGPD (`DELETE /api/me` → 200; sessão invalidada com 401 em seguida), sem resíduos no banco.
-- O domínio de produção `digitar-pro.vercel.app` ainda serve o deployment de 19/11/2026; promoção para produção exige autorização explícita (ver seção 4, Rollback).
+- A conta de aluno criada para o teste foi removida pelo próprio fluxo LGPD (`DELETE /api/me` → 200; sessão invalidada com 401 em seguida), sem resíduos no banco. O banco ficou com 1 aluno real e 1 admin.
+- Revalidação no domínio público de produção (`https://digitar-pro.vercel.app`, commit `b3b1e2d`), sem autenticação Vercel: `GET /` → 200 com o overlay `assets/neon-hands.js` e sem `handsStage`; `/api/health` → `ok: true`; cadastro → 201 com cookie `HttpOnly; Secure; SameSite=Lax`; `/api/me` e login → 200; aluno em `/api/admin/users` → 403; admin em `/api/admin/overview` → 200; `DELETE /api/me` → 200 e sessão seguinte → 401.
+- Promoção para produção realizada em 21/11/2026 com autorização explícita, por `vercel promote` do build já verificado (sem merge na `main`).
+
+### Rollback da promoção
+
+- Vercel: **Instant Rollback** para o deployment de produção anterior (`digitar-l5kpbdprc`), ou `vercel rollback`.
+- Código: `git revert 8750663` restaura as mãos inline; a `main` não foi alterada por esta entrega.
