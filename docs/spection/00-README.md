@@ -15,7 +15,7 @@
 | 03 Architect | [HLD](03-hld.md), [LLD](04-lld.md), [ADR-0001](adr/ADR-0001-brownfield.md), [ADR-0002](adr/ADR-0002-testes-jsdom.md), [ADR-0003](adr/ADR-0003-integracao-premium-feat-001.md) | Aprovado / Accepted em 17/11/2026 |
 | 04 Plan | [FEAT-001](../../specs/FEAT-001-experiencia-aprendizagem/feature-spec.md), [Tasks](../../specs/FEAT-001-experiencia-aprendizagem/tasks.md) | Aprovado em 17/11/2026 |
 | 05 Build | Qoder seguindo [AGENTS.md](../../AGENTS.md) | Implementado em `feature/feat-001` |
-| 06 Verify | [Evidências 2026-11-17](verification/2026-11-17-test-evidence.md) | Evidência automatizada aceita; manual complementar pendente |
+| 06 Verify | [Evidências 2026-11-17](verification/2026-11-17-test-evidence.md); [roteiro manual 2026-11-21](verification/2026-11-21-feat-001-manual.md) | Evidência automatizada aceita; manual complementar com roteiro aberto |
 | 07 Release | [Nota de release](release/2026-11-17.md), rollback e deploy | Autorizado em 17/11/2026 |
 
 **Sequência:** os artefatos deste ciclo foram aprovados em 17/11/2026. As decisões de produto mantêm PPM sem teto, Treinamento com erros, rótulo "Próximo módulo" e escopo sem banco. O release pela PR #3 foi autorizado na mesma data, com a verificação manual ainda pendente.
