@@ -7,7 +7,7 @@ Nenhuma tarefa abaixo está autorizada a começar. A ordem existe para mostrar a
 | ID | Tarefa | Depende de | Status |
 |---|---|---|---|
 | TASK-016 | Registrar a escolha entre progresso sincronizado (A) e local (B) | D1 | **Bloqueada** |
-| TASK-017 | Escolher provedor de pagamento e escrever ADR comparando PIX/cartão, taxas, sandbox e webhooks | D2 | **Bloqueada** |
+| TASK-017 | Escolher provedor de pagamento PIX e completar o ADR-0007 (sandbox, assinatura de webhook, devolução via API) | D2b | **Meio decidido (PIX); provedor bloqueado** |
 | TASK-018 | Definir modelo comercial (único/assinatura/por módulo) | D3 | **Bloqueada** |
 | TASK-019 | Definir preços, moeda, reembolso e estorno | D4, D5 | **Bloqueada** |
 | TASK-020 | Definir tratamento de quem já concluiu lições 7 a 12 localmente | D6 | **Bloqueada** |
@@ -26,7 +26,7 @@ Nenhuma tarefa abaixo está autorizada a começar. A ordem existe para mostrar a
 | ID | Tarefa | Critério | Status |
 |---|---|---|---|
 | TASK-025 | Criar migração de `entitlements` (+ `progress` se A) | AC-021, AC-023 | Pendente |
-| TASK-026 | Implementar checkout e webhooks com verificação de assinatura | RF-016, RNF-008, RNF-009 | Pendente |
+| TASK-026 | Implementar cobrança PIX (QR Code + copia-e-cola), webhooks com verificação de assinatura e devolução | RF-016, RF-022, RF-023, RNF-008, RNF-009, RNF-015 | Pendente |
 | TASK-027 | Travar lições 7 a 12 na interface e na API | AC-020 | Pendente |
 | TASK-028 | Exibir situação de pagamento no painel do aluno e no admin | RF-019, RF-021, AC-026 | Pendente |
 | TASK-029 | Emitir certificado no servidor com código de verificação | RF-017, RF-018, AC-024, AC-025 | Pendente |
@@ -46,6 +46,10 @@ Nenhuma tarefa abaixo está autorizada a começar. A ordem existe para mostrar a
 | ID | Teste | Requisito |
 |---|---|---|
 | TEST-030 | Sem conta, lições 1 a 6 funcionam e 7 a 12 bloqueiam | AC-019, AC-020 |
+| TEST-041 | Cobrança PIX criada e não paga não libera nada | AC-029 |
+| TEST-042 | Cobrança expirada permite gerar novo QR e não concede direito | AC-029, RF-022 |
+| TEST-043 | Devolução/estorno revoga direito de forma idempotente | AC-030 |
+| TEST-044 | Chave do provedor não aparece no cliente (bundle/HTML) | RNF-014 |
 | TEST-031 | API devolve 403 para conteúdo pago sem direito | AC-020 |
 | TEST-032 | Webhook aprovado cria direito uma única vez | AC-021, AC-023 |
 | TEST-033 | Webhook duplicado é idempotente | AC-023, RNF-010 |
