@@ -3,10 +3,10 @@
 const { loadEnv } = require('./env');
 loadEnv();
 
-const { createPool, runMigrations } = require('../server/store');
+const { createPool, runMigrations, migrationDatabaseUrl } = require('../server/store');
 
 async function main() {
-  const pool = createPool();
+  const pool = createPool(migrationDatabaseUrl(), { max: 1 });
   try {
     await runMigrations(pool);
     console.log('Migração PostgreSQL aplicada com sucesso.');

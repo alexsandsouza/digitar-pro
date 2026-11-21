@@ -3,8 +3,12 @@
   "version": "0.6.0",
   "private": true,
   "description": "Testes de caracterizacao e regressao da Digitar Pro Academy",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node server/index.js",
+    "build": "node --check server/app.js && node --check server/store.js && node --check server/index.js && node --check server/migrate.js && node --check api/index.js && node --check neon.ts",
     "db:setup": "node server/setup-db.js",
     "migrate": "node server/migrate.js",
     "seed:admin": "node server/seed-admin.js",
@@ -14,6 +18,9 @@
     "jsdom": "^31.0.1"
   },
   "dependencies": {
+    "@neon/config": "^1.14.4",
+    "@neon/env": "^2.1.7",
+    "@vercel/functions": "^3.11.3",
     "pg": "^8.23.1"
   }
 }

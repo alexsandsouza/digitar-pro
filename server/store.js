@@ -7,17 +7,70 @@ const { normalizeEmail, publicUser } = require('./security');
 
 const MIGRATION_PATH = path.join(__dirname, '..', 'db', 'migrations', '001_accounts_rbac.sql');
 
-function createPool(databaseUrl = process.env.DATABASE_URL, options = {}) {
+function normalizeConnectionString(raw) {
+  const value = String(raw || '').trim();
+  if (!value) return value;
+  try {
+    const url = new URL(value);
+    // node-postgres não implementa channel_binding=require (string padrão do Neon CLI).
+    url.searchParams.delete('channel_binding');
+    return url.toString();
+  } catch {
+    return value.replace(/([?&])channel_binding=[^&]*/g, '').replace(/\?&/, '?').replace(/[?&]$/, '');
+  }
+}
+
+function appDatabaseUrl() {
+  return process.env.DATABASE_URL || process.env.DATABASE_URL_UNPOOLED || '';
+}
+
+function migrationDatabaseUrl() {
+  return process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL || '';
+}
+
+function attachRuntimePool(pool) {
+  if (!process.env.VERCEL) return pool;
+  const { attachDatabasePool } = require('@vercel/functions');
+  attachDatabasePool(pool);
+  return pool;
+}
+
+function wantsSsl(connectionString) {
+  if (process.env.DATABASE_SSL === 'true' || process.env.PGSSLMODE === 'require') return true;
+  if (process.env.DATABASE_SSL === 'false') return false;
+  const url = String(connectionString || '');
+  return /neon\.tech/i.test(url) || /sslmode=require/i.test(url) || /sslmode=verify-full/i.test(url);
+}
+
+function defaultPoolMax(connectionString) {
+  if (process.env.PG_POOL_MAX) return Number(process.env.PG_POOL_MAX);
+  // Serverless + Neon Free: poucas conexões simultâneas por isolate.
+  if (process.env.VERCEL || /neon\.tech/i.test(String(connectionString || ''))) return 1;
+  return 10;
+}
+
+function createPool(databaseUrl = appDatabaseUrl(), options = {}) {
   let finalUrl = databaseUrl;
   let finalOpts = options;
   if (typeof databaseUrl === 'object' && databaseUrl !== null) {
     finalOpts = databaseUrl;
-    finalUrl = finalOpts.connectionString || process.env.DATABASE_URL;
+    finalUrl = finalOpts.connectionString || appDatabaseUrl();
   }
+  finalUrl = normalizeConnectionString(finalUrl);
   if (!finalUrl) {
     throw new Error('DATABASE_URL não configurada.');
   }
-  return new Pool({ connectionString: finalUrl, ...finalOpts });
+  const config = {
+    connectionString: finalUrl,
+    max: defaultPoolMax(finalUrl),
+    idleTimeoutMillis: Number(process.env.PG_IDLE_TIMEOUT_MS || 10000),
+    connectionTimeoutMillis: Number(process.env.PG_CONN_TIMEOUT_MS || 10000),
+    ...finalOpts,
+  };
+  if (config.ssl === undefined && wantsSsl(finalUrl)) {
+    config.ssl = { rejectUnauthorized: process.env.DATABASE_SSL_REJECT_UNAUTHORIZED !== 'false' };
+  }
+  return new Pool(config);
 }
 
 async function runMigrations(pool) {
@@ -147,4 +200,10 @@ module.exports = {
   createPool,
   runMigrations,
   createPgStore,
+  wantsSsl,
+  defaultPoolMax,
+  normalizeConnectionString,
+  appDatabaseUrl,
+  migrationDatabaseUrl,
+  attachRuntimePool,
 };
