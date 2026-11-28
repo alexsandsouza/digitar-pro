@@ -169,10 +169,10 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 <link rel="stylesheet" href="assets/neon-hands.css?v=4">
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
-<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · 0.7 Learning Paths</small></div></div><div class="top-right"><div class="pill">⌨️ Português (Brasil) · Progresso local</div><button type="button" id="accountTrigger" class="account-btn">Entrar / Minha conta</button></div></header>
+<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · 0.7.1 Learning Paths</small></div></div><div class="top-right"><div class="pill">⌨️ Português (Brasil) · Progresso local</div><button type="button" id="accountTrigger" class="account-btn">Entrar / Minha conta</button></div></header>
 <section class="hero-premium" aria-label="Boas-vindas"><div><h1>Domine cada tecla. <span class="gradient">Evolua sempre.</span></h1><p class="lead">Seu espaço de prática: lições orientadas, feedback imediato e evolução no seu ritmo. O progresso permanece neste navegador.</p></div><a class="hero-link" href="#typing">Começar a praticar ↓</a></section>
 <section class="dashboard-strip" aria-label="Resumo do seu progresso">
- <div class="dashboard-tile"><span class="tile-label">Lições concluídas</span><strong id="dashLessons">0 / 120</strong><span class="tile-meta">Sua trilha</span></div>
+ <div class="dashboard-tile"><span class="tile-label">Lições concluídas</span><strong id="dashLessons">0 / 140</strong><span class="tile-meta">Sua trilha</span></div>
  <div class="dashboard-tile"><span class="tile-label">Melhor velocidade</span><strong id="dashBest">0 PPM</strong><span class="tile-meta">Recorde pessoal</span></div>
  <div class="dashboard-tile"><span class="tile-label">Precisão média</span><strong id="dashAccuracy">—</strong><span class="tile-meta">Média por lição</span></div>
  <div class="dashboard-tile"><span class="tile-label">Conquistas</span><strong id="dashAwards">0 / 24</strong><span class="tile-meta">Módulos completos</span></div>
@@ -181,7 +181,7 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 <p>A Academy é nosso primeiro produto: pratique gratuitamente e acompanhe sua evolução. Outras experiências são possibilidades futuras e ainda não estão disponíveis.</p>
 <div class="product-family"><span class="product-chip active">Academy · disponível</span><span class="product-chip future">Kids · futuro</span><span class="product-chip future">Business · futuro</span><span class="product-chip future">Schools · futuro</span></div></div>
 </details>
-<main class="layout" id="conteudo"><aside class="card"><div class="side-head"><strong>TRILHA DE APRENDIZAGEM</strong><span class="subtitle" id="completedLabel">0 / 120</span></div><p class="subtitle">Escolha um nível e um módulo para praticar.</p><label class="path-label" for="levelSelect">Nível de aprendizagem</label><select id="levelSelect"></select><label class="path-label" for="moduleSelect">Módulo</label><select id="moduleSelect"></select><div id="levelProgress" class="path-progress" aria-live="polite"></div><div id="lessons" class="lesson-list"></div><div class="note">120 lições em seis níveis. Explore os módulos livremente e acompanhe seu progresso neste navegador.</div></aside>
+<main class="layout" id="conteudo"><aside class="card"><div class="side-head"><strong>TRILHA DE APRENDIZAGEM</strong><span class="subtitle" id="completedLabel">0 / 140</span></div><p class="subtitle">Escolha um nível e um módulo para praticar.</p><label class="path-label" for="levelSelect">Nível de aprendizagem</label><select id="levelSelect"></select><label class="path-label" for="moduleSelect">Módulo</label><select id="moduleSelect"></select><div id="levelProgress" class="path-progress" aria-live="polite"></div><div id="lessons" class="lesson-list"></div><div class="note">140 lições em seis níveis. Explore os módulos livremente e acompanhe seu progresso neste navegador.</div></aside>
 <section class="card"><div class="headline"><div><span class="eyebrow" id="module">MÓDULO 1</span><h2 id="lessonTitle">Teclas de referência</h2><p class="subtitle" id="lessonDesc">Comece pelas teclas centrais.</p></div><button class="reset" id="clearProgress" title="Apagar progresso armazenado neste navegador">Limpar progresso</button></div>
 <fieldset class="mode-panel" aria-describedby="modeDescription"><legend>Modo de aprendizagem</legend><div class="mode-options"><label class="mode-option"><input type="radio" name="typingMode" value="training" checked> Treinamento</label><label class="mode-option"><input type="radio" name="typingMode" value="precision"> Precisão</label></div><p class="mode-description" id="modeDescription">Treinamento: erros reduzem a precisão, mas não impedem a conclusão.</p></fieldset>
 <p class="lesson-purpose" id="lessonPurpose"><strong>Objetivo:</strong> praticar as teclas de referência. Priorize a precisão antes da velocidade.</p>
@@ -302,6 +302,41 @@ const lessons=[
   {
     "m": 1,
     "n": 1,
+    "title": "Prática extra · Mão esquerda",
+    "desc": "Pratique mão esquerda em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "aaaa ssss dddd ffff"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Prática extra · Mão direita",
+    "desc": "Pratique mão direita em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "jjjj kkkk llll çççç"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Prática extra · Alternância dos indicadores",
+    "desc": "Pratique alternância dos indicadores em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "fj fj jf jf"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Prática extra · Alternância dos dedos médios",
+    "desc": "Pratique alternância dos dedos médios em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "dk dk kd kd"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Prática extra · Retorno à posição inicial",
+    "desc": "Pratique retorno à posição inicial em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "asdf fdsa jklç çlkj"
+  },
+  {
+    "m": 1,
+    "n": 1,
     "title": "Ergonomia e posição · Avaliação do módulo",
     "desc": "Consolide ergonomia e posição; compare sua precisão e velocidade.",
     "text": "asdf jklç fdsa çlkj"
@@ -333,6 +368,41 @@ const lessons=[
     "title": "Teclas de referência · Aplicação",
     "desc": "Pratique teclas de referência com atenção às teclas e aos erros.",
     "text": "sad lad fala"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Prática extra · Dedos mínimos",
+    "desc": "Pratique dedos mínimos em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "aç aç ça ça"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Prática extra · Dedos anelares",
+    "desc": "Pratique dedos anelares em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "sl sl ls ls"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Prática extra · Dedos médios",
+    "desc": "Pratique dedos médios em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "dk kd dk kd"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Prática extra · Dedos indicadores",
+    "desc": "Pratique dedos indicadores em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "fj jf fj jf"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Prática extra · Coordenação das mãos",
+    "desc": "Pratique coordenação das mãos em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "aç sl dk fj fj dk sl aç"
   },
   {
     "m": 2,
@@ -372,6 +442,41 @@ const lessons=[
   {
     "m": 3,
     "n": 1,
+    "title": "Prática extra · Indicador esquerdo",
+    "desc": "Pratique indicador esquerdo em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "fg gf fggf"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Prática extra · Indicador direito",
+    "desc": "Pratique indicador direito em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "jh hj jhhj"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Prática extra · Alternância G e H",
+    "desc": "Pratique alternância g e h em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "gh hg gh hg"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Prática extra · Combinações centrais",
+    "desc": "Pratique combinações centrais em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "gaf hag gal"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Prática extra · Ritmo com G e H",
+    "desc": "Pratique ritmo com g e h em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "gala gala haja haja"
+  },
+  {
+    "m": 3,
+    "n": 1,
     "title": "Linha central · Avaliação do módulo",
     "desc": "Consolide linha central; compare sua precisão e velocidade.",
     "text": "a sala da casa"
@@ -403,6 +508,41 @@ const lessons=[
     "title": "Primeiras palavras · Aplicação",
     "desc": "Pratique primeiras palavras com atenção às teclas e aos erros.",
     "text": "a fada fala da sala"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Prática extra · Palavras de duas letras",
+    "desc": "Pratique palavras de duas letras em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "da as ja"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Prática extra · Palavras de três letras",
+    "desc": "Pratique palavras de três letras em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "ala asa da"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Prática extra · Palavras de quatro letras",
+    "desc": "Pratique palavras de quatro letras em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "saga fada alga"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Prática extra · Palavras de cinco letras",
+    "desc": "Pratique palavras de cinco letras em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "falha galha salsa"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Prática extra · Frases na linha central",
+    "desc": "Pratique frases na linha central em ritmo confortável, retorne os dedos à posição de referência e priorize a precisão.",
+    "text": "a sala fala da fada"
   },
   {
     "m": 4,
@@ -1112,16 +1252,29 @@ const lessons=[
     "text": "O domínio da digitação exige coordenação, precisão e consistência. Em situações acadêmicas e profissionais, escrever com clareza e revisar informações são competências fundamentais. Avalie seu desempenho e estabeleça a próxima meta de aprendizagem."
   }
 ];
+const previousLessonMap=[0,1,2,3,9,10,11,12,13,19,20,21,22,23,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139];
 const moduleIds=moduleNames.map((_,i)=>i+1);
 const $=id=>document.getElementById(id);
-const storageKey='digitar-pro-learning-v07'; // Catálogo 0.7 isolado dos dados de teste anteriores
+const storageKey='digitar-pro-learning-v071'; // Catálogo 0.7 isolado dos dados de teste anteriores
 let progress={};try{const stored=JSON.parse(localStorage.getItem(storageKey)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))progress=stored}catch(_){}
+// A versão anterior usa índices diferentes: converte somente se a nova chave ainda não existe.
+try {
+  if(localStorage.getItem(storageKey)===null){
+    const prior=JSON.parse(localStorage.getItem('digitar-pro-learning-v07')||'{}');
+    if(prior&&typeof prior==='object'&&!Array.isArray(prior)){
+      for(const [key,value] of Object.entries(prior)){
+        if(/^\d+$/.test(key)&&previousLessonMap[Number(key)]!==undefined)progress[previousLessonMap[Number(key)]]=value;
+      }
+      localStorage.setItem(storageKey,JSON.stringify(progress));
+    }
+  }
+}catch(_){}
 let current=0,startTime=null,timer=null,finished=false,summaryOpen=false,frozenMetrics=null;
 const modeKey='digitar-pro-typing-mode';
-const lessonKey='digitar-pro-current-lesson-v07';
+const lessonKey='digitar-pro-current-lesson-v071';
 function readLessonIndex(){
   try{
-    const n=Number(localStorage.getItem(lessonKey));
+    const saved=localStorage.getItem(lessonKey); const previous=localStorage.getItem('digitar-pro-current-lesson-v07'); const n=saved===null&&previous!==null?previousLessonMap[Number(previous)]:Number(saved);
     if(Number.isInteger(n)&&n>=0&&n<lessons.length)return n;
   }catch(_){}
   return 0;
@@ -1138,7 +1291,7 @@ document.querySelectorAll('input[name="typingMode"]').forEach(el=>el.addEventLis
   try{localStorage.setItem(modeKey,typingMode)}catch(_){}
   load(current);$('typing').focus();
 }));
-const moduleAchievements=Object.fromEntries(moduleIds.map(m=>[m,['🏅',moduleNames[m-1], 'Você concluiu as cinco lições deste módulo.']]));
+const moduleAchievements=Object.fromEntries(moduleIds.map(m=>[m,['🏅',moduleNames[m-1], 'Você concluiu todas as lições deste módulo.']]));
 function save(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(_){}}
 function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 const medalNames=['Bronze','Prata','Ouro','Platina','Diamante','Mestre'];
