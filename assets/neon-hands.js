@@ -135,7 +135,7 @@ function renderFrame(now){
   overlay.hidden=!toggle.checked;
   if(!toggle.checked){
     clearGuideTap();
-    keyboard.style.paddingBottom='18px';
+    keyboard.style.paddingBottom=keyboard.closest('.compact')?'6px':'18px';
     return;
   }
 
@@ -143,18 +143,17 @@ function renderFrame(now){
   const keyC=keyRect('ç');
   if(!keyA||!keyC)return;
 
-  const kbW=keyboard.scrollWidth;
-  const kbH=keyboard.scrollHeight;
-  motionSvg.setAttribute('viewBox',`0 0 ${kbW} ${kbH}`);
+  const compact=Boolean(keyboard.closest('.compact'));
 
-  const spanPx=Math.max(240,keyC.cx-keyA.cx);
+  const spanPx=Math.max(1,keyC.cx-keyA.cx);
   const imgWidth=spanPx/ANCHOR_SPAN_X;
   const imgHeight=imgWidth*ASPECT;
 
   const targetTipY=keyA.cy+keyA.height*0.30;
   const imgTop=targetTipY-ANCHOR_HOME_Y*imgHeight;
-  const neededBottom=Math.max(48,Math.ceil(imgTop+imgHeight-(keyRect(' ')?.bottom||targetTipY)+8));
-  keyboard.style.paddingBottom=Math.min(138,neededBottom)+'px';
+  const neededBottom=Math.max(compact?12:48,Math.ceil(imgTop+imgHeight-(keyRect(' ')?.bottom||targetTipY)+8));
+  const padding=neededBottom+'px';if(keyboard.style.paddingBottom!==padding)keyboard.style.paddingBottom=padding;
+  motionSvg.setAttribute('viewBox',`0 0 ${keyboard.scrollWidth} ${keyboard.scrollHeight}`);
 
   const centerX=(keyA.cx+keyC.cx)/2-((ANCHOR_LEFT_X+ANCHOR_RIGHT_X)/2-0.5)*imgWidth;
   const imgLeft=centerX-imgWidth/2;

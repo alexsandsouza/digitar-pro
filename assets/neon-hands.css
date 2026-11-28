@@ -126,3 +126,6 @@
 @media(prefers-reduced-motion:reduce){
   #neonHandsOverlay,.keyboard-lab #keyboard .key{transition:none!important;animation:none!important}
 }
+
+/* Compact sizing is controlled by the workspace; dynamic hand geometry reserves the exact remaining height. */
+.typing-workspace.compact .keyboard-lab #keyboard{overflow:visible;max-width:100%}
