@@ -7,7 +7,7 @@ const { createApp, closeAll } = require('./helpers');
 test.afterEach(closeAll);
 
 function openLesson(app, index) {
-  const m=Math.floor(index/5)+1; const level=Math.ceil(m/4); const ls=app.get("levelSelect"); if(Number(ls.value)!==level){ls.value=String(level);ls.dispatchEvent(new app.window.Event("change"));} const ms=app.get("moduleSelect");if(Number(ms.value)!==m){ms.value=String(m);ms.dispatchEvent(new app.window.Event("change"));} app.clickSelector(`.lesson[data-i="${index}"]`);
+  const m=Math.floor(index/30)+1; const level=Math.ceil(m/4); const ls=app.get("levelSelect"); if(Number(ls.value)!==level){ls.value=String(level);ls.dispatchEvent(new app.window.Event("change"));} const ms=app.get("moduleSelect");if(Number(ms.value)!==m){ms.value=String(m);ms.dispatchEvent(new app.window.Event("change"));} app.clickSelector(`.lesson[data-i="${index}"]`);
 }
 
 function completeLesson(app, index, options) {
@@ -39,7 +39,7 @@ test('Treinamento com erro conclui e registra precisão real e PPM', () => {
 
   const record = app.stored()['0'];
   const expectedAccuracy = Math.round(((expected.length - 1) / expected.length) * 100);
-  const expectedWpm = Math.round((expected.length - 1) / 5);
+  const expectedWpm = Math.round((expected.length - 1) / 30);
   assert.equal(app.get('typing').disabled, true);
   assert.equal(record.accuracy, expectedAccuracy);
   assert.equal(record.last.accuracy, expectedAccuracy);
@@ -91,7 +91,7 @@ test('Enter prematuro não avança e previne quebra de linha', () => {
   assert.equal(app.activeLessonIndex(), 0);
   assert.equal(app.get('typing').value, expected.slice(0, 5));
   assert.equal(app.get('typing').value.includes('\n'), false);
-  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.completedLabel(), '0 / 720');
 });
 
 test('Enter após conclusão avança exatamente uma lição e repetição é ignorada', () => {
@@ -104,7 +104,7 @@ test('Enter após conclusão avança exatamente uma lição e repetição é ign
 
   app.enter();
   assert.equal(app.activeLessonIndex(), 1);
-  assert.equal(app.completedLabel(), '1 / 120');
+  assert.equal(app.completedLabel(), '1 / 720');
 
   app.enter();
   assert.equal(app.activeLessonIndex(), 1);
@@ -188,7 +188,7 @@ test('botão Próxima lição permite pular sem conclusão (comportamento existe
 
   assert.equal(app.activeLessonIndex(), 1);
   assert.equal(app.stored(), null);
-  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.completedLabel(), '0 / 720');
 });
 
 test('selecionar lição na trilha troca a lição e preserva registros', () => {
@@ -200,16 +200,12 @@ test('selecionar lição na trilha troca a lição e preserva registros', () => 
   assert.equal(app.activeLessonIndex(), 5);
   assert.equal(app.get('typing').value, '');
   assert.equal(app.stored()['0'].accuracy, 100);
-  assert.equal(app.lessonTitle(), 'Teclas de referência · Introdução guiada');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Repetição 1');
 });
 
 test('resumo do módulo em ordem exibe conquista e Enter avança uma vez', () => {
   const app = createApp();
-  completeLesson(app, 0);
-  completeLesson(app, 1);
-  completeLesson(app, 2);
-  completeLesson(app, 3);
-  completeLesson(app, 4);
+  for(let i=0;i<30;i++) completeLesson(app,i);
 
   assert.equal(app.summaryOpen(), true);
   assert.equal(app.text('summaryTitle'), 'Parabéns!');
@@ -217,22 +213,22 @@ test('resumo do módulo em ordem exibe conquista e Enter avança uma vez', () =>
   assert.equal(app.doc.activeElement.id, 'continueModule');
 
   const stored = app.stored();
-  const last = [0, 1, 2, 3, 4].map((i) => stored[i].last);
-  const avgWpm = Math.round(last.reduce((sum, r) => sum + r.wpm, 0) / 5);
-  const avgAccuracy = Math.round(last.reduce((sum, r) => sum + r.accuracy, 0) / 5);
+  const last = Array.from({length:30},(_,i)=>i).map((i) => stored[i].last);
+  const avgWpm = Math.round(last.reduce((sum, r) => sum + r.wpm, 0) / 30);
+  const avgAccuracy = Math.round(last.reduce((sum, r) => sum + r.accuracy, 0) / 30);
   assert.equal(app.text('summaryWpm'), String(avgWpm));
   assert.equal(app.text('summaryAccuracy'), `${avgAccuracy}%`);
-  assert.equal(app.text('summaryTime'), '2min 30s');
+  assert.equal(app.text('summaryTime'), '15min 00s');
 
   app.enter(app.doc);
 
   assert.equal(app.summaryOpen(), false);
-  assert.equal(app.activeLessonIndex(), 5);
+  assert.equal(app.activeLessonIndex(), 30);
 });
 
 test('concluir a última lição sem as demais não abre o resumo', () => {
   const app = createApp();
-  completeLesson(app, 4);
+  completeLesson(app, 29);
 
   assert.equal(app.summaryOpen(), false);
   assert.match(app.get('message').textContent, /Complete as outras lições/);
@@ -263,11 +259,11 @@ test('estado inicial não usa métricas inventadas', () => {
 
 test('resumo abre quando o módulo fica completo fora de ordem', () => {
   const record = (wpm, accuracy) => ({ wpm, accuracy, last: { wpm, accuracy, seconds: 20 } });
-  const app = createApp({ progress: { 1: record(42, 100), 2: record(44, 99), 3: record(44, 99), 4: record(44, 99) } });
+  const app = createApp({ progress: Object.fromEntries(Array.from({length:29},(_,i)=>[i+1,record(42,100)])) });
 
   completeLesson(app, 0);
 
-  assert.equal(app.completedLabel(), '5 / 120');
+  assert.equal(app.completedLabel(), '30 / 720');
   assert.equal(app.summaryOpen(), true);
   assert.match(app.text('achievementName'), /Ergonomia e posição/);
 });
@@ -275,7 +271,7 @@ test('resumo abre quando o módulo fica completo fora de ordem', () => {
 test('repetir lição de módulo já concluído não reabre o resumo', () => {
   const record = (wpm, accuracy) => ({ wpm, accuracy, last: { wpm, accuracy, seconds: 20 } });
   const app = createApp({ progress: {
-    0: record(40, 98), 1: record(42, 100), 2: record(44, 99), 3: record(44, 99), 4: record(44, 99),
+    ...Object.fromEntries(Array.from({length:30},(_,i)=>[i,record(40,98)])),
   } });
 
   completeLesson(app, 0);
