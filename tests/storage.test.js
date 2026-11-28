@@ -8,15 +8,15 @@ test.afterEach(closeAll);
 
 const legacyRecord = { wpm: 47, accuracy: 98, last: { wpm: 47, accuracy: 98, seconds: 24.4 } };
 
-test('fixture legada é carregada e exibida sem perda', () => {
+test('fixture 0.7 é carregada e exibida sem perda', () => {
   const app = createApp({ progress: { 0: legacyRecord } });
 
-  assert.equal(app.completedLabel(), '1 / 12');
+  assert.equal(app.completedLabel(), '1 / 120');
   assert.equal(app.doc.querySelector('.lesson[data-i="0"]').classList.contains('done'), true);
   assert.equal(app.get('best').textContent, '47 PPM');
 
   app.clickSelector('.lesson[data-i="0"]');
-  assert.equal(app.lessonTitle(), 'Teclas de referência');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
   assert.equal(app.get('best').textContent, '47 PPM');
   assert.deepEqual(app.stored(), { 0: legacyRecord });
 });
@@ -24,7 +24,7 @@ test('fixture legada é carregada e exibida sem perda', () => {
 test('registro sem last conta como concluído mas não inventa médias', () => {
   const app = createApp({ progress: { 4: { wpm: 35, accuracy: 90 } } });
 
-  assert.equal(app.completedLabel(), '1 / 12');
+  assert.equal(app.completedLabel(), '1 / 120');
   assert.equal(app.doc.querySelector('.lesson[data-i="4"]').classList.contains('done'), true);
   app.clickSelector('.lesson[data-i="4"]');
   assert.equal(app.get('best').textContent, '35 PPM');
@@ -34,8 +34,8 @@ test('registro sem last conta como concluído mas não inventa médias', () => {
 test('JSON corrompido não derruba o app nem sobrescreve o valor lido', () => {
   const app = createApp({ progress: '{broken' });
 
-  assert.equal(app.completedLabel(), '0 / 12');
-  assert.equal(app.lessonTitle(), 'Teclas de referência');
+  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
   assert.equal(app.storedRaw(), '{broken');
   assert.deepEqual(app.consoleErrors, []);
 });
@@ -43,15 +43,15 @@ test('JSON corrompido não derruba o app nem sobrescreve o valor lido', () => {
 test('JSON válido com array vazio não vira progresso', () => {
   const app = createApp({ progress: '[]' });
 
-  assert.equal(app.completedLabel(), '0 / 12');
-  assert.equal(app.lessonTitle(), 'Teclas de referência');
+  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
 });
 
 test('JSON válido com null não vira progresso', () => {
   const app = createApp({ progress: 'null' });
 
-  assert.equal(app.completedLabel(), '0 / 12');
-  assert.equal(app.lessonTitle(), 'Teclas de referência');
+  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
 });
 
 test('resultado concluído sobrevive a uma nova carga', () => {
@@ -61,15 +61,15 @@ test('resultado concluído sobrevive a uma nova carga', () => {
 
   const second = createApp({ progress: stored });
 
-  assert.equal(second.completedLabel(), '1 / 12');
+  assert.equal(second.completedLabel(), '1 / 120');
   assert.equal(second.get('best').textContent, `${stored['0'].wpm} PPM`);
   assert.deepEqual(second.stored(), stored);
 });
 
 test('chaves e formato do storage são preservados', () => {
-  assert.match(html, /const storageKey='ad-typing-mvp-v1'/);
+  assert.match(html, /const storageKey='digitar-pro-learning-v07'/);
   assert.match(html, /const modeKey='digitar-pro-typing-mode'/);
-  assert.match(html, /const lessonKey='digitar-pro-current-lesson'/);
+  assert.match(html, /const lessonKey='digitar-pro-current-lesson-v07'/);
   assert.match(html, /progress\[current\]=\{wpm:/);
   assert.match(html, /last:\{wpm:/);
 });
@@ -86,21 +86,21 @@ test('preferência de modo é persistida sem alterar resultados', () => {
 test('recarregar abre a última lição sem alterar o progresso', () => {
   const app = createApp({ progress: { 0: legacyRecord }, lesson: 4 });
 
-  assert.equal(app.lessonTitle(), 'Precisão no topo');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Avaliação do módulo');
   assert.equal(app.activeLessonIndex(), 4);
-  assert.equal(app.completedLabel(), '1 / 12');
+  assert.equal(app.completedLabel(), '1 / 120');
   assert.deepEqual(app.stored(), { 0: legacyRecord });
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '4');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '4');
 });
 
 test('índice de lição ausente ou inválido abre a primeira lição', () => {
   const missing = createApp({ progress: { 0: legacyRecord } });
-  assert.equal(missing.lessonTitle(), 'Teclas de referência');
-  assert.equal(missing.window.localStorage.getItem('digitar-pro-current-lesson'), '0');
+  assert.equal(missing.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
+  assert.equal(missing.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '0');
 
-  const invalid = createApp({ lesson: '99' });
-  assert.equal(invalid.lessonTitle(), 'Teclas de referência');
-  assert.equal(invalid.window.localStorage.getItem('digitar-pro-current-lesson'), '0');
+  const invalid = createApp({ lesson: '999' });
+  assert.equal(invalid.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
+  assert.equal(invalid.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '0');
 });
 
 test('trocar de lição grava o índice novo', () => {
@@ -108,8 +108,8 @@ test('trocar de lição grava o índice novo', () => {
 
   app.clickSelector('.lesson[data-i="2"]');
 
-  assert.equal(app.lessonTitle(), 'Palavras simples');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '2');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Fixação');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '2');
   assert.equal(app.stored(), null);
 });
 
@@ -119,8 +119,8 @@ test('Enter grava a lição seguinte', () => {
   app.completeCurrent();
   app.enter();
 
-  assert.equal(app.lessonTitle(), 'Ritmo na linha central');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '1');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Prática orientada');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '1');
   assert.equal(app.stored()['0'].accuracy, 100);
 });
 
@@ -129,9 +129,9 @@ test('limpar progresso com confirmação apaga registros e preferência fica int
 
   app.clickId('clearProgress');
 
-  assert.equal(app.completedLabel(), '0 / 12');
-  assert.equal(app.lessonTitle(), 'Teclas de referência');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '0');
+  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '0');
   assert.deepEqual(app.stored(), {});
   assert.equal(app.window.localStorage.getItem('digitar-pro-typing-mode'), 'precision');
 });
@@ -141,6 +141,6 @@ test('limpar progresso cancelado não apaga registros', () => {
 
   app.clickId('clearProgress');
 
-  assert.equal(app.completedLabel(), '1 / 12');
+  assert.equal(app.completedLabel(), '1 / 120');
   assert.deepEqual(app.stored(), { 0: legacyRecord });
 });

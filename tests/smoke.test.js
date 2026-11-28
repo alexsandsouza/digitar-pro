@@ -8,9 +8,9 @@ test.afterEach(closeAll);
 
 test('carrega o app real e a lição inicial', () => {
   const app = createApp();
-  assert.equal(app.lessonTitle(), 'Teclas de referência');
-  assert.equal(app.completedLabel(), '0 / 12');
-  assert.equal(app.doc.querySelectorAll('.lesson').length, 12);
+  assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução guiada');
+  assert.equal(app.completedLabel(), '0 / 120');
+  assert.equal(app.doc.querySelectorAll('.lesson').length, 5);
   assert.equal(app.get('accuracy').textContent, '100%');
   assert.equal(app.get('wpm').textContent.trim(), '0 PPM');
   assert.ok(app.expected().length > 0);

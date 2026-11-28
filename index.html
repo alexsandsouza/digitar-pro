@@ -163,7 +163,9 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 .role-badge.student{border-color:#4fe3e166;color:var(--accent)}
 @media(max-width:600px){.panel-grid{grid-template-columns:1fr}.account-card{padding:18px}}
 
-.path-label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px}.layout aside select{display:block;width:100%;min-width:0;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);font:inherit;font-size:14px}.path-progress{margin:14px 0;color:var(--accent);font-size:13px}.lesson-list .lesson{min-width:0}.layout aside .lesson-list{max-height:440px;overflow-y:auto;scrollbar-width:thin}.layout aside .lesson-list::-webkit-scrollbar{display:block;width:5px}.layout aside .lesson-list::-webkit-scrollbar-thumb{background:#41617c;border-radius:8px}@media(max-width:900px){.layout aside .lesson-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-height:none;overflow:visible}.layout aside .lesson{max-width:none;width:100%}}</style>
+.path-label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px}.layout aside select{display:block;width:100%;min-width:0;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);font:inherit;font-size:14px}.path-progress{margin:14px 0;color:var(--accent);font-size:13px}.lesson-list .lesson{min-width:0}.layout aside .lesson-list{max-height:440px;overflow-y:auto;scrollbar-width:thin}.layout aside .lesson-list::-webkit-scrollbar{display:block;width:5px}.layout aside .lesson-list::-webkit-scrollbar-thumb{background:#41617c;border-radius:8px}@media(max-width:900px){.layout aside .lesson-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-height:none;overflow:visible}.layout aside .lesson{max-width:none;width:100%}}
+.learning-analytics{border:1px solid #29445f;background:linear-gradient(145deg,#10243a,#0b1b30);border-radius:18px;padding:20px;margin-bottom:18px}.analytics-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}.analytics-head h2{font-size:23px;margin:4px 0}.analytics-head p{margin:4px 0}.analytics-head>strong{color:#4fe3e1;white-space:nowrap;font-size:14px}.level-analytics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.level-stat{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px 12px;align-items:center;border:1px solid #29445f;background:#0c1c30;border-radius:12px;padding:14px;min-width:0}.level-stat.earned{border-color:#60e2ad}.medal{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--medal);color:var(--medal);font-size:23px;background:#152a42}.earned .medal{background:var(--medal);color:#071525;box-shadow:0 0 14px #60e2ad33}.level-stat h3{margin:0;font-size:15px;overflow-wrap:anywhere}.medal-name,.level-count{margin:0;font-size:12px;color:#a9c1d5}.level-stat progress{grid-column:1/-1;width:100%;height:9px;accent-color:#4adad4}.level-count{grid-column:1/-1}.level-metrics{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12px;color:#a9c1d5}.level-metrics b{display:block;color:#eef5ff;font-size:15px}.learning-analytics>.subtitle{margin-bottom:0;font-size:12px}@media(max-width:900px){.level-analytics{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){.level-analytics{grid-template-columns:1fr}.analytics-head{flex-wrap:wrap}.learning-analytics{padding:14px}}
+</style>
 <link rel="stylesheet" href="assets/neon-hands.css?v=4">
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
@@ -175,7 +177,7 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
  <div class="dashboard-tile"><span class="tile-label">Precisão média</span><strong id="dashAccuracy">—</strong><span class="tile-meta">Média por lição</span></div>
  <div class="dashboard-tile"><span class="tile-label">Conquistas</span><strong id="dashAwards">0 / 24</strong><span class="tile-meta">Módulos completos</span></div>
 </section>
-<details class="product-vision" aria-label="Ecossistema Digitar Pro"><summary>Conheça a família Digitar Pro</summary><div class="product-inner"><h2>Uma plataforma para desenvolver sua digitação</h2>
+<section class="learning-analytics" aria-label="Evolução de aprendizagem"><div class="analytics-head"><div><p class="eyebrow">MINHA JORNADA</p><h2>Progresso e conquistas</h2><p class="subtitle">Medalhas por conclusão, sem exigir uma velocidade mínima.</p></div><strong id="levelAwards">0 / 6 níveis</strong></div><div class="level-analytics" id="levelAnalytics"></div><p class="subtitle">PPM e precisão são calculados a partir das tentativas registradas neste navegador. Sem resultados simulados.</p></section><details class="product-vision" aria-label="Ecossistema Digitar Pro"><summary>Conheça a família Digitar Pro</summary><div class="product-inner"><h2>Uma plataforma para desenvolver sua digitação</h2>
 <p>A Academy é nosso primeiro produto: pratique gratuitamente e acompanhe sua evolução. Outras experiências são possibilidades futuras e ainda não estão disponíveis.</p>
 <div class="product-family"><span class="product-chip active">Academy · disponível</span><span class="product-chip future">Kids · futuro</span><span class="product-chip future">Business · futuro</span><span class="product-chip future">Schools · futuro</span></div></div>
 </details>
@@ -1112,7 +1114,7 @@ const lessons=[
 ];
 const moduleIds=moduleNames.map((_,i)=>i+1);
 const $=id=>document.getElementById(id);
-const storageKey='digitar-pro-learning-v07'; // Mantido para preservar progresso das versões anteriores
+const storageKey='digitar-pro-learning-v07'; // Catálogo 0.7 isolado dos dados de teste anteriores
 let progress={};try{const stored=JSON.parse(localStorage.getItem(storageKey)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))progress=stored}catch(_){}
 let current=0,startTime=null,timer=null,finished=false,summaryOpen=false,frozenMetrics=null;
 const modeKey='digitar-pro-typing-mode';
@@ -1139,16 +1141,34 @@ document.querySelectorAll('input[name="typingMode"]').forEach(el=>el.addEventLis
 const moduleAchievements=Object.fromEntries(moduleIds.map(m=>[m,['🏅',moduleNames[m-1], 'Você concluiu as cinco lições deste módulo.']]));
 function save(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(_){}}
 function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const medalNames=['Bronze','Prata','Ouro','Platina','Diamante','Mestre'];
+const medalColors=['#c78b5e','#b9c6d6','#e9be54','#88cbd1','#6db5ff','#bd9bff'];
+function validAttempt(p){return p&&p.last&&Number.isFinite(p.last.wpm)&&p.last.wpm>=0&&Number.isFinite(p.last.accuracy)&&p.last.accuracy>=0&&p.last.accuracy<=100&&Number.isFinite(p.last.seconds)&&p.last.seconds>=0;}
+function renderLevelAnalytics(){
+  let awards=0;
+  $('levelAnalytics').innerHTML=levels.map((name,i)=>{
+    const indices=lessons.flatMap((l,j)=>l.n===i+1?[j]:[]);
+    const records=indices.map(j=>progress[j]).filter(validAttempt);
+    const completed=indices.filter(j=>!!progress[j]).length;
+    const earned=indices.length>0&&records.length===indices.length;
+    if(earned)awards++;
+    const best=records.length?Math.max(...records.map(r=>Number.isFinite(r.wpm)?r.wpm:r.last.wpm)):null;
+    const avg=records.length?Math.round(records.reduce((s,r)=>s+r.last.accuracy,0)/records.length):null;
+    return '<article class="level-stat '+(earned?'earned':'')+'"><div class="medal" style="--medal:'+medalColors[i]+'" aria-hidden="true">★</div><div><h3>'+esc(name)+'</h3><p class="medal-name">'+medalNames[i]+' · '+(earned?'Conquistada':'A conquistar')+'</p></div><progress max="'+indices.length+'" value="'+completed+'" aria-label="Progresso em '+esc(name)+'"></progress><p class="level-count">'+completed+' / '+indices.length+' lições</p><div class="level-metrics"><span>Melhor <b>'+(best===null?'—':best+' PPM')+'</b></span><span>Precisão <b>'+(avg===null?'—':avg+'%')+'</b></span></div></article>';
+  }).join('');
+  $('levelAwards').textContent=awards+' / '+levels.length+' níveis';
+}
 function updateDashboard(){
   const completed=lessons.filter((_,i)=>!!progress[i]).length;
-  const results=Object.values(progress).filter(v=>v&&v.last&&Number.isFinite(v.last.accuracy));
-  const best=Math.max(0,...Object.values(progress).map(v=>Number(v&&v.wpm)||0));
+  const results=lessons.map((_,i)=>progress[i]).filter(v=>v&&v.last&&Number.isFinite(v.last.accuracy));
+  const best=Math.max(0,...lessons.map((_,i)=>progress[i]).map(v=>v&&Number.isFinite(v.wpm)?v.wpm:0));
   const avg=results.length?Math.round(results.reduce((sum,v)=>sum+v.last.accuracy,0)/results.length):null;
   const awards=moduleIds.filter(m=>isModuleComplete(m)).length;
   $('dashLessons').textContent=completed+' / '+lessons.length;
   $('dashBest').textContent=best+' PPM';
   $('dashAccuracy').textContent=avg===null?'—':avg+'%';
   $('dashAwards').textContent=awards+' / '+moduleIds.length;
+  renderLevelAnalytics();
 }
 function drawLessons(){
   const active=lessons[current];const level=active.n;const module=active.m;
@@ -1190,7 +1210,7 @@ function render(){
   $('bar').style.width=Math.min(100,met.raw.length/text.length*100)+'%';highlight(text[met.raw.length]||'');
 }
 function highlight(letter){
-  const key=letter===' '?' ':letter.toLocaleLowerCase('pt-BR');
+  const key=letter===' '?' ':(letter.toLocaleLowerCase('pt-BR')==='ç'?'ç':letter.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,''));
   document.querySelectorAll('.key').forEach(k=>k.classList.toggle('target',!!letter&&k.dataset.key===key));
   updateHands(letter);
 }
@@ -1227,7 +1247,7 @@ function visualizePress(e){
 
 function isModuleLast(i){return i===lessons.length-1||lessons[i+1].m!==lessons[i].m}
 function moduleIndices(module){return lessons.map((l,i)=>l.m===module?i:-1).filter(i=>i!==-1)}
-function isModuleComplete(module){return moduleIndices(module).length>0&&moduleIndices(module).every(i=>progress[i]&&progress[i].last)}
+function isModuleComplete(module){return moduleIndices(module).length>0&&moduleIndices(module).every(i=>validAttempt(progress[i]))}
 function getModuleStats(module){
   if(!isModuleComplete(module))return null;
   const results=moduleIndices(module).map(i=>progress[i].last);
@@ -1317,7 +1337,7 @@ $('restart').addEventListener('click',()=>{load(current);$('typing').focus()});
 $('nextLesson').addEventListener('click',advance);
 $('clearProgress').addEventListener('click',()=>{if(confirm('Deseja apagar o progresso salvo neste navegador?')){progress={};save();load(0)}});
 
-const rows=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.'],['espaço']];
+const rows=[['1','2','3','4','5','6','7','8','9','0','-','='],['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l','ç'],['z','x','c','v','b','n','m',',','.',';','/'],['espaço']];
 $('keyboard').innerHTML=rows.map(row=>'<div class="keyrow">'+row.map(ch=>`<div class="key ${ch==='espaço'?'space':''} ${'asdfjklç'.includes(ch)?'home':''}" data-key="${ch==='espaço'?' ':ch}">${ch==='espaço'?'Espaço':esc(ch.toUpperCase())}</div>`).join('')+'</div>').join('');
 const handsPreference='digitar-pro-show-hands';
 try{$('showHands').checked=localStorage.getItem(handsPreference)!=='false'}catch(_){}

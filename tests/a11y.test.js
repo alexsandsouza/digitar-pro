@@ -7,7 +7,7 @@ const { createApp, closeAll, html } = require('./helpers');
 test.afterEach(closeAll);
 
 function openModuleSummary(app) {
-  for (const index of [0, 1, 2]) {
+  for (const index of [0, 1, 2, 3, 4]) {
     app.clickSelector(`.lesson[data-i="${index}"]`);
     app.completeCurrent({ elapsedMs: 20_000 });
   }
@@ -33,13 +33,13 @@ test('Escape fecha o resumo, restaura foco e não avança', () => {
 
   assert.equal(event.defaultPrevented, true);
   assert.equal(app.summaryOpen(), false);
-  assert.equal(app.activeLessonIndex(), 2);
+  assert.equal(app.activeLessonIndex(), 4);
   assert.equal(app.doc.activeElement.id, 'nextLesson');
   assert.equal(app.doc.querySelector('.wrap').hasAttribute('inert'), false);
   assert.equal(app.doc.body.classList.contains('modal-open'), false);
 
   app.enter(app.get('typing'));
-  assert.equal(app.activeLessonIndex(), 3);
+  assert.equal(app.activeLessonIndex(), 5);
 });
 
 test('fundo fica inert enquanto o resumo está aberto', () => {
@@ -91,7 +91,7 @@ test('Continuar remove inert e avança uma única lição', () => {
   app.clickId('continueModule');
 
   assert.equal(app.summaryOpen(), false);
-  assert.equal(app.activeLessonIndex(), 3);
+  assert.equal(app.activeLessonIndex(), 5);
   assert.equal(app.doc.querySelector('.wrap').hasAttribute('inert'), false);
   assert.equal(app.doc.body.classList.contains('modal-open'), false);
 });
