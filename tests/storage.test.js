@@ -98,7 +98,7 @@ test('índice de lição ausente ou inválido abre a primeira lição', () => {
   assert.equal(missing.lessonTitle(), 'Ergonomia e posição · Introdução 1');
   assert.equal(missing.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '0');
 
-  const invalid = createApp({ lesson: '999' });
+  const invalid = createApp({ lesson: '99999' });
   assert.equal(invalid.lessonTitle(), 'Ergonomia e posição · Introdução 1');
   assert.equal(invalid.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '0');
 });
