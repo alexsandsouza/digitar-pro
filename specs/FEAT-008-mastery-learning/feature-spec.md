@@ -1,0 +1,3 @@
+# FEAT-008 — Mastery Learning 0.9
+
+2080 exercícios: 30/30/40/60/120/240 por módulo, 4 módulos por nível. Catálogo mantém os 720 textos da versão anterior e acrescenta 1360 textos gerados a partir de modelos originais, sujeitos a revisão pedagógica. Navegação por blocos de 20, filtro local ao bloco, retorno à primeira pendente, metas graduais e tipos de exercício. Chaves locais separadas preservam dados anteriores sem associar índices incorretamente. Sem migração automática de notas, pois as metas mudaram. Testes de regressão, validação visual, jogos, desafios cronometrados e adaptação por erros ainda pendentes.
