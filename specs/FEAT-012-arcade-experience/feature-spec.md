@@ -1,0 +1,3 @@
+# FEAT-012 — Arcade Experience
+
+Primeiro incremento: Canvas 2D original com DPR limitado a 2, partículas, cenário espacial, pista com rival simulado por tempo, anéis de combo, áudio opcional, efeitos configuráveis, modo imersivo CSS e paginação sem scroll interno na trilha. Preserva pontuação e catálogo. Sem Phaser nesta etapa. Não mede FPS, não implementa pódio, novos sete jogos ou tema claro ainda. Testes e inspeção visual pendentes.
