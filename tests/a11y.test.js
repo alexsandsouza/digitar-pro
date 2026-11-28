@@ -8,7 +8,7 @@ test.afterEach(closeAll);
 
 function openModuleSummary(app) {
   for (const index of Array.from({length:30},(_,i)=>i)) {
-    app.clickSelector(`.lesson[data-i="${index}"]`);
+    const p=app.get("lessonPage");p.value=String(Math.floor(index/20));p.dispatchEvent(new app.window.Event("change"));app.clickSelector(`.lesson[data-i="${index}"]`);
     app.completeCurrent({ elapsedMs: 20_000 });
   }
   assert.equal(app.summaryOpen(), true);

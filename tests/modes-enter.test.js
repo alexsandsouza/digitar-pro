@@ -7,7 +7,7 @@ const { createApp, closeAll } = require('./helpers');
 test.afterEach(closeAll);
 
 function openLesson(app, index) {
-  const m=Math.floor(index/30)+1; const level=Math.ceil(m/4); const ls=app.get("levelSelect"); if(Number(ls.value)!==level){ls.value=String(level);ls.dispatchEvent(new app.window.Event("change"));} const ms=app.get("moduleSelect");if(Number(ms.value)!==m){ms.value=String(m);ms.dispatchEvent(new app.window.Event("change"));} app.clickSelector(`.lesson[data-i="${index}"]`);
+  const m=Math.floor(index/30)+1; const level=Math.ceil(m/4); const ls=app.get("levelSelect"); if(Number(ls.value)!==level){ls.value=String(level);ls.dispatchEvent(new app.window.Event("change"));} const ms=app.get("moduleSelect");if(Number(ms.value)!==m){ms.value=String(m);ms.dispatchEvent(new app.window.Event("change"));} const p=app.get("lessonPage");p.value=String(Math.floor((index%30)/20));p.dispatchEvent(new app.window.Event("change"));app.clickSelector(`.lesson[data-i="${index}"]`);
 }
 
 function completeLesson(app, index, options) {
@@ -91,7 +91,7 @@ test('Enter prematuro não avança e previne quebra de linha', () => {
   assert.equal(app.activeLessonIndex(), 0);
   assert.equal(app.get('typing').value, expected.slice(0, 5));
   assert.equal(app.get('typing').value.includes('\n'), false);
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
 });
 
 test('Enter após conclusão avança exatamente uma lição e repetição é ignorada', () => {
@@ -104,7 +104,7 @@ test('Enter após conclusão avança exatamente uma lição e repetição é ign
 
   app.enter();
   assert.equal(app.activeLessonIndex(), 1);
-  assert.equal(app.completedLabel(), '1 / 720');
+  assert.equal(app.completedLabel(), '1 / 2080');
 
   app.enter();
   assert.equal(app.activeLessonIndex(), 1);
@@ -188,7 +188,7 @@ test('botão Próxima lição permite pular sem conclusão (comportamento existe
 
   assert.equal(app.activeLessonIndex(), 1);
   assert.equal(app.stored(), null);
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
 });
 
 test('selecionar lição na trilha troca a lição e preserva registros', () => {
@@ -263,7 +263,7 @@ test('resumo abre quando o módulo fica completo fora de ordem', () => {
 
   completeLesson(app, 0);
 
-  assert.equal(app.completedLabel(), '30 / 720');
+  assert.equal(app.completedLabel(), '30 / 2080');
   assert.equal(app.summaryOpen(), true);
   assert.match(app.text('achievementName'), /Ergonomia e posição/);
 });
