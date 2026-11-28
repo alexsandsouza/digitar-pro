@@ -39,7 +39,7 @@ test('Treinamento com erro conclui e registra precisão real e PPM', () => {
 
   const record = app.stored()['0'];
   const expectedAccuracy = Math.round(((expected.length - 1) / expected.length) * 100);
-  const expectedWpm = Math.round((expected.length - 1) / 30);
+  const expectedWpm = Math.round((expected.length - 1) / 5);
   assert.equal(app.get('typing').disabled, true);
   assert.equal(record.accuracy, expectedAccuracy);
   assert.equal(record.last.accuracy, expectedAccuracy);
