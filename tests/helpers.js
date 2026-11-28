@@ -29,13 +29,13 @@ function createApp(options = {}) {
         const raw = typeof options.progress === 'string'
           ? options.progress
           : JSON.stringify(options.progress);
-        window.localStorage.setItem('ad-typing-mvp-v1', raw);
+        window.localStorage.setItem('digitar-pro-learning-v07', raw);
       }
       if (options.mode) {
         window.localStorage.setItem('digitar-pro-typing-mode', options.mode);
       }
       if (options.lesson !== undefined) {
-        window.localStorage.setItem('digitar-pro-current-lesson', String(options.lesson));
+        window.localStorage.setItem('digitar-pro-current-lesson-v07', String(options.lesson));
       }
     },
   });
@@ -118,10 +118,10 @@ function createApp(options = {}) {
       return doc.getElementById('completedLabel').textContent;
     },
     storedRaw() {
-      return window.localStorage.getItem('ad-typing-mvp-v1');
+      return window.localStorage.getItem('digitar-pro-learning-v07');
     },
     stored() {
-      return JSON.parse(window.localStorage.getItem('ad-typing-mvp-v1') || 'null');
+      return JSON.parse(window.localStorage.getItem('digitar-pro-learning-v07') || 'null');
     },
     summaryOpen() {
       return !doc.getElementById('moduleSummary').hidden;

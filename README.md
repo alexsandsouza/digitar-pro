@@ -142,3 +142,7 @@ O endereço público da aplicação é **https://alexsandsouza.github.io/digitar
   <a href="https://alexsandsouza.github.io/digitar-pro/">🚀 Acessar plataforma</a> ·
   <a href="https://github.com/alexsandsouza/digitar-pro/issues">💡 Ideias e melhorias</a>
 </div>
+
+## Desenvolvimento 0.7 - Learning Paths (branch de revisão)
+
+Catálogo de 120 lições, 24 módulos e seis níveis. Dashboard local por nível, medalhas de conclusão e teclado virtual ampliado parcialmente. O progresso anterior não é migrado por decisão do responsável. A autenticação e o banco permanecem inalterados. Esta versão não foi publicada; testes e validação pedagógica ainda são necessários. Consulte [FEAT-005](specs/FEAT-005-learning-paths/feature-spec.md).
