@@ -163,23 +163,23 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 .role-badge.student{border-color:#4fe3e166;color:var(--accent)}
 @media(max-width:600px){.panel-grid{grid-template-columns:1fr}.account-card{padding:18px}}
 
-</style>
+.path-label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px}.layout aside select{display:block;width:100%;min-width:0;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);font:inherit;font-size:14px}.path-progress{margin:14px 0;color:var(--accent);font-size:13px}.lesson-list .lesson{min-width:0}.layout aside .lesson-list{max-height:440px;overflow-y:auto;scrollbar-width:thin}.layout aside .lesson-list::-webkit-scrollbar{display:block;width:5px}.layout aside .lesson-list::-webkit-scrollbar-thumb{background:#41617c;border-radius:8px}@media(max-width:900px){.layout aside .lesson-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-height:none;overflow:visible}.layout aside .lesson{max-width:none;width:100%}}</style>
 <link rel="stylesheet" href="assets/neon-hands.css?v=4">
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
-<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · MVP 0.6 Premium</small></div></div><div class="top-right"><div class="pill">⌨️ Português (Brasil) · Progresso local</div><button type="button" id="accountTrigger" class="account-btn">Entrar / Minha conta</button></div></header>
+<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · 0.7 Learning Paths</small></div></div><div class="top-right"><div class="pill">⌨️ Português (Brasil) · Progresso local</div><button type="button" id="accountTrigger" class="account-btn">Entrar / Minha conta</button></div></header>
 <section class="hero-premium" aria-label="Boas-vindas"><div><h1>Domine cada tecla. <span class="gradient">Evolua sempre.</span></h1><p class="lead">Seu espaço de prática: lições orientadas, feedback imediato e evolução no seu ritmo. O progresso permanece neste navegador.</p></div><a class="hero-link" href="#typing">Começar a praticar ↓</a></section>
 <section class="dashboard-strip" aria-label="Resumo do seu progresso">
- <div class="dashboard-tile"><span class="tile-label">Lições concluídas</span><strong id="dashLessons">0 / 12</strong><span class="tile-meta">Sua trilha</span></div>
+ <div class="dashboard-tile"><span class="tile-label">Lições concluídas</span><strong id="dashLessons">0 / 120</strong><span class="tile-meta">Sua trilha</span></div>
  <div class="dashboard-tile"><span class="tile-label">Melhor velocidade</span><strong id="dashBest">0 PPM</strong><span class="tile-meta">Recorde pessoal</span></div>
  <div class="dashboard-tile"><span class="tile-label">Precisão média</span><strong id="dashAccuracy">—</strong><span class="tile-meta">Média por lição</span></div>
- <div class="dashboard-tile"><span class="tile-label">Conquistas</span><strong id="dashAwards">0 / 4</strong><span class="tile-meta">Módulos completos</span></div>
+ <div class="dashboard-tile"><span class="tile-label">Conquistas</span><strong id="dashAwards">0 / 24</strong><span class="tile-meta">Módulos completos</span></div>
 </section>
 <details class="product-vision" aria-label="Ecossistema Digitar Pro"><summary>Conheça a família Digitar Pro</summary><div class="product-inner"><h2>Uma plataforma para desenvolver sua digitação</h2>
 <p>A Academy é nosso primeiro produto: pratique gratuitamente e acompanhe sua evolução. Outras experiências são possibilidades futuras e ainda não estão disponíveis.</p>
 <div class="product-family"><span class="product-chip active">Academy · disponível</span><span class="product-chip future">Kids · futuro</span><span class="product-chip future">Business · futuro</span><span class="product-chip future">Schools · futuro</span></div></div>
 </details>
-<main class="layout" id="conteudo"><aside class="card"><div class="side-head"><strong>TRILHA DE APRENDIZAGEM</strong><span class="subtitle" id="completedLabel">0 / 12</span></div><p class="subtitle">Selecione uma lição para praticar.</p><div id="lessons" class="lesson-list"></div><div class="note">As 12 lições são gratuitas e não exigem cadastro. A trilha completa de 60 aulas e a área do professor são etapas futuras.</div></aside>
+<main class="layout" id="conteudo"><aside class="card"><div class="side-head"><strong>TRILHA DE APRENDIZAGEM</strong><span class="subtitle" id="completedLabel">0 / 120</span></div><p class="subtitle">Escolha um nível e um módulo para praticar.</p><label class="path-label" for="levelSelect">Nível de aprendizagem</label><select id="levelSelect"></select><label class="path-label" for="moduleSelect">Módulo</label><select id="moduleSelect"></select><div id="levelProgress" class="path-progress" aria-live="polite"></div><div id="lessons" class="lesson-list"></div><div class="note">120 lições em seis níveis. Explore os módulos livremente e acompanhe seu progresso neste navegador.</div></aside>
 <section class="card"><div class="headline"><div><span class="eyebrow" id="module">MÓDULO 1</span><h2 id="lessonTitle">Teclas de referência</h2><p class="subtitle" id="lessonDesc">Comece pelas teclas centrais.</p></div><button class="reset" id="clearProgress" title="Apagar progresso armazenado neste navegador">Limpar progresso</button></div>
 <fieldset class="mode-panel" aria-describedby="modeDescription"><legend>Modo de aprendizagem</legend><div class="mode-options"><label class="mode-option"><input type="radio" name="typingMode" value="training" checked> Treinamento</label><label class="mode-option"><input type="radio" name="typingMode" value="precision"> Precisão</label></div><p class="mode-description" id="modeDescription">Treinamento: erros reduzem a precisão, mas não impedem a conclusão.</p></fieldset>
 <p class="lesson-purpose" id="lessonPurpose"><strong>Objetivo:</strong> praticar as teclas de referência. Priorize a precisão antes da velocidade.</p>
@@ -225,7 +225,7 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
       <form id="loginForm" class="account-form">
         <div class="account-field"><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" autocomplete="email" required></div>
         <div class="account-field"><label for="loginPassword">Senha</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
-        <div class="actions"><button type="submit" class="btn primary">Entrar</button><span class="hint">As 12 lições continuam livres sem login nesta etapa.</span></div>
+        <div class="actions"><button type="submit" class="btn primary">Entrar</button><span class="hint">As lições continuam livres sem login nesta etapa.</span></div>
       </form>
       <form id="registerForm" class="account-form" hidden>
         <div class="account-field"><label for="registerName">Nome completo</label><input id="registerName" type="text" minlength="2" maxlength="120" autocomplete="name" required></div>
@@ -266,26 +266,857 @@ html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 65% 35% at 8
 </div>
 <script>
 (()=>{'use strict';
+const levels=["Fundamentos","Desenvolvimento","Fluência","Performance","Proficiência","Excelência"];
+const moduleNames=["Ergonomia e posição","Teclas de referência","Linha central","Primeiras palavras","Linha superior","Linha inferior","Integração das linhas","Palavras e frases","Palavras complexas","Maiúsculas e Shift","Acentuação e pontuação","Frases e parágrafos","Números e símbolos","Caracteres especiais","Desafios de ritmo","Textos complexos","Administrativo e comercial","Acadêmico e científico","Numérico e formulários","Programação","Textos técnicos","Velocidade e resistência","Alta precisão","Avaliação final"];
 const lessons=[
-{m:1,title:'Teclas de referência',desc:'Posição inicial das mãos: A S D F e J K L Ç.',text:'asdf jklç asdf jklç asdf jklç'},
-{m:1,title:'Ritmo na linha central',desc:'Ganhe fluidez sem tirar os dedos da base.',text:'a sala da fada fala da casa'},
-{m:1,title:'Palavras simples',desc:'Experimente alternar as duas mãos.',text:'fala salada casa fada jala'},
-{m:2,title:'Linha superior',desc:'Adicione Q W E R T Y U I O P.',text:'que tipo de equipe quer aprender'},
-{m:2,title:'Precisão no topo',desc:'Fortaleça a memória das letras superiores.',text:'poeta queria escrever outro roteiro'},
-{m:2,title:'Desafio das palavras',desc:'Combine linhas central e superior.',text:'aprender requer pratica e paciencia'},
-{m:3,title:'Linha inferior',desc:'Use Z X C V B N M.',text:'zxcv bnm zxcv bnm zxcv bnm'},
-{m:3,title:'Todas as linhas',desc:'Digite frases curtas sem olhar para as teclas.',text:'com calma voce consegue dominar o teclado'},
-{m:3,title:'Fluência inicial',desc:'Atenção ao espaço e à sequência.',text:'cada nova tentativa melhora sua velocidade'},
-{m:4,title:'Acentos e pontuação',desc:'Pratique a escrita em português.',text:'Olá, você está evoluindo! Continue.'},
-{m:4,title:'Números e símbolos',desc:'Introduza dígitos e sinais frequentes.',text:'Em 2026, complete 3 metas por dia.'},
-{m:4,title:'Desafio final',desc:'Teste velocidade e precisão com texto maior.',text:'A tecnologia transforma a educação quando praticamos com atenção, consistência e curiosidade.'}
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Ergonomia e posição · Introdução guiada",
+    "desc": "Conheça o objetivo de ergonomia e posição e pratique em ritmo confortável.",
+    "text": "asdf jklç"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Ergonomia e posição · Prática orientada",
+    "desc": "Pratique ergonomia e posição com atenção às teclas e aos erros.",
+    "text": "asdf jklç asdf"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Ergonomia e posição · Fixação",
+    "desc": "Pratique ergonomia e posição com atenção às teclas e aos erros.",
+    "text": "fff jjj ddd kkk"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Ergonomia e posição · Aplicação",
+    "desc": "Pratique ergonomia e posição com atenção às teclas e aos erros.",
+    "text": "a s d f j k l ç"
+  },
+  {
+    "m": 1,
+    "n": 1,
+    "title": "Ergonomia e posição · Avaliação do módulo",
+    "desc": "Consolide ergonomia e posição; compare sua precisão e velocidade.",
+    "text": "asdf jklç fdsa çlkj"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Teclas de referência · Introdução guiada",
+    "desc": "Conheça o objetivo de teclas de referência e pratique em ritmo confortável.",
+    "text": "aaa sss ddd fff"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Teclas de referência · Prática orientada",
+    "desc": "Pratique teclas de referência com atenção às teclas e aos erros.",
+    "text": "jjj kkk lll ççç"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Teclas de referência · Fixação",
+    "desc": "Pratique teclas de referência com atenção às teclas e aos erros.",
+    "text": "af af fj fj"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Teclas de referência · Aplicação",
+    "desc": "Pratique teclas de referência com atenção às teclas e aos erros.",
+    "text": "sad lad fala"
+  },
+  {
+    "m": 2,
+    "n": 1,
+    "title": "Teclas de referência · Avaliação do módulo",
+    "desc": "Consolide teclas de referência; compare sua precisão e velocidade.",
+    "text": "asdf jklç fala sala"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Linha central · Introdução guiada",
+    "desc": "Conheça o objetivo de linha central e pratique em ritmo confortável.",
+    "text": "gfg h jh"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Linha central · Prática orientada",
+    "desc": "Pratique linha central com atenção às teclas e aos erros.",
+    "text": "gaga haha"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Linha central · Fixação",
+    "desc": "Pratique linha central com atenção às teclas e aos erros.",
+    "text": "fala da sala"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Linha central · Aplicação",
+    "desc": "Pratique linha central com atenção às teclas e aos erros.",
+    "text": "a fada fala"
+  },
+  {
+    "m": 3,
+    "n": 1,
+    "title": "Linha central · Avaliação do módulo",
+    "desc": "Consolide linha central; compare sua precisão e velocidade.",
+    "text": "a sala da casa"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Primeiras palavras · Introdução guiada",
+    "desc": "Conheça o objetivo de primeiras palavras e pratique em ritmo confortável.",
+    "text": "sala fada"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Primeiras palavras · Prática orientada",
+    "desc": "Pratique primeiras palavras com atenção às teclas e aos erros.",
+    "text": "fala falha"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Primeiras palavras · Fixação",
+    "desc": "Pratique primeiras palavras com atenção às teclas e aos erros.",
+    "text": "salada alada"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Primeiras palavras · Aplicação",
+    "desc": "Pratique primeiras palavras com atenção às teclas e aos erros.",
+    "text": "a fada fala da sala"
+  },
+  {
+    "m": 4,
+    "n": 1,
+    "title": "Primeiras palavras · Avaliação do módulo",
+    "desc": "Consolide primeiras palavras; compare sua precisão e velocidade.",
+    "text": "a salada da casa"
+  },
+  {
+    "m": 5,
+    "n": 2,
+    "title": "Linha superior · Introdução guiada",
+    "desc": "Conheça o objetivo de linha superior e pratique em ritmo confortável.",
+    "text": "qwer tyui op"
+  },
+  {
+    "m": 5,
+    "n": 2,
+    "title": "Linha superior · Prática orientada",
+    "desc": "Pratique linha superior com atenção às teclas e aos erros.",
+    "text": "qq ww ee rr tt"
+  },
+  {
+    "m": 5,
+    "n": 2,
+    "title": "Linha superior · Fixação",
+    "desc": "Pratique linha superior com atenção às teclas e aos erros.",
+    "text": "yy uu ii oo pp"
+  },
+  {
+    "m": 5,
+    "n": 2,
+    "title": "Linha superior · Aplicação",
+    "desc": "Pratique linha superior com atenção às teclas e aos erros.",
+    "text": "que tipo"
+  },
+  {
+    "m": 5,
+    "n": 2,
+    "title": "Linha superior · Avaliação do módulo",
+    "desc": "Consolide linha superior; compare sua precisão e velocidade.",
+    "text": "o poeta quer escrever"
+  },
+  {
+    "m": 6,
+    "n": 2,
+    "title": "Linha inferior · Introdução guiada",
+    "desc": "Conheça o objetivo de linha inferior e pratique em ritmo confortável.",
+    "text": "zxcv bnm"
+  },
+  {
+    "m": 6,
+    "n": 2,
+    "title": "Linha inferior · Prática orientada",
+    "desc": "Pratique linha inferior com atenção às teclas e aos erros.",
+    "text": "zz xx cc vv"
+  },
+  {
+    "m": 6,
+    "n": 2,
+    "title": "Linha inferior · Fixação",
+    "desc": "Pratique linha inferior com atenção às teclas e aos erros.",
+    "text": "bb nn mm"
+  },
+  {
+    "m": 6,
+    "n": 2,
+    "title": "Linha inferior · Aplicação",
+    "desc": "Pratique linha inferior com atenção às teclas e aos erros.",
+    "text": "vez com bem"
+  },
+  {
+    "m": 6,
+    "n": 2,
+    "title": "Linha inferior · Avaliação do módulo",
+    "desc": "Consolide linha inferior; compare sua precisão e velocidade.",
+    "text": "o vizinho viu um barco"
+  },
+  {
+    "m": 7,
+    "n": 2,
+    "title": "Integração das linhas · Introdução guiada",
+    "desc": "Conheça o objetivo de integração das linhas e pratique em ritmo confortável.",
+    "text": "qaz wsx edc"
+  },
+  {
+    "m": 7,
+    "n": 2,
+    "title": "Integração das linhas · Prática orientada",
+    "desc": "Pratique integração das linhas com atenção às teclas e aos erros.",
+    "text": "rfv tgb yhn"
+  },
+  {
+    "m": 7,
+    "n": 2,
+    "title": "Integração das linhas · Fixação",
+    "desc": "Pratique integração das linhas com atenção às teclas e aos erros.",
+    "text": "ujm ik ol"
+  },
+  {
+    "m": 7,
+    "n": 2,
+    "title": "Integração das linhas · Aplicação",
+    "desc": "Pratique integração das linhas com atenção às teclas e aos erros.",
+    "text": "cada tecla tem lugar"
+  },
+  {
+    "m": 7,
+    "n": 2,
+    "title": "Integração das linhas · Avaliação do módulo",
+    "desc": "Consolide integração das linhas; compare sua precisão e velocidade.",
+    "text": "praticar com calma ajuda"
+  },
+  {
+    "m": 8,
+    "n": 2,
+    "title": "Palavras e frases · Introdução guiada",
+    "desc": "Conheça o objetivo de palavras e frases e pratique em ritmo confortável.",
+    "text": "casa escola"
+  },
+  {
+    "m": 8,
+    "n": 2,
+    "title": "Palavras e frases · Prática orientada",
+    "desc": "Pratique palavras e frases com atenção às teclas e aos erros.",
+    "text": "livro trabalho"
+  },
+  {
+    "m": 8,
+    "n": 2,
+    "title": "Palavras e frases · Fixação",
+    "desc": "Pratique palavras e frases com atenção às teclas e aos erros.",
+    "text": "a equipe pratica"
+  },
+  {
+    "m": 8,
+    "n": 2,
+    "title": "Palavras e frases · Aplicação",
+    "desc": "Pratique palavras e frases com atenção às teclas e aos erros.",
+    "text": "o aluno aprende com exemplos"
+  },
+  {
+    "m": 8,
+    "n": 2,
+    "title": "Palavras e frases · Avaliação do módulo",
+    "desc": "Consolide palavras e frases; compare sua precisão e velocidade.",
+    "text": "a leitura e a pratica melhoram a escrita"
+  },
+  {
+    "m": 9,
+    "n": 3,
+    "title": "Palavras complexas · Introdução guiada",
+    "desc": "Conheça o objetivo de palavras complexas e pratique em ritmo confortável.",
+    "text": "conhecimento"
+  },
+  {
+    "m": 9,
+    "n": 3,
+    "title": "Palavras complexas · Prática orientada",
+    "desc": "Pratique palavras complexas com atenção às teclas e aos erros.",
+    "text": "responsabilidade"
+  },
+  {
+    "m": 9,
+    "n": 3,
+    "title": "Palavras complexas · Fixação",
+    "desc": "Pratique palavras complexas com atenção às teclas e aos erros.",
+    "text": "desenvolvimento"
+  },
+  {
+    "m": 9,
+    "n": 3,
+    "title": "Palavras complexas · Aplicação",
+    "desc": "Pratique palavras complexas com atenção às teclas e aos erros.",
+    "text": "planejamento e produtividade"
+  },
+  {
+    "m": 9,
+    "n": 3,
+    "title": "Palavras complexas · Avaliação do módulo",
+    "desc": "Consolide palavras complexas; compare sua precisão e velocidade.",
+    "text": "a aprendizagem exige continuidade e disciplina"
+  },
+  {
+    "m": 10,
+    "n": 3,
+    "title": "Maiúsculas e Shift · Introdução guiada",
+    "desc": "Conheça o objetivo de maiúsculas e shift e pratique em ritmo confortável.",
+    "text": "Ana Bruno Carla"
+  },
+  {
+    "m": 10,
+    "n": 3,
+    "title": "Maiúsculas e Shift · Prática orientada",
+    "desc": "Pratique maiúsculas e shift com atenção às teclas e aos erros.",
+    "text": "Manaus Amazonas Brasil"
+  },
+  {
+    "m": 10,
+    "n": 3,
+    "title": "Maiúsculas e Shift · Fixação",
+    "desc": "Pratique maiúsculas e shift com atenção às teclas e aos erros.",
+    "text": "Hoje vamos estudar."
+  },
+  {
+    "m": 10,
+    "n": 3,
+    "title": "Maiúsculas e Shift · Aplicação",
+    "desc": "Pratique maiúsculas e shift com atenção às teclas e aos erros.",
+    "text": "A Escola recebe novos alunos."
+  },
+  {
+    "m": 10,
+    "n": 3,
+    "title": "Maiúsculas e Shift · Avaliação do módulo",
+    "desc": "Consolide maiúsculas e shift; compare sua precisão e velocidade.",
+    "text": "A equipe de Tecnologia concluiu o Projeto."
+  },
+  {
+    "m": 11,
+    "n": 3,
+    "title": "Acentuação e pontuação · Introdução guiada",
+    "desc": "Conheça o objetivo de acentuação e pontuação e pratique em ritmo confortável.",
+    "text": "á é í ó ú"
+  },
+  {
+    "m": 11,
+    "n": 3,
+    "title": "Acentuação e pontuação · Prática orientada",
+    "desc": "Pratique acentuação e pontuação com atenção às teclas e aos erros.",
+    "text": "ã õ â ê ô ç"
+  },
+  {
+    "m": 11,
+    "n": 3,
+    "title": "Acentuação e pontuação · Fixação",
+    "desc": "Pratique acentuação e pontuação com atenção às teclas e aos erros.",
+    "text": "ação, café, você."
+  },
+  {
+    "m": 11,
+    "n": 3,
+    "title": "Acentuação e pontuação · Aplicação",
+    "desc": "Pratique acentuação e pontuação com atenção às teclas e aos erros.",
+    "text": "Olá! Tudo bem?"
+  },
+  {
+    "m": 11,
+    "n": 3,
+    "title": "Acentuação e pontuação · Avaliação do módulo",
+    "desc": "Consolide acentuação e pontuação; compare sua precisão e velocidade.",
+    "text": "A educação é um direito; a prática é essencial."
+  },
+  {
+    "m": 12,
+    "n": 3,
+    "title": "Frases e parágrafos · Introdução guiada",
+    "desc": "Conheça o objetivo de frases e parágrafos e pratique em ritmo confortável.",
+    "text": "O aluno lê o texto."
+  },
+  {
+    "m": 12,
+    "n": 3,
+    "title": "Frases e parágrafos · Prática orientada",
+    "desc": "Pratique frases e parágrafos com atenção às teclas e aos erros.",
+    "text": "A turma pratica todos os dias."
+  },
+  {
+    "m": 12,
+    "n": 3,
+    "title": "Frases e parágrafos · Fixação",
+    "desc": "Pratique frases e parágrafos com atenção às teclas e aos erros.",
+    "text": "Escrever bem exige atenção e revisão."
+  },
+  {
+    "m": 12,
+    "n": 3,
+    "title": "Frases e parágrafos · Aplicação",
+    "desc": "Pratique frases e parágrafos com atenção às teclas e aos erros.",
+    "text": "A tecnologia auxilia o trabalho, mas não substitui o pensamento."
+  },
+  {
+    "m": 12,
+    "n": 3,
+    "title": "Frases e parágrafos · Avaliação do módulo",
+    "desc": "Consolide frases e parágrafos; compare sua precisão e velocidade.",
+    "text": "A prática regular melhora a familiaridade com o teclado. Revise cada frase antes de avançar."
+  },
+  {
+    "m": 13,
+    "n": 4,
+    "title": "Números e símbolos · Introdução guiada",
+    "desc": "Conheça o objetivo de números e símbolos e pratique em ritmo confortável.",
+    "text": "12345 67890"
+  },
+  {
+    "m": 13,
+    "n": 4,
+    "title": "Números e símbolos · Prática orientada",
+    "desc": "Pratique números e símbolos com atenção às teclas e aos erros.",
+    "text": "2026 2027 2028"
+  },
+  {
+    "m": 13,
+    "n": 4,
+    "title": "Números e símbolos · Fixação",
+    "desc": "Pratique números e símbolos com atenção às teclas e aos erros.",
+    "text": "10 + 25 = 35"
+  },
+  {
+    "m": 13,
+    "n": 4,
+    "title": "Números e símbolos · Aplicação",
+    "desc": "Pratique números e símbolos com atenção às teclas e aos erros.",
+    "text": "R$ 45,90"
+  },
+  {
+    "m": 13,
+    "n": 4,
+    "title": "Números e símbolos · Avaliação do módulo",
+    "desc": "Consolide números e símbolos; compare sua precisão e velocidade.",
+    "text": "Pedido 123: 5 itens por R$ 12,00."
+  },
+  {
+    "m": 14,
+    "n": 4,
+    "title": "Caracteres especiais · Introdução guiada",
+    "desc": "Conheça o objetivo de caracteres especiais e pratique em ritmo confortável.",
+    "text": "! ? : ;"
+  },
+  {
+    "m": 14,
+    "n": 4,
+    "title": "Caracteres especiais · Prática orientada",
+    "desc": "Pratique caracteres especiais com atenção às teclas e aos erros.",
+    "text": "@ # $ % &"
+  },
+  {
+    "m": 14,
+    "n": 4,
+    "title": "Caracteres especiais · Fixação",
+    "desc": "Pratique caracteres especiais com atenção às teclas e aos erros.",
+    "text": "(a) [b] {c}"
+  },
+  {
+    "m": 14,
+    "n": 4,
+    "title": "Caracteres especiais · Aplicação",
+    "desc": "Pratique caracteres especiais com atenção às teclas e aos erros.",
+    "text": "email@exemplo.com"
+  },
+  {
+    "m": 14,
+    "n": 4,
+    "title": "Caracteres especiais · Avaliação do módulo",
+    "desc": "Consolide caracteres especiais; compare sua precisão e velocidade.",
+    "text": "Arquivo: relatorio_v2.txt - status: 100%."
+  },
+  {
+    "m": 15,
+    "n": 4,
+    "title": "Desafios de ritmo · Introdução guiada",
+    "desc": "Conheça o objetivo de desafios de ritmo e pratique em ritmo confortável.",
+    "text": "ritmo e foco"
+  },
+  {
+    "m": 15,
+    "n": 4,
+    "title": "Desafios de ritmo · Prática orientada",
+    "desc": "Pratique desafios de ritmo com atenção às teclas e aos erros.",
+    "text": "Digite com atenção e mantenha o ritmo."
+  },
+  {
+    "m": 15,
+    "n": 4,
+    "title": "Desafios de ritmo · Fixação",
+    "desc": "Pratique desafios de ritmo com atenção às teclas e aos erros.",
+    "text": "Cada palavra exige uma sequência de movimentos."
+  },
+  {
+    "m": 15,
+    "n": 4,
+    "title": "Desafios de ritmo · Aplicação",
+    "desc": "Pratique desafios de ritmo com atenção às teclas e aos erros.",
+    "text": "A velocidade deve crescer sem abandonar a precisão."
+  },
+  {
+    "m": 15,
+    "n": 4,
+    "title": "Desafios de ritmo · Avaliação do módulo",
+    "desc": "Consolide desafios de ritmo; compare sua precisão e velocidade.",
+    "text": "Pratique um texto completo com ritmo regular, respiração tranquila e atenção aos sinais de pontuação."
+  },
+  {
+    "m": 16,
+    "n": 4,
+    "title": "Textos complexos · Introdução guiada",
+    "desc": "Conheça o objetivo de textos complexos e pratique em ritmo confortável.",
+    "text": "A revisão evita erros."
+  },
+  {
+    "m": 16,
+    "n": 4,
+    "title": "Textos complexos · Prática orientada",
+    "desc": "Pratique textos complexos com atenção às teclas e aos erros.",
+    "text": "A comunicação depende da clareza do texto."
+  },
+  {
+    "m": 16,
+    "n": 4,
+    "title": "Textos complexos · Fixação",
+    "desc": "Pratique textos complexos com atenção às teclas e aos erros.",
+    "text": "O planejamento exige informações confiáveis e decisões justificadas."
+  },
+  {
+    "m": 16,
+    "n": 4,
+    "title": "Textos complexos · Aplicação",
+    "desc": "Pratique textos complexos com atenção às teclas e aos erros.",
+    "text": "Embora existam alternativas, a equipe escolheu a solução mais simples."
+  },
+  {
+    "m": 16,
+    "n": 4,
+    "title": "Textos complexos · Avaliação do módulo",
+    "desc": "Consolide textos complexos; compare sua precisão e velocidade.",
+    "text": "Uma análise cuidadosa considera evidências, limitações e consequências antes de propor mudanças."
+  },
+  {
+    "m": 17,
+    "n": 5,
+    "title": "Administrativo e comercial · Introdução guiada",
+    "desc": "Conheça o objetivo de administrativo e comercial e pratique em ritmo confortável.",
+    "text": "Assunto: reunião"
+  },
+  {
+    "m": 17,
+    "n": 5,
+    "title": "Administrativo e comercial · Prática orientada",
+    "desc": "Pratique administrativo e comercial com atenção às teclas e aos erros.",
+    "text": "Prezados, bom dia."
+  },
+  {
+    "m": 17,
+    "n": 5,
+    "title": "Administrativo e comercial · Fixação",
+    "desc": "Pratique administrativo e comercial com atenção às teclas e aos erros.",
+    "text": "Solicitamos a confirmação do pedido."
+  },
+  {
+    "m": 17,
+    "n": 5,
+    "title": "Administrativo e comercial · Aplicação",
+    "desc": "Pratique administrativo e comercial com atenção às teclas e aos erros.",
+    "text": "A reunião ocorrerá na sala 02, às 14h."
+  },
+  {
+    "m": 17,
+    "n": 5,
+    "title": "Administrativo e comercial · Avaliação do módulo",
+    "desc": "Consolide administrativo e comercial; compare sua precisão e velocidade.",
+    "text": "Prezados, encaminhamos o relatório de atividades para revisão. Aguardamos a confirmação do recebimento."
+  },
+  {
+    "m": 18,
+    "n": 5,
+    "title": "Acadêmico e científico · Introdução guiada",
+    "desc": "Conheça o objetivo de acadêmico e científico e pratique em ritmo confortável.",
+    "text": "Resumo e objetivos"
+  },
+  {
+    "m": 18,
+    "n": 5,
+    "title": "Acadêmico e científico · Prática orientada",
+    "desc": "Pratique acadêmico e científico com atenção às teclas e aos erros.",
+    "text": "A pesquisa analisa os resultados."
+  },
+  {
+    "m": 18,
+    "n": 5,
+    "title": "Acadêmico e científico · Fixação",
+    "desc": "Pratique acadêmico e científico com atenção às teclas e aos erros.",
+    "text": "O método descreve as etapas do experimento."
+  },
+  {
+    "m": 18,
+    "n": 5,
+    "title": "Acadêmico e científico · Aplicação",
+    "desc": "Pratique acadêmico e científico com atenção às teclas e aos erros.",
+    "text": "Os dados sugerem uma tendência, mas não demonstram causalidade."
+  },
+  {
+    "m": 18,
+    "n": 5,
+    "title": "Acadêmico e científico · Avaliação do módulo",
+    "desc": "Consolide acadêmico e científico; compare sua precisão e velocidade.",
+    "text": "A investigação exige critérios explícitos, fontes verificáveis e análise das limitações. As conclusões devem ser sustentadas pelas evidências."
+  },
+  {
+    "m": 19,
+    "n": 5,
+    "title": "Numérico e formulários · Introdução guiada",
+    "desc": "Conheça o objetivo de numérico e formulários e pratique em ritmo confortável.",
+    "text": "001 002 003"
+  },
+  {
+    "m": 19,
+    "n": 5,
+    "title": "Numérico e formulários · Prática orientada",
+    "desc": "Pratique numérico e formulários com atenção às teclas e aos erros.",
+    "text": "12/03/2026"
+  },
+  {
+    "m": 19,
+    "n": 5,
+    "title": "Numérico e formulários · Fixação",
+    "desc": "Pratique numérico e formulários com atenção às teclas e aos erros.",
+    "text": "CEP: 69000-000"
+  },
+  {
+    "m": 19,
+    "n": 5,
+    "title": "Numérico e formulários · Aplicação",
+    "desc": "Pratique numérico e formulários com atenção às teclas e aos erros.",
+    "text": "Item 04 | Quantidade: 12 | Valor: R$ 25,00"
+  },
+  {
+    "m": 19,
+    "n": 5,
+    "title": "Numérico e formulários · Avaliação do módulo",
+    "desc": "Consolide numérico e formulários; compare sua precisão e velocidade.",
+    "text": "Protocolo: 2026-0042; data: 15/10/2026; total: R$ 300,00."
+  },
+  {
+    "m": 20,
+    "n": 5,
+    "title": "Programação · Introdução guiada",
+    "desc": "Conheça o objetivo de programação e pratique em ritmo confortável.",
+    "text": "int x = 10;"
+  },
+  {
+    "m": 20,
+    "n": 5,
+    "title": "Programação · Prática orientada",
+    "desc": "Pratique programação com atenção às teclas e aos erros.",
+    "text": "if (x > 0)"
+  },
+  {
+    "m": 20,
+    "n": 5,
+    "title": "Programação · Fixação",
+    "desc": "Pratique programação com atenção às teclas e aos erros.",
+    "text": "for (int i = 0; i < 5; i++)"
+  },
+  {
+    "m": 20,
+    "n": 5,
+    "title": "Programação · Aplicação",
+    "desc": "Pratique programação com atenção às teclas e aos erros.",
+    "text": "printf(\"Ola, mundo!\");"
+  },
+  {
+    "m": 20,
+    "n": 5,
+    "title": "Programação · Avaliação do módulo",
+    "desc": "Consolide programação; compare sua precisão e velocidade.",
+    "text": "const total = items.reduce((sum, item) => sum + item.price, 0);"
+  },
+  {
+    "m": 21,
+    "n": 6,
+    "title": "Textos técnicos · Introdução guiada",
+    "desc": "Conheça o objetivo de textos técnicos e pratique em ritmo confortável.",
+    "text": "A rede utiliza protocolos."
+  },
+  {
+    "m": 21,
+    "n": 6,
+    "title": "Textos técnicos · Prática orientada",
+    "desc": "Pratique textos técnicos com atenção às teclas e aos erros.",
+    "text": "O servidor recebe uma solicitação."
+  },
+  {
+    "m": 21,
+    "n": 6,
+    "title": "Textos técnicos · Fixação",
+    "desc": "Pratique textos técnicos com atenção às teclas e aos erros.",
+    "text": "O sistema registra eventos para facilitar o diagnóstico."
+  },
+  {
+    "m": 21,
+    "n": 6,
+    "title": "Textos técnicos · Aplicação",
+    "desc": "Pratique textos técnicos com atenção às teclas e aos erros.",
+    "text": "Uma interface acessível deve oferecer feedback e instruções compreensíveis."
+  },
+  {
+    "m": 21,
+    "n": 6,
+    "title": "Textos técnicos · Avaliação do módulo",
+    "desc": "Consolide textos técnicos; compare sua precisão e velocidade.",
+    "text": "A arquitetura distribuída requer atenção à latência, à disponibilidade e à consistência dos dados. Cada decisão envolve vantagens e limitações."
+  },
+  {
+    "m": 22,
+    "n": 6,
+    "title": "Velocidade e resistência · Introdução guiada",
+    "desc": "Conheça o objetivo de velocidade e resistência e pratique em ritmo confortável.",
+    "text": "A prática melhora o ritmo."
+  },
+  {
+    "m": 22,
+    "n": 6,
+    "title": "Velocidade e resistência · Prática orientada",
+    "desc": "Pratique velocidade e resistência com atenção às teclas e aos erros.",
+    "text": "Mantenha os ombros relaxados durante o exercício."
+  },
+  {
+    "m": 22,
+    "n": 6,
+    "title": "Velocidade e resistência · Fixação",
+    "desc": "Pratique velocidade e resistência com atenção às teclas e aos erros.",
+    "text": "A precisão deve ser acompanhada ao longo de toda a sessão de digitação."
+  },
+  {
+    "m": 22,
+    "n": 6,
+    "title": "Velocidade e resistência · Aplicação",
+    "desc": "Pratique velocidade e resistência com atenção às teclas e aos erros.",
+    "text": "Organize o ambiente de trabalho, ajuste a cadeira e faça pausas quando necessário para manter o conforto."
+  },
+  {
+    "m": 22,
+    "n": 6,
+    "title": "Velocidade e resistência · Avaliação do módulo",
+    "desc": "Consolide velocidade e resistência; compare sua precisão e velocidade.",
+    "text": "A formação de uma habilidade depende de prática deliberada. Alterne exercícios curtos com textos mais extensos, observe os erros recorrentes e estabeleça objetivos realistas para cada sessão."
+  },
+  {
+    "m": 23,
+    "n": 6,
+    "title": "Alta precisão · Introdução guiada",
+    "desc": "Conheça o objetivo de alta precisão e pratique em ritmo confortável.",
+    "text": "Ação, reação; revisão."
+  },
+  {
+    "m": 23,
+    "n": 6,
+    "title": "Alta precisão · Prática orientada",
+    "desc": "Pratique alta precisão com atenção às teclas e aos erros.",
+    "text": "R$ 1.234,56 (total)."
+  },
+  {
+    "m": 23,
+    "n": 6,
+    "title": "Alta precisão · Fixação",
+    "desc": "Pratique alta precisão com atenção às teclas e aos erros.",
+    "text": "A equipe recebeu 12 solicitações às 08h30."
+  },
+  {
+    "m": 23,
+    "n": 6,
+    "title": "Alta precisão · Aplicação",
+    "desc": "Pratique alta precisão com atenção às teclas e aos erros.",
+    "text": "O arquivo dados_v3.csv contém 45 registros; revise os campos."
+  },
+  {
+    "m": 23,
+    "n": 6,
+    "title": "Alta precisão · Avaliação do módulo",
+    "desc": "Consolide alta precisão; compare sua precisão e velocidade.",
+    "text": "A atualização nº 27 foi registrada em 18/11/2026, às 09h15. O relatório inclui: versão, autor, alterações e critérios de validação."
+  },
+  {
+    "m": 24,
+    "n": 6,
+    "title": "Avaliação final · Introdução guiada",
+    "desc": "Conheça o objetivo de avaliação final e pratique em ritmo confortável.",
+    "text": "A precisão é essencial para uma comunicação clara."
+  },
+  {
+    "m": 24,
+    "n": 6,
+    "title": "Avaliação final · Prática orientada",
+    "desc": "Pratique avaliação final com atenção às teclas e aos erros.",
+    "text": "Em 2026, a equipe revisou 25 documentos e registrou os resultados."
+  },
+  {
+    "m": 24,
+    "n": 6,
+    "title": "Avaliação final · Fixação",
+    "desc": "Pratique avaliação final com atenção às teclas e aos erros.",
+    "text": "A aprendizagem contínua combina conhecimento, prática e reflexão sobre os próprios erros."
+  },
+  {
+    "m": 24,
+    "n": 6,
+    "title": "Avaliação final · Aplicação",
+    "desc": "Pratique avaliação final com atenção às teclas e aos erros.",
+    "text": "A tecnologia apoia a produtividade quando utilizada com responsabilidade, segurança e atenção aos detalhes."
+  },
+  {
+    "m": 24,
+    "n": 6,
+    "title": "Avaliação final · Avaliação do módulo",
+    "desc": "Consolide avaliação final; compare sua precisão e velocidade.",
+    "text": "O domínio da digitação exige coordenação, precisão e consistência. Em situações acadêmicas e profissionais, escrever com clareza e revisar informações são competências fundamentais. Avalie seu desempenho e estabeleça a próxima meta de aprendizagem."
+  }
 ];
+const moduleIds=moduleNames.map((_,i)=>i+1);
 const $=id=>document.getElementById(id);
-const storageKey='ad-typing-mvp-v1'; // Mantido para preservar progresso das versões anteriores
+const storageKey='digitar-pro-learning-v07'; // Mantido para preservar progresso das versões anteriores
 let progress={};try{const stored=JSON.parse(localStorage.getItem(storageKey)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))progress=stored}catch(_){}
 let current=0,startTime=null,timer=null,finished=false,summaryOpen=false,frozenMetrics=null;
 const modeKey='digitar-pro-typing-mode';
-const lessonKey='digitar-pro-current-lesson';
+const lessonKey='digitar-pro-current-lesson-v07';
 function readLessonIndex(){
   try{
     const n=Number(localStorage.getItem(lessonKey));
@@ -305,7 +1136,7 @@ document.querySelectorAll('input[name="typingMode"]').forEach(el=>el.addEventLis
   try{localStorage.setItem(modeKey,typingMode)}catch(_){}
   load(current);$('typing').focus();
 }));
-const moduleAchievements={1:['🏅','Primeiros Passos','Você dominou a linha central do teclado.'],2:['🚀','Explorador das Teclas','Você avançou pela linha superior.'],3:['⚡','Ritmo e Fluência','Você combinou as três linhas do teclado.'],4:['🏆','Mestre da Digitação','Você concluiu todos os módulos disponíveis!']};
+const moduleAchievements=Object.fromEntries(moduleIds.map(m=>[m,['🏅',moduleNames[m-1], 'Você concluiu as cinco lições deste módulo.']]));
 function save(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(_){}}
 function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function updateDashboard(){
@@ -313,23 +1144,32 @@ function updateDashboard(){
   const results=Object.values(progress).filter(v=>v&&v.last&&Number.isFinite(v.last.accuracy));
   const best=Math.max(0,...Object.values(progress).map(v=>Number(v&&v.wpm)||0));
   const avg=results.length?Math.round(results.reduce((sum,v)=>sum+v.last.accuracy,0)/results.length):null;
-  const awards=[1,2,3,4].filter(m=>isModuleComplete(m)).length;
+  const awards=moduleIds.filter(m=>isModuleComplete(m)).length;
   $('dashLessons').textContent=completed+' / '+lessons.length;
   $('dashBest').textContent=best+' PPM';
   $('dashAccuracy').textContent=avg===null?'—':avg+'%';
-  $('dashAwards').textContent=awards+' / 4';
+  $('dashAwards').textContent=awards+' / '+moduleIds.length;
 }
 function drawLessons(){
-  $('lessons').innerHTML=lessons.map((l,i)=>`<button class="lesson ${current===i?'active':''} ${progress[i]?'done':''}" data-i="${i}"><span class="num">${progress[i]?'✓':i+1}</span><span><strong>${esc(l.title)}</strong><small>Módulo ${l.m}${progress[i]&&Number.isFinite(progress[i].wpm)?' · '+progress[i].wpm+' PPM':''}</small></span></button>`).join('');
+  const active=lessons[current];const level=active.n;const module=active.m;
+  $('levelSelect').innerHTML=levels.map((name,i)=>'<option value="'+(i+1)+'">'+(i+1)+' - '+esc(name)+'</option>').join('');
+  $('levelSelect').value=String(level);
+  $('moduleSelect').innerHTML=moduleIds.filter(m=>Math.ceil(m/4)===level).map(m=>'<option value="'+m+'">'+m+' - '+esc(moduleNames[m-1])+'</option>').join('');
+  $('moduleSelect').value=String(module);
+  const levelIndices=lessons.map((l,i)=>l.n===level?i:-1).filter(i=>i>=0);
+  $('levelProgress').textContent=levels[level-1]+' · '+levelIndices.filter(i=>progress[i]).length+' / '+levelIndices.length+' lições';
+  $('lessons').innerHTML=moduleIndices(module).map(i=>{const l=lessons[i];return '<button class="lesson '+(current===i?'active':'')+' '+(progress[i]?'done':'')+'" data-i="'+i+'" '+(current===i?'aria-current="step"':'')+'><span class="num">'+(progress[i]?'✓':i+1)+'</span><span><strong>'+esc(l.title)+'</strong><small>Módulo '+l.m+(progress[i]&&Number.isFinite(progress[i].wpm)?' · '+progress[i].wpm+' PPM':'')+'</small></span></button>';}).join('');
   $('completedLabel').textContent=lessons.filter((_,i)=>!!progress[i]).length+' / '+lessons.length;
   updateDashboard();
   document.querySelectorAll('.lesson').forEach(b=>b.addEventListener('click',()=>load(+b.dataset.i)));
 }
+$('levelSelect').addEventListener('change',e=>load(lessons.findIndex(l=>l.n===Number(e.target.value))));
+$('moduleSelect').addEventListener('change',e=>load(lessons.findIndex(l=>l.m===Number(e.target.value))));
 function hideSummary(){summaryOpen=false;$('moduleSummary').hidden=true;document.querySelector('.wrap').removeAttribute('inert');document.body.classList.remove('modal-open');}
 function load(i){
   hideSummary();current=i;startTime=null;finished=false;frozenMetrics=null;clearInterval(timer);
   try{localStorage.setItem(lessonKey,String(i))}catch(_){}
-  $('typing').value='';$('typing').disabled=false;$('module').textContent='MÓDULO '+lessons[i].m;
+  $('typing').value='';$('typing').disabled=false;$('module').textContent=levels[lessons[i].n-1].toUpperCase()+' · MÓDULO '+lessons[i].m;
   $('lessonTitle').textContent=lessons[i].title;$('lessonDesc').textContent=lessons[i].desc;
   $('lessonPurpose').innerHTML='<strong>Objetivo:</strong> '+esc(lessons[i].desc)+' <span aria-hidden="true">·</span> '+(typingMode==='precision'?'Corrija todos os erros antes de avançar.':'Priorize a precisão e tente melhorar seu resultado.');
   updateModeUI();
@@ -387,7 +1227,7 @@ function visualizePress(e){
 
 function isModuleLast(i){return i===lessons.length-1||lessons[i+1].m!==lessons[i].m}
 function moduleIndices(module){return lessons.map((l,i)=>l.m===module?i:-1).filter(i=>i!==-1)}
-function isModuleComplete(module){return moduleIndices(module).every(i=>progress[i]&&progress[i].last)}
+function isModuleComplete(module){return moduleIndices(module).length>0&&moduleIndices(module).every(i=>progress[i]&&progress[i].last)}
 function getModuleStats(module){
   if(!isModuleComplete(module))return null;
   const results=moduleIndices(module).map(i=>progress[i].last);
@@ -401,12 +1241,12 @@ function showSummary(module){
   const result=getModuleStats(module);if(!result)return false;
   summaryOpen=true;
   const [emoji,name,description]=moduleAchievements[module];
-  $('summaryEyebrow').textContent='MÓDULO '+module+' CONCLUÍDO';$('summaryTitle').textContent=module===4?'Trilha concluída!':'Parabéns!';
+  $('summaryEyebrow').textContent='MÓDULO '+module+' CONCLUÍDO';$('summaryTitle').textContent=module===moduleIds.length?'Trilha concluída!':'Parabéns!';
   $('summaryDescription').textContent='Você concluiu as '+moduleIndices(module).length+' lições do módulo '+module+'. Veja seu desempenho e sua nova conquista.';
   $('summaryWpm').textContent=result.wpm;$('summaryAccuracy').textContent=result.acc+'%';$('summaryTime').textContent=formatTime(result.secs);
   $('achievementName').textContent=emoji+' '+name;$('achievementDescription').textContent=description;
-  $('continueModule').textContent=module===4?'Recomeçar trilha →':'Próximo módulo →';
-  $('summaryHint').textContent=module===4?'Pressione Enter para voltar à primeira lição':'Pressione Enter para continuar';
+  $('continueModule').textContent=module===moduleIds.length?'Recomeçar trilha →':'Próximo módulo →';
+  $('summaryHint').textContent=module===moduleIds.length?'Pressione Enter para voltar à primeira lição':'Pressione Enter para continuar';
   document.querySelector('.wrap').setAttribute('inert','');document.body.classList.add('modal-open');
   $('moduleSummary').hidden=false;$('continueModule').focus();return true;
 }
