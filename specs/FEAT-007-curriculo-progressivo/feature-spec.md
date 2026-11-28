@@ -1,3 +1,3 @@
-# FEAT-007 - Currículo progressivo 720
+# FEAT-007 - Progressive Learning 0.8
 
-24 módulos, seis níveis, 30 lições por módulo. Conteúdo original gerado deterministicamente; revisar progressão pedagógica e naturalidade dos exercícios, especialmente textos avançados. Referência de escala: Typing Jungle, 684 lições (https://static.typingclub.com/m/edclubdocs/media/pdf/typing-jungle-tracker.pdf). Nova chave local para evitar associação incorreta dos índices; dados antigos não apagados. Testes da versão 0.7 exigem adaptação, sem merge ou deploy até verificação.
+720 lições originais geradas por regras, 24 módulos, 30 lições por módulo, seis níveis. Progressão por introdução de teclas, ampliação de texto, números, símbolos e contextos profissionais. Metas de PPM e precisão são sugestões pedagógicas, não bloqueios. Estrelas 1 a 5 por tentativa e melhor avaliação persistida; 5 estrelas exigem ambas as metas. Progresso 0.8 usa chave própria, sem excluir contas ou registros anteriores. Revisão humana de textos, teclado ABNT2 e acessibilidade real ainda necessária. Testes obrigatórios antes de release.
