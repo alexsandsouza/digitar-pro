@@ -227,7 +227,7 @@ test('LGPD: aluno pode excluir própria conta e perde sessão ativa', async () =
   }
 });
 
-test('AC-016 e AC-017: 12 lições seguem livres sem login e logout mantém localStorage', async () => {
+test('AC-016 e AC-017: 120 lições seguem livres sem login e logout mantém localStorage', async () => {
   const app = createApp({
     progress: { 0: { wpm: 45, accuracy: 97, last: { wpm: 45, accuracy: 97, seconds: 20 } } },
     mode: 'precision',
@@ -235,8 +235,8 @@ test('AC-016 e AC-017: 12 lições seguem livres sem login e logout mantém loca
   });
 
   assert.equal(app.activeLessonIndex(), 7);
-  assert.equal(app.lessonTitle(), 'Todas as linhas');
-  assert.equal(app.completedLabel(), '1 / 12');
+  assert.equal(app.lessonTitle(), 'Teclas de referência · Fixação');
+  assert.equal(app.completedLabel(), '1 / 120');
 
   app.clickId('accountTrigger');
   assert.equal(app.get('accountModal').hidden, false);
@@ -247,5 +247,5 @@ test('AC-016 e AC-017: 12 lições seguem livres sem login e logout mantém loca
   await new Promise((r) => setTimeout(r, 20));
   assert.equal(app.stored()['0'].wpm, 45);
   assert.equal(app.window.localStorage.getItem('digitar-pro-typing-mode'), 'precision');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson'), '7');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v07'), '7');
 });
