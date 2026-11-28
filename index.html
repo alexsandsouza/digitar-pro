@@ -174,7 +174,7 @@ body{background:#101823;color:var(--text);font-family:system-ui,-apple-system,Bl
 <link rel="stylesheet" href="assets/neon-hands.css?v=5">
 </head>
 <body><a class="skip" href="#conteudo">Ir para o conteúdo</a><div class="wrap">
-<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · 0.9.6 Phaser Preview</small></div></div><nav class="main-nav" aria-label="Navegação principal"><a href="#conteudo">Praticar</a><a href="#progresso">Progresso</a><a href="#laboratorio">Laboratório</a><a href="#jogos">Arcade</a></nav><div class="top-right"><span class="local-indicator" title="Progresso salvo neste navegador"><span aria-hidden="true"></span> PT-BR · Local</span><button type="button" id="accountTrigger" class="account-btn">Minha conta</button></div></header>
+<header class="top"><div class="logo"><div class="mark" aria-hidden="true">DP</div><div><strong>Digitar Pro <span class="brand-academy">Academy</span></strong><small>Digite melhor. Evolua sempre. · 0.9.7 Meteor Art</small></div></div><nav class="main-nav" aria-label="Navegação principal"><a href="#conteudo">Praticar</a><a href="#progresso">Progresso</a><a href="#laboratorio">Laboratório</a><a href="#jogos">Arcade</a></nav><div class="top-right"><span class="local-indicator" title="Progresso salvo neste navegador"><span aria-hidden="true"></span> PT-BR · Local</span><button type="button" id="accountTrigger" class="account-btn">Minha conta</button></div></header>
 <section class="hero-premium" aria-label="Boas-vindas"><div><p class="eyebrow">APRENDA NO SEU RITMO</p><h1>Uma tecla de cada vez.</h1><p class="lead">Desenvolva precisão e velocidade com uma trilha progressiva de 2.080 exercícios.</p></div><a class="hero-link" href="#typing">Iniciar treino <span aria-hidden="true">→</span></a></section>
 <section class="dashboard-strip" aria-label="Resumo do seu progresso">
  <div class="dashboard-tile"><span class="tile-label">Lições concluídas</span><strong id="dashLessons">0 / 2080</strong><span class="tile-meta">Sua trilha</span></div>
@@ -485,7 +485,7 @@ const rules={easy:{ttl:6500,duration:60,lives:5,goal:12},normal:{ttl:4500,durati
 let game='meteor',state='idle',timer=null,deadline=0,wordStart=0,pausedAt=0,target='',pool=[],score=0,combo=0,lives=5,rounds=0,errors=0,best={},rule=rules.normal,previous='',meteorLane=0.5,meteorOrigin=0.5,meteorIndex=0;
 try{const b=JSON.parse(localStorage.getItem('digitar-pro-arcade-v1')||'{}');if(b&&typeof b==='object'&&!Array.isArray(b))best=b}catch(_){}
 let renderer=null,effects=true,sound=false,audio=null;try{effects=localStorage.getItem('digitar-pro-arcade-effects')!=='off'}catch(_){} 
-function scene(){const now=state==='paused'?pausedAt:Date.now();return{game,state,effects,combo,lives,meteorLane,meteorOrigin,fall:Math.min(1,Math.max(0,(now-wordStart)/Math.max(1400,rule.ttl-rounds*65))),progress:Math.min(1,rounds/rule.goal),opponent:Math.min(.98,Math.max(0,1-(deadline-now)/(rule.duration*1000))*(rule.goal===12?.72:rule.goal===16?1:1.2))}}
+function scene(){const now=state==='paused'?pausedAt:Date.now();return{game,state,effects,combo,lives,meteorLane,meteorOrigin,meteorIndex,fall:Math.min(1,Math.max(0,(now-wordStart)/Math.max(1400,rule.ttl-rounds*65))),progress:Math.min(1,rounds/rule.goal),opponent:Math.min(.98,Math.max(0,1-(deadline-now)/(rule.duration*1000))*(rule.goal===12?.72:rule.goal===16?1:1.2))}}
 let phaserRenderer=null,phaserTimer=null,phaserEpoch=0;
 el('phaserOptIn').addEventListener('change',()=>{if(!el('phaserOptIn').checked){releasePhaser();return}if(window.Phaser)return;const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js';script.async=true;script.onload=()=>{el('arcadeEngine').textContent='Phaser disponível · inicie nova partida'};script.onerror=()=>{el('phaserOptIn').checked=false;el('arcadeEngine').textContent='Canvas 2D · Phaser indisponível'};document.head.appendChild(script);el('arcadeEngine').textContent='Carregando motor…'});
 function releasePhaser(){phaserEpoch++;clearTimeout(phaserTimer);phaserRenderer?.destroy();phaserRenderer=null;el('arcadeStage').classList.remove('phaser-ready');el('arcadeEngine').textContent='Canvas 2D';}
@@ -714,5 +714,5 @@ $('deleteOwnAccount').addEventListener('click',async()=>{
 if(location.protocol==='http:'||location.protocol==='https:'){refreshSession();}
 })();
 </script>
-<script src="assets/neon-hands.js?v=5" defer></script><script src="assets/arcade-renderer.js?v=3" defer></script><script src="assets/phaser-preview.js?v=1" defer></script>
+<script src="assets/neon-hands.js?v=5" defer></script><script src="assets/arcade-renderer.js?v=4" defer></script><script src="assets/phaser-preview.js?v=2" defer></script>
 </body></html>
