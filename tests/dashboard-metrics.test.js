@@ -25,7 +25,7 @@ test('dashboard vazio não inventa valores', () => {
   const app = createApp();
 
   assert.deepEqual(dashboard(app), {
-    lessons: '0 / 720',
+    lessons: '0 / 2080',
     best: '0 PPM',
     accuracy: '—',
     awards: '0 / 24',
@@ -40,7 +40,7 @@ test('dashboard deriva lições, recorde e média apenas de registros válidos',
   } });
 
   assert.deepEqual(dashboard(app), {
-    lessons: '3 / 720',
+    lessons: '3 / 2080',
     best: '60 PPM',
     accuracy: '99%',
     awards: '0 / 24',
@@ -53,7 +53,7 @@ test('dashboard conta módulo completo uma única vez', () => {
   } });
 
   assert.deepEqual(dashboard(app), {
-    lessons: '30 / 720',
+    lessons: '30 / 2080',
     best: '44 PPM',
     accuracy: '98%',
     awards: '1 / 24',
@@ -66,7 +66,7 @@ test('dashboard atualiza após concluir uma lição', () => {
   app.completeCurrent();
   const stored = app.stored()['0'];
 
-  assert.equal(app.text('dashLessons'), '1 / 720');
+  assert.equal(app.text('dashLessons'), '1 / 2080');
   assert.equal(app.text('dashBest'), `${stored.wpm} PPM`);
   assert.equal(app.text('dashAccuracy'), `${stored.accuracy}%`);
 });
@@ -89,10 +89,10 @@ test('rótulo da precisão média descreve a média por lição', () => {
 test('JSON válido com string não marca lições como concluídas', () => {
   const app = createApp({ progress: '"abcdefghijkl"' });
 
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
   assert.equal(app.doc.querySelectorAll('.lesson.done').length, 0);
   assert.deepEqual(dashboard(app), {
-    lessons: '0 / 720',
+    lessons: '0 / 2080',
     best: '0 PPM',
     accuracy: '—',
     awards: '0 / 24',
@@ -104,9 +104,9 @@ test('registro com números inválidos não derruba nem inventa dashboard', () =
     0: { wpm: 'x', accuracy: 'y', last: { wpm: 'x', accuracy: 'y', seconds: 'z' } },
   } });
 
-  assert.equal(app.completedLabel(), '1 / 720');
+  assert.equal(app.completedLabel(), '1 / 2080');
   assert.deepEqual(dashboard(app), {
-    lessons: '1 / 720',
+    lessons: '1 / 2080',
     best: '0 PPM',
     accuracy: '—',
     awards: '0 / 24',

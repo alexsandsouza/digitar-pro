@@ -11,7 +11,7 @@ const legacyRecord = { wpm: 47, accuracy: 98, last: { wpm: 47, accuracy: 98, sec
 test('fixture 0.7 é carregada e exibida sem perda', () => {
   const app = createApp({ progress: { 0: legacyRecord } });
 
-  assert.equal(app.completedLabel(), '1 / 720');
+  assert.equal(app.completedLabel(), '1 / 2080');
   assert.equal(app.doc.querySelector('.lesson[data-i="0"]').classList.contains('done'), true);
   assert.equal(app.get('best').textContent, '47 PPM');
 
@@ -24,7 +24,7 @@ test('fixture 0.7 é carregada e exibida sem perda', () => {
 test('registro sem last conta como concluído mas não inventa médias', () => {
   const app = createApp({ progress: { 4: { wpm: 35, accuracy: 90 } } });
 
-  assert.equal(app.completedLabel(), '1 / 720');
+  assert.equal(app.completedLabel(), '1 / 2080');
   assert.equal(app.doc.querySelector('.lesson[data-i="4"]').classList.contains('done'), true);
   app.clickSelector('.lesson[data-i="4"]');
   assert.equal(app.get('best').textContent, '35 PPM');
@@ -34,7 +34,7 @@ test('registro sem last conta como concluído mas não inventa médias', () => {
 test('JSON corrompido não derruba o app nem sobrescreve o valor lido', () => {
   const app = createApp({ progress: '{broken' });
 
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 1');
   assert.equal(app.storedRaw(), '{broken');
   assert.deepEqual(app.consoleErrors, []);
@@ -43,14 +43,14 @@ test('JSON corrompido não derruba o app nem sobrescreve o valor lido', () => {
 test('JSON válido com array vazio não vira progresso', () => {
   const app = createApp({ progress: '[]' });
 
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 1');
 });
 
 test('JSON válido com null não vira progresso', () => {
   const app = createApp({ progress: 'null' });
 
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 1');
 });
 
@@ -61,15 +61,15 @@ test('resultado concluído sobrevive a uma nova carga', () => {
 
   const second = createApp({ progress: stored });
 
-  assert.equal(second.completedLabel(), '1 / 720');
+  assert.equal(second.completedLabel(), '1 / 2080');
   assert.equal(second.get('best').textContent, `${stored['0'].wpm} PPM`);
   assert.deepEqual(second.stored(), stored);
 });
 
 test('chaves e formato do storage são preservados', () => {
-  assert.match(html, /const storageKey='digitar-pro-learning-v08'/);
+  assert.match(html, /const storageKey='digitar-pro-learning-v09'/);
   assert.match(html, /const modeKey='digitar-pro-typing-mode'/);
-  assert.match(html, /const lessonKey='digitar-pro-current-lesson-v08'/);
+  assert.match(html, /const lessonKey='digitar-pro-current-lesson-v09'/);
   assert.match(html, /progress\[current\]=\{wpm:/);
   assert.match(html, /last:\{wpm:/);
 });
@@ -88,19 +88,19 @@ test('recarregar abre a última lição sem alterar o progresso', () => {
 
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 5');
   assert.equal(app.activeLessonIndex(), 4);
-  assert.equal(app.completedLabel(), '1 / 720');
+  assert.equal(app.completedLabel(), '1 / 2080');
   assert.deepEqual(app.stored(), { 0: legacyRecord });
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v08'), '4');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '4');
 });
 
 test('índice de lição ausente ou inválido abre a primeira lição', () => {
   const missing = createApp({ progress: { 0: legacyRecord } });
   assert.equal(missing.lessonTitle(), 'Ergonomia e posição · Introdução 1');
-  assert.equal(missing.window.localStorage.getItem('digitar-pro-current-lesson-v08'), '0');
+  assert.equal(missing.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '0');
 
-  const invalid = createApp({ lesson: '999' });
+  const invalid = createApp({ lesson: '99999' });
   assert.equal(invalid.lessonTitle(), 'Ergonomia e posição · Introdução 1');
-  assert.equal(invalid.window.localStorage.getItem('digitar-pro-current-lesson-v08'), '0');
+  assert.equal(invalid.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '0');
 });
 
 test('trocar de lição grava o índice novo', () => {
@@ -109,7 +109,7 @@ test('trocar de lição grava o índice novo', () => {
   app.clickSelector('.lesson[data-i="2"]');
 
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 3');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v08'), '2');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '2');
   assert.equal(app.stored(), null);
 });
 
@@ -120,7 +120,7 @@ test('Enter grava a lição seguinte', () => {
   app.enter();
 
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 2');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v08'), '1');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '1');
   assert.equal(app.stored()['0'].accuracy, 100);
 });
 
@@ -129,9 +129,9 @@ test('limpar progresso com confirmação apaga registros e preferência fica int
 
   app.clickId('clearProgress');
 
-  assert.equal(app.completedLabel(), '0 / 720');
+  assert.equal(app.completedLabel(), '0 / 2080');
   assert.equal(app.lessonTitle(), 'Ergonomia e posição · Introdução 1');
-  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v08'), '0');
+  assert.equal(app.window.localStorage.getItem('digitar-pro-current-lesson-v09'), '0');
   assert.deepEqual(app.stored(), {});
   assert.equal(app.window.localStorage.getItem('digitar-pro-typing-mode'), 'precision');
 });
@@ -141,6 +141,6 @@ test('limpar progresso cancelado não apaga registros', () => {
 
   app.clickId('clearProgress');
 
-  assert.equal(app.completedLabel(), '1 / 720');
+  assert.equal(app.completedLabel(), '1 / 2080');
   assert.deepEqual(app.stored(), { 0: legacyRecord });
 });
